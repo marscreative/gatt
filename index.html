@@ -2704,35 +2704,6 @@
                                 </div>
                             </div>
                         </div>
-                        
-                        <!-- Location Details Overlay -->
-                        <div id="locationDetails" class="absolute inset-0 bg-white bg-opacity-95 hidden transition-all duration-500 border-2 border-indigo-300">
-                            <div class="h-full flex flex-col">
-                                <!-- Header with close button -->
-                                <div class="flex justify-between items-center p-4 border-b-2 border-indigo-300">
-                                    <h3 id="mapTitle" class="text-2xl font-bold text-indigo-600">Santiago Branch</h3>
-                                    <button onclick="hideLocation()" class="text-gray-500 hover:text-gray-700 text-2xl border-2 border-gray-300 rounded-full w-8 h-8 flex items-center justify-center">×</button>
-                                </div>
-                                
-                                <!-- Map Container -->
-                                <div class="flex-1 p-4">
-                                    <div id="map" class="w-full h-full rounded-lg border-2 border-indigo-200" style="min-height: 400px;">
-                                        <!-- Map will be loaded here -->
-                                        <div class="w-full h-full flex items-center justify-center bg-gray-100 rounded-lg">
-                                            <div class="text-center">
-                                                <div class="text-4xl mb-2">🗺️</div>
-                                                <p class="text-gray-600">Loading map...</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- Location Info Panel -->
-                                    <div id="locationInfo" class="mt-4 bg-white p-4 rounded-lg border-2 border-indigo-200">
-                                        <div id="locationDetailsContent"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     
                     <!-- Quick Location Cards -->
@@ -2758,6 +2729,44 @@
                     </div>
                 </div>
             </section>
+            
+            <!-- Map Modal -->
+            <div id="mapModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+                <div class="flex items-center justify-center min-h-screen p-4">
+                    <div class="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
+                        <!-- Modal Header -->
+                        <div class="flex justify-between items-center p-6 border-b-2 border-indigo-300 bg-gradient-to-r from-indigo-50 to-blue-50">
+                            <h3 id="mapTitle" class="text-2xl font-bold text-indigo-600">Santiago Branch</h3>
+                            <button onclick="hideLocation()" class="text-gray-500 hover:text-gray-700 text-2xl border-2 border-gray-300 rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-100 transition-all">
+                                ×
+                            </button>
+                        </div>
+                        
+                        <!-- Modal Content -->
+                        <div class="flex flex-col lg:flex-row h-[calc(90vh-120px)]">
+                            <!-- Map Container -->
+                            <div class="flex-1 p-4">
+                                <div id="map" class="w-full h-full rounded-lg border-2 border-indigo-200" style="min-height: 400px;">
+                                    <!-- Map will be loaded here -->
+                                    <div class="w-full h-full flex items-center justify-center bg-gray-100 rounded-lg">
+                                        <div class="text-center">
+                                            <div class="text-4xl mb-2">🗺️</div>
+                                            <p class="text-gray-600">Loading map...</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Location Info Panel -->
+                            <div class="w-full lg:w-80 p-4 bg-gray-50 border-l-2 border-indigo-200">
+                                <div id="locationDetailsContent" class="space-y-4">
+                                    <!-- Location details will be loaded here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             
             <div class="grid md:grid-cols-2 gap-12">
                 <div>

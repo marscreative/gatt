@@ -387,7 +387,8 @@ const locations = {
         address: 'Skyworld Commercial Center, Session Road, Baguio City 2600',
         phone: '(074) 123-4567',
         hours: 'Monday - Friday: 8:00 AM - 6:00 PM',
-        description: 'Central Baguio, near Session Road'
+        description: 'Central Baguio, near Session Road',
+        color: 'indigo'
     },
     'sm-city': {
         name: 'SM City Branch',
@@ -396,7 +397,8 @@ const locations = {
         address: 'Upper Basement (Opposite DFA), SM City, Baguio City 2600',
         phone: '(074) 123-4567',
         hours: 'Monday - Sunday: 10:00 AM - 9:00 PM',
-        description: 'Inside SM City Mall, near DFA Office'
+        description: 'Inside SM City Mall, near DFA Office',
+        color: 'blue'
     },
     'ymca': {
         name: 'YMCA Branch',
@@ -405,7 +407,8 @@ const locations = {
         address: 'Ground Floor, YMCA Bldg., Upper Session Road, Baguio City 2600',
         phone: '(074) 123-4567',
         hours: 'Monday - Friday: 8:00 AM - 5:00 PM',
-        description: 'Historic YMCA Building'
+        description: 'Historic YMCA Building',
+        color: 'purple'
     },
     'santiago': {
         name: 'Santiago Branch',
@@ -415,23 +418,18 @@ const locations = {
         phone: '(074) 123-4567',
         hours: 'Monday - Sunday: 10:00 AM - 9:00 PM',
         description: 'Inside Robinsons Mall',
-        manager: 'Corazon A. Balisong'
+        manager: 'Corazon A. Balisong',
+        color: 'green'
     }
 };
 
-// Initialize map when page loads
-document.addEventListener('DOMContentLoaded', function() {
-    // Default to Santiago branch
-    showLocation('santiago');
-});
-
 // Show all Baguio locations
 function showBaguioLocations() {
-    const locationDetails = document.getElementById('locationDetails');
+    const mapModal = document.getElementById('mapModal');
     const locationDetailsContent = document.getElementById('locationDetailsContent');
     const mapTitle = document.getElementById('mapTitle');
     
-    if (!locationDetails) return;
+    if (!mapModal) return;
     
     // Update title
     if (mapTitle) mapTitle.textContent = 'Baguio City Locations';
@@ -440,19 +438,20 @@ function showBaguioLocations() {
     if (locationDetailsContent) {
         locationDetailsContent.innerHTML = `
             <div class="space-y-4">
-                <div class="grid md:grid-cols-3 gap-4">
+                <h4 class="text-lg font-bold text-indigo-600 border-b border-indigo-200 pb-2">🏔️ Baguio City Branches</h4>
+                <div class="space-y-3">
                     <div class="bg-indigo-50 p-3 rounded-lg border-2 border-indigo-200">
-                        <h4 class="font-bold text-indigo-600 mb-2">🏢 Main Office</h4>
+                        <h5 class="font-bold text-indigo-600 mb-1">🏢 Main Office</h5>
                         <p class="text-sm text-gray-700">Skyworld Commercial Center<br>Session Road, Baguio City 2600</p>
                         <div class="mt-2 text-xs text-indigo-600">📞 (074) 123-4567</div>
                     </div>
                     <div class="bg-blue-50 p-3 rounded-lg border-2 border-blue-200">
-                        <h4 class="font-bold text-blue-600 mb-2">🛍️ SM City Branch</h4>
+                        <h5 class="font-bold text-blue-600 mb-1">🛍️ SM City Branch</h5>
                         <p class="text-sm text-gray-700">Upper Basement (Opposite DFA)<br>SM City, Baguio City 2600</p>
                         <div class="mt-2 text-xs text-blue-600">Near DFA Office</div>
                     </div>
                     <div class="bg-purple-50 p-3 rounded-lg border-2 border-purple-200">
-                        <h4 class="font-bold text-purple-600 mb-2">🏨 YMCA Branch</h4>
+                        <h5 class="font-bold text-purple-600 mb-1">🏨 YMCA Branch</h5>
                         <p class="text-sm text-gray-700">Ground Floor, YMCA Bldg.<br>Upper Session Road, Baguio City 2600</p>
                         <div class="mt-2 text-xs text-purple-600">Historic Building</div>
                     </div>
@@ -464,15 +463,13 @@ function showBaguioLocations() {
         `;
     }
     
-    // Show overlay
-    locationDetails.classList.remove('hidden');
-    locationDetails.style.opacity = '0';
+    // Show modal
+    mapModal.classList.remove('hidden');
     
     // Initialize map with all Baguio locations
     setTimeout(() => {
-        locationDetails.style.opacity = '1';
         initializeBaguioMap();
-    }, 10);
+    }, 100);
 }
 
 // Initialize map with all Baguio locations
@@ -548,11 +545,11 @@ function initializeBaguioMap() {
 
 // Map functionality
 function showLocation(location) {
-    const locationDetails = document.getElementById('locationDetails');
+    const mapModal = document.getElementById('mapModal');
     const locationDetailsContent = document.getElementById('locationDetailsContent');
     const mapTitle = document.getElementById('mapTitle');
     
-    if (!locationDetails || !locations[location]) return;
+    if (!mapModal || !locations[location]) return;
     
     const loc = locations[location];
     
@@ -562,57 +559,58 @@ function showLocation(location) {
     // Update location details
     if (locationDetailsContent) {
         locationDetailsContent.innerHTML = `
-            <div class="space-y-3">
-                <div class="flex items-start space-x-3">
-                    <div class="text-2xl">📍</div>
-                    <div>
-                        <p class="font-semibold text-gray-800">Address:</p>
-                        <p class="text-gray-600">${loc.address}</p>
+            <div class="space-y-4">
+                <h4 class="text-lg font-bold text-${loc.color}-600 border-b border-${loc.color}-200 pb-2">📍 ${loc.name}</h4>
+                <div class="space-y-3">
+                    <div class="flex items-start space-x-3">
+                        <div class="text-xl">📍</div>
+                        <div>
+                            <p class="font-semibold text-gray-800">Address:</p>
+                            <p class="text-gray-600 text-sm">${loc.address}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="flex items-start space-x-3">
-                    <div class="text-2xl">📞</div>
-                    <div>
-                        <p class="font-semibold text-gray-800">Phone:</p>
-                        <p class="text-gray-600">${loc.phone}</p>
+                    <div class="flex items-start space-x-3">
+                        <div class="text-xl">📞</div>
+                        <div>
+                            <p class="font-semibold text-gray-800">Phone:</p>
+                            <p class="text-gray-600 text-sm">${loc.phone}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="flex items-start space-x-3">
-                    <div class="text-2xl">🕒</div>
-                    <div>
-                        <p class="font-semibold text-gray-800">Hours:</p>
-                        <p class="text-gray-600">${loc.hours}</p>
+                    <div class="flex items-start space-x-3">
+                        <div class="text-xl">🕒</div>
+                        <div>
+                            <p class="font-semibold text-gray-800">Hours:</p>
+                            <p class="text-gray-600 text-sm">${loc.hours}</p>
+                        </div>
                     </div>
-                </div>
-                ${loc.manager ? `
-                <div class="flex items-start space-x-3">
-                    <div class="text-2xl">👤</div>
-                    <div>
-                        <p class="font-semibold text-gray-800">Manager:</p>
-                        <p class="text-gray-600">${loc.manager}</p>
+                    ${loc.manager ? `
+                    <div class="flex items-start space-x-3">
+                        <div class="text-xl">👤</div>
+                        <div>
+                            <p class="font-semibold text-gray-800">Manager:</p>
+                            <p class="text-gray-600 text-sm">${loc.manager}</p>
+                        </div>
                     </div>
-                </div>
-                ` : ''}
-                <div class="flex items-start space-x-3">
-                    <div class="text-2xl">ℹ️</div>
-                    <div>
-                        <p class="font-semibold text-gray-800">Location:</p>
-                        <p class="text-gray-600">${loc.description}</p>
+                    ` : ''}
+                    <div class="flex items-start space-x-3">
+                        <div class="text-xl">ℹ️</div>
+                        <div>
+                            <p class="font-semibold text-gray-800">Location:</p>
+                            <p class="text-gray-600 text-sm">${loc.description}</p>
+                        </div>
                     </div>
                 </div>
             </div>
         `;
     }
     
-    // Show overlay
-    locationDetails.classList.remove('hidden');
-    locationDetails.style.opacity = '0';
+    // Show modal
+    mapModal.classList.remove('hidden');
     
-    // Initialize map after overlay is shown
+    // Initialize map after modal is shown
     setTimeout(() => {
-        locationDetails.style.opacity = '1';
         initializeMap(loc);
-    }, 10);
+    }, 100);
 }
 
 // Initialize Leaflet Map
@@ -658,11 +656,28 @@ function initializeMap(location) {
 }
 
 function hideLocation() {
-    const locationDetails = document.getElementById('locationDetails');
-    if (locationDetails) {
-        locationDetails.style.opacity = '0';
-        setTimeout(() => {
-            locationDetails.classList.add('hidden');
-        }, 300);
+    const mapModal = document.getElementById('mapModal');
+    if (mapModal) {
+        mapModal.classList.add('hidden');
+        
+        // Clear map when hiding
+        if (map) {
+            map.remove();
+            map = null;
+        }
+        markers = [];
     }
 }
+
+// Initialize when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    // Add click outside modal to close functionality
+    const mapModal = document.getElementById('mapModal');
+    if (mapModal) {
+        mapModal.addEventListener('click', function(e) {
+            if (e.target === mapModal) {
+                hideLocation();
+            }
+        });
+    }
+});
