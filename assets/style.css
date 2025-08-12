@@ -220,3 +220,21 @@ button:focus, input:focus, textarea:focus {
     position: relative;
     /* Natural content flow for grid layout */
 }
+
+/* Philippines section spacing fix */
+.philippines-section {
+    margin-top: 6rem !important; /* 96px equivalent to mt-24 */
+}
+
+/* Responsive spacing for Philippines section */
+@media (max-width: 768px) {
+    .philippines-section {
+        margin-top: 4rem !important; /* 64px for tablets */
+    }
+}
+
+@media (max-width: 480px) {
+    .philippines-section {
+        margin-top: 3rem !important; /* 48px for mobile */
+    }
+}
