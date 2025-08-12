@@ -109,27 +109,10 @@ button:focus, input:focus, textarea:focus {
     transition: width 0.5s ease-in-out;
 }
 
-/* Service card sizing for consistent sliding */
+/* Service card styling for grid layout */
 .service-card {
-    min-width: 280px; /* Reduced from 300px */
-    max-width: 320px; /* Added max-width for consistency */
-    flex-shrink: 0;
-    width: 100%; /* Ensure cards take full width on mobile */
-}
-
-/* Mobile-specific adjustments for service cards */
-@media (max-width: 768px) {
-    .service-card {
-        min-width: 280px; /* Increased to show 2 cards properly */
-        max-width: 300px;
-    }
-}
-
-@media (max-width: 480px) {
-    .service-card {
-        min-width: 260px; /* Increased to show 1 card properly */
-        max-width: 280px;
-    }
+    width: 100%; /* Cards take full width in grid */
+    height: auto; /* Natural height */
 }
 
 /* Service card hover effects */
@@ -190,15 +173,8 @@ button:focus, input:focus, textarea:focus {
     }
 }
 
-/* Services slider container */
-.services-slider-container {
-    overflow: hidden; /* Hide overflow to prevent horizontal scroll */
-    position: relative;
-    width: 100%;
-}
-
-/* Services tab layout - allow natural height */
+/* Services grid layout - all services displayed beautifully */
 #services {
     position: relative;
-    /* Remove min-height to allow natural content flow */
+    /* Natural content flow for grid layout */
 }

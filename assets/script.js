@@ -52,18 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Initialize services slider
-    updateServicesSlider();
-    
-    // Handle window resize for responsive slider
-    window.addEventListener('resize', function() {
-        // Reset position if it exceeds new max position
-        const maxPosition = getServicesMaxPosition();
-        if (servicesCurrentPosition > maxPosition) {
-            servicesCurrentPosition = maxPosition;
-        }
-        updateServicesSlider();
-    });
+    // Services are now displayed in a grid layout - no slider needed
 });
 
 function showTab(tabName) {
@@ -308,64 +297,8 @@ function bookSpecificTour(packageName, price) {
     bookTour(packageName, price);
 }
 
-// Services Slider functionality - Continuous sliding
-let servicesCurrentPosition = 0;
-const servicesTotalCards = 10; // Total number of service cards
-
-// Function to get number of visible cards based on screen size
-function getServicesVisibleCards() {
-    if (window.innerWidth <= 480) {
-        return 1; // 1 card on very small screens
-    } else if (window.innerWidth <= 768) {
-        return 2; // 2 cards on mobile
-    } else {
-        return 3; // 3 cards on desktop
-    }
-}
-
-// Function to get maximum position
-function getServicesMaxPosition() {
-    const visibleCards = getServicesVisibleCards();
-    return servicesTotalCards - visibleCards;
-}
-
-function slideServices(direction) {
-    servicesCurrentPosition += direction;
-    
-    // Handle looping
-    const maxPosition = getServicesMaxPosition();
-    if (servicesCurrentPosition > maxPosition) {
-        servicesCurrentPosition = 0; // Loop back to start
-    } else if (servicesCurrentPosition < 0) {
-        servicesCurrentPosition = maxPosition; // Loop to end
-    }
-    
-    updateServicesSlider();
-}
-
-function updateServicesSlider() {
-    const slider = document.getElementById('servicesSlider');
-    const progressBar = document.getElementById('servicesProgress');
-    
-    if (slider) {
-        // Get the first service card to calculate actual width
-        const firstCard = slider.querySelector('.service-card');
-        if (firstCard) {
-            const cardWidth = firstCard.offsetWidth;
-            const gap = 24; // Gap between cards (6 * 4px = 24px)
-            const translateX = -(servicesCurrentPosition * (cardWidth + gap));
-            
-            slider.style.transform = `translateX(${translateX}px)`;
-        }
-    }
-    
-    // Update progress bar
-    if (progressBar) {
-        const maxPosition = getServicesMaxPosition();
-        const progress = (servicesCurrentPosition / maxPosition) * 100;
-        progressBar.style.width = `${progress}%`;
-    }
-}
+// Services Grid - All services displayed in a beautiful grid layout
+// No slider functionality needed - all services are visible at once
 
 // Europe Tours Slider functionality
 let europeCurrentSlide = 0;
