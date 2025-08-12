@@ -375,67 +375,156 @@ function updateEuropeSlider() {
 }
 
 // Map functionality
-function showLocation(city) {
+function showLocation(location) {
     const locationDetails = document.getElementById('locationDetails');
     const locationContent = document.getElementById('locationContent');
     let content = '';
-    if (city === 'baguio') {
-        content = `
-            <div class="text-center">
-                <div class="text-6xl mb-4">🏔️</div>
-                <h3 class="text-3xl font-bold text-indigo-600 mb-4">Baguio City Locations</h3>
-                <div class="grid md:grid-cols-3 gap-6 text-left">
-                    <div class="bg-indigo-50 p-4 rounded-lg border-2 border-indigo-200">
-                        <h4 class="font-bold text-indigo-600 mb-2">🏢 Main Office</h4>
-                        <p class="text-sm text-gray-700">Skyworld Commercial Center<br>Session Road, Baguio City 2600</p>
-                        <div class="mt-2 text-xs text-indigo-600">📞 (074) 123-4567</div>
-                    </div>
-                    <div class="bg-blue-50 p-4 rounded-lg border-2 border-blue-200">
-                        <h4 class="font-bold text-blue-600 mb-2">🛍️ SM City Branch</h4>
-                        <p class="text-sm text-gray-700">Upper Basement (Opposite DFA)<br>SM City, Baguio City 2600</p>
-                        <div class="mt-2 text-xs text-blue-600">Near DFA Office</div>
-                    </div>
-                    <div class="bg-purple-50 p-4 rounded-lg border-2 border-purple-200">
-                        <h4 class="font-bold text-purple-600 mb-2">🏨 YMCA Branch</h4>
-                        <p class="text-sm text-gray-700">Ground Floor, YMCA Bldg.<br>Upper Session Road, Baguio City 2600</p>
-                        <div class="mt-2 text-xs text-purple-600">Historic Building</div>
-                    </div>
-                </div>
-                <div class="mt-6 p-4 bg-gray-100 rounded-lg">
-                    <p class="text-gray-600">🌡️ Cool mountain climate • 🚗 1,540m above sea level • 🌲 Summer capital of the Philippines</p>
-                </div>
-            </div>
-        `;
-    } else if (city === 'santiago') {
-        content = `
-            <div class="text-center">
-                <div class="text-6xl mb-4">🌾</div>
-                <h3 class="text-3xl font-bold text-green-600 mb-4">Santiago City Location</h3>
-                <div class="max-w-md mx-auto">
-                    <div class="bg-green-50 p-6 rounded-lg border-2 border-green-200 text-left">
-                        <h4 class="font-bold text-green-600 mb-3 text-center">🏬 Santiago Branch</h4>
-                        <div class="space-y-2">
-                            <p class="text-gray-700"><strong>Address:</strong> Level 2 Robinsons Mall<br>Maharlika Highway, Santiago City, Isabela 3311</p>
-                            <p class="text-gray-700"><strong>Manager:</strong> Corazon A. Balisong</p>
-                            <p class="text-gray-700"><strong>Location:</strong> Inside Robinsons Mall</p>
+    
+    switch(location) {
+        case 'baguio':
+            content = `
+                <div class="text-center">
+                    <div class="text-6xl mb-4">🏔️</div>
+                    <h3 class="text-3xl font-bold text-indigo-600 mb-4">Baguio City Locations</h3>
+                    <div class="grid md:grid-cols-3 gap-6 text-left">
+                        <div class="bg-indigo-50 p-4 rounded-lg border-2 border-indigo-200">
+                            <h4 class="font-bold text-indigo-600 mb-2">🏢 Main Office</h4>
+                            <p class="text-sm text-gray-700">Skyworld Commercial Center<br>Session Road, Baguio City 2600</p>
+                            <div class="mt-2 text-xs text-indigo-600">📞 (074) 123-4567</div>
+                        </div>
+                        <div class="bg-blue-50 p-4 rounded-lg border-2 border-blue-200">
+                            <h4 class="font-bold text-blue-600 mb-2">🛍️ SM City Branch</h4>
+                            <p class="text-sm text-gray-700">Upper Basement (Opposite DFA)<br>SM City, Baguio City 2600</p>
+                            <div class="mt-2 text-xs text-blue-600">Near DFA Office</div>
+                        </div>
+                        <div class="bg-purple-50 p-4 rounded-lg border-2 border-purple-200">
+                            <h4 class="font-bold text-purple-600 mb-2">🏨 YMCA Branch</h4>
+                            <p class="text-sm text-gray-700">Ground Floor, YMCA Bldg.<br>Upper Session Road, Baguio City 2600</p>
+                            <div class="mt-2 text-xs text-purple-600">Historic Building</div>
                         </div>
                     </div>
+                    <div class="mt-6 p-4 bg-gray-100 rounded-lg">
+                        <p class="text-gray-600">🌡️ Cool mountain climate • 🚗 1,540m above sea level • 🌲 Summer capital of the Philippines</p>
+                    </div>
                 </div>
-                <div class="mt-6 p-4 bg-gray-100 rounded-lg">
-                    <p class="text-gray-600">🌾 Agricultural hub • 🛣️ Along Maharlika Highway • 🏪 Convenient mall location</p>
+            `;
+            break;
+            
+        case 'main-office':
+            content = `
+                <div class="text-center">
+                    <div class="text-6xl mb-4">🏢</div>
+                    <h3 class="text-3xl font-bold text-indigo-600 mb-4">Main Office</h3>
+                    <div class="max-w-md mx-auto">
+                        <div class="bg-indigo-50 p-6 rounded-lg border-2 border-indigo-200 text-left">
+                            <h4 class="font-bold text-indigo-600 mb-3 text-center">🏢 Main Office</h4>
+                            <div class="space-y-3">
+                                <p class="text-gray-700"><strong>Address:</strong> Skyworld Commercial Center<br>Session Road, Baguio City 2600</p>
+                                <p class="text-gray-700"><strong>Phone:</strong> (074) 123-4567</p>
+                                <p class="text-gray-700"><strong>Location:</strong> Central Baguio, near Session Road</p>
+                                <p class="text-gray-700"><strong>Hours:</strong> Monday - Friday: 8:00 AM - 6:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 p-4 bg-gray-100 rounded-lg">
+                        <p class="text-gray-600">🏔️ Cool mountain climate • 🚗 1,540m above sea level • 🌲 Summer capital of the Philippines</p>
+                    </div>
                 </div>
-                <div class="mt-4 text-sm text-gray-600">
-                    <p>Santiago City is the gateway to Northern Luzon and a major commercial center in Isabela province.</p>
+            `;
+            break;
+            
+        case 'sm-city':
+            content = `
+                <div class="text-center">
+                    <div class="text-6xl mb-4">🛍️</div>
+                    <h3 class="text-3xl font-bold text-blue-600 mb-4">SM City Branch</h3>
+                    <div class="max-w-md mx-auto">
+                        <div class="bg-blue-50 p-6 rounded-lg border-2 border-blue-200 text-left">
+                            <h4 class="font-bold text-blue-600 mb-3 text-center">🛍️ SM City Branch</h4>
+                            <div class="space-y-3">
+                                <p class="text-gray-700"><strong>Address:</strong> Upper Basement (Opposite DFA)<br>SM City, Baguio City 2600</p>
+                                <p class="text-gray-700"><strong>Phone:</strong> (074) 123-4567</p>
+                                <p class="text-gray-700"><strong>Location:</strong> Inside SM City Mall, near DFA Office</p>
+                                <p class="text-gray-700"><strong>Hours:</strong> Monday - Sunday: 10:00 AM - 9:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 p-4 bg-gray-100 rounded-lg">
+                        <p class="text-gray-600">🛍️ Shopping mall location • 📋 Near DFA Office • 🚗 Convenient parking</p>
+                    </div>
                 </div>
-            </div>
-        `;
+            `;
+            break;
+            
+        case 'ymca':
+            content = `
+                <div class="text-center">
+                    <div class="text-6xl mb-4">🏨</div>
+                    <h3 class="text-3xl font-bold text-purple-600 mb-4">YMCA Branch</h3>
+                    <div class="max-w-md mx-auto">
+                        <div class="bg-purple-50 p-6 rounded-lg border-2 border-purple-200 text-left">
+                            <h4 class="font-bold text-purple-600 mb-3 text-center">🏨 YMCA Branch</h4>
+                            <div class="space-y-3">
+                                <p class="text-gray-700"><strong>Address:</strong> Ground Floor, YMCA Bldg.<br>Upper Session Road, Baguio City 2600</p>
+                                <p class="text-gray-700"><strong>Phone:</strong> (074) 123-4567</p>
+                                <p class="text-gray-700"><strong>Location:</strong> Historic YMCA Building</p>
+                                <p class="text-gray-700"><strong>Hours:</strong> Monday - Friday: 8:00 AM - 5:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 p-4 bg-gray-100 rounded-lg">
+                        <p class="text-gray-600">🏨 Historic building • 🏛️ Upper Session Road • 🌲 Scenic mountain view</p>
+                    </div>
+                </div>
+            `;
+            break;
+            
+        case 'santiago':
+            content = `
+                <div class="text-center">
+                    <div class="text-6xl mb-4">🌾</div>
+                    <h3 class="text-3xl font-bold text-green-600 mb-4">Santiago Branch</h3>
+                    <div class="max-w-md mx-auto">
+                        <div class="bg-green-50 p-6 rounded-lg border-2 border-green-200 text-left">
+                            <h4 class="font-bold text-green-600 mb-3 text-center">🏬 Santiago Branch</h4>
+                            <div class="space-y-3">
+                                <p class="text-gray-700"><strong>Address:</strong> Level 2 Robinsons Mall<br>Maharlika Highway, Santiago City, Isabela 3311</p>
+                                <p class="text-gray-700"><strong>Manager:</strong> Corazon A. Balisong</p>
+                                <p class="text-gray-700"><strong>Phone:</strong> (074) 123-4567</p>
+                                <p class="text-gray-700"><strong>Location:</strong> Inside Robinsons Mall</p>
+                                <p class="text-gray-700"><strong>Hours:</strong> Monday - Sunday: 10:00 AM - 9:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 p-4 bg-gray-100 rounded-lg">
+                        <p class="text-gray-600">🌾 Agricultural hub • 🛣️ Along Maharlika Highway • 🏪 Convenient mall location</p>
+                    </div>
+                    <div class="mt-4 text-sm text-gray-600">
+                        <p>Santiago City is the gateway to Northern Luzon and a major commercial center in Isabela province.</p>
+                    </div>
+                </div>
+            `;
+            break;
+            
+        default:
+            content = `
+                <div class="text-center">
+                    <div class="text-6xl mb-4">📍</div>
+                    <h3 class="text-3xl font-bold text-gray-600 mb-4">Location Not Found</h3>
+                    <p class="text-gray-600">Please select a valid location from the map.</p>
+                </div>
+            `;
     }
+    
     if (locationContent) locationContent.innerHTML = content;
-    if (locationDetails) locationDetails.classList.remove('hidden');
-    // Add fade-in animation
-    setTimeout(() => {
-        if (locationDetails) locationDetails.style.opacity = '1';
-    }, 10);
+    if (locationDetails) {
+        locationDetails.classList.remove('hidden');
+        locationDetails.style.opacity = '0';
+        // Add fade-in animation
+        setTimeout(() => {
+            if (locationDetails) locationDetails.style.opacity = '1';
+        }, 10);
+    }
 }
 
 function hideLocation() {
