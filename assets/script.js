@@ -91,6 +91,41 @@ function showTab(tabName) {
     }, 100);
 }
 
+// Package button functionality
+function handlePackageClick(packageType) {
+    // Switch to contact tab
+    showTab('contact');
+    
+    // Set the subject based on package type
+    const subjectField = document.getElementById('subject');
+    if (subjectField) {
+        switch(packageType) {
+            case 'australia':
+                subjectField.value = 'Study Abroad Inquiry - Australia Programs';
+                break;
+            case 'canada':
+                subjectField.value = 'Study Abroad Inquiry - Canada Programs';
+                break;
+            case 'philippines':
+                subjectField.value = 'Philippines Travel Package Inquiry';
+                break;
+            case 'domestic':
+                subjectField.value = 'Domestic Travel Package Inquiry';
+                break;
+            default:
+                subjectField.value = 'Travel Package Inquiry';
+        }
+    }
+    
+    // Scroll to contact form
+    setTimeout(() => {
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    }, 300);
+}
+
 // Survey form submission with enhanced feedback
 const surveyForm = document.getElementById('surveyForm');
 if (surveyForm) {

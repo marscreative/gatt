@@ -269,7 +269,7 @@
                                 </div>
                             </div>
                             
-                            <button class="w-full bg-gradient-to-r from-yellow-500 to-orange-500 text-white py-3 rounded-lg hover:from-yellow-600 hover:to-orange-600 font-semibold transition-all shadow-lg hover:shadow-xl border-2 border-yellow-600">
+                            <button onclick="handlePackageClick('australia')" class="w-full bg-gradient-to-r from-yellow-500 to-orange-500 text-white py-3 rounded-lg hover:from-yellow-600 hover:to-orange-600 font-semibold transition-all shadow-lg hover:shadow-xl border-2 border-yellow-600">
                                 🚀 Start Your Australia Journey
                             </button>
                         </div>
@@ -309,7 +309,7 @@
                                 </div>
                             </div>
                             
-                            <button class="w-full bg-gradient-to-r from-red-500 to-red-600 text-white py-3 rounded-lg hover:from-red-600 hover:to-red-700 font-semibold transition-all shadow-lg hover:shadow-xl border-2 border-red-600">
+                            <button onclick="handlePackageClick('canada')" class="w-full bg-gradient-to-r from-red-500 to-red-600 text-white py-3 rounded-lg hover:from-red-600 hover:to-red-700 font-semibold transition-all shadow-lg hover:shadow-xl border-2 border-red-600">
                                 🚀 Start Your Canada Journey
                             </button>
                         </div>
@@ -561,10 +561,10 @@
                     <h4 class="text-2xl font-bold text-blue-600 mb-4">Ready to Explore the Philippines?</h4>
                     <p class="text-gray-700 mb-6">From the world-famous beaches of Boracay to the underground rivers of Palawan, and the rich history of Cebu, the Philippines offers unforgettable experiences!</p>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                        <button onclick="showTab('contact')" class="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-8 py-3 rounded-lg hover:from-blue-700 hover:to-cyan-700 font-semibold transition-all shadow-lg hover:shadow-xl">
+                        <button onclick="handlePackageClick('philippines')" class="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-8 py-3 rounded-lg hover:from-blue-700 hover:to-cyan-700 font-semibold transition-all shadow-lg hover:shadow-xl">
                             📞 Get Your Philippines Quote Now
                         </button>
-                        <button class="bg-gradient-to-r from-green-600 to-teal-600 text-white px-8 py-3 rounded-lg hover:from-green-700 hover:to-teal-700 font-semibold transition-all shadow-lg hover:shadow-xl">
+                        <button onclick="handlePackageClick('domestic')" class="bg-gradient-to-r from-green-600 to-teal-600 text-white px-8 py-3 rounded-lg hover:from-green-700 hover:to-teal-700 font-semibold transition-all shadow-lg hover:shadow-xl">
                             📋 View All Domestic Packages
                         </button>
                     </div>
@@ -2764,18 +2764,22 @@
                 </div>
                 <div>
                     <h3 class="text-2xl font-bold mb-6">Send us a Message</h3>
-                    <form class="bg-white p-6 rounded-lg shadow-lg space-y-4 border-2 border-indigo-200 border-l-4 border-l-indigo-400">
+                    <form id="contactForm" class="bg-white p-6 rounded-lg shadow-lg space-y-4 border-2 border-indigo-200 border-l-4 border-l-indigo-400">
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2 border-b border-gray-200 pb-1">Name</label>
-                            <input type="text" class="w-full p-3 border-2 border-gray-300 rounded-lg">
+                            <input type="text" class="w-full p-3 border-2 border-gray-300 rounded-lg" required>
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2 border-b border-gray-200 pb-1">Email</label>
-                            <input type="email" class="w-full p-3 border-2 border-gray-300 rounded-lg">
+                            <input type="email" class="w-full p-3 border-2 border-gray-300 rounded-lg" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2 border-b border-gray-200 pb-1">Subject</label>
+                            <input type="text" id="subject" class="w-full p-3 border-2 border-gray-300 rounded-lg" required>
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2 border-b border-gray-200 pb-1">Message</label>
-                            <textarea rows="4" class="w-full p-3 border-2 border-gray-300 rounded-lg"></textarea>
+                            <textarea rows="4" class="w-full p-3 border-2 border-gray-300 rounded-lg" required></textarea>
                         </div>
                         <button type="submit" class="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 border-2 border-indigo-700">Send Message</button>
                     </form>
