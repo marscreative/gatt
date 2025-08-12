@@ -223,18 +223,18 @@ button:focus, input:focus, textarea:focus {
 
 /* Philippines section spacing fix */
 .philippines-section {
-    margin-top: 6rem !important; /* 96px equivalent to mt-24 */
+    margin-top: 8rem !important; /* 128px - increased spacing */
 }
 
 /* Responsive spacing for Philippines section */
 @media (max-width: 768px) {
     .philippines-section {
-        margin-top: 4rem !important; /* 64px for tablets */
+        margin-top: 6rem !important; /* 96px for tablets */
     }
 }
 
 @media (max-width: 480px) {
     .philippines-section {
-        margin-top: 3rem !important; /* 48px for mobile */
+        margin-top: 4rem !important; /* 64px for mobile */
     }
 }
