@@ -1,4 +1,50 @@
 /* Custom Styles for Gracious Angeli Travel & Tours */
+
+/* Logo styling */
+.nav-logo {
+    transition: all 0.3s ease;
+}
+
+.nav-logo:hover {
+    transform: scale(1.05);
+}
+
+.nav-logo img {
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* Responsive logo sizing */
+@media (max-width: 768px) {
+    .nav-logo img {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+    
+    .nav-logo h1 {
+        font-size: 1.25rem;
+    }
+    
+    .nav-logo span {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-logo img {
+        width: 2rem;
+        height: 2rem;
+    }
+    
+    .nav-logo h1 {
+        font-size: 1.125rem;
+    }
+    
+    .nav-logo span {
+        font-size: 0.7rem;
+    }
+}
+
 .hero-bg {
     background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%);
 }
