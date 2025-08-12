@@ -2695,7 +2695,7 @@
                                 
                                 <!-- Location Buttons -->
                                 <div class="grid grid-cols-2 gap-4 max-w-md mx-auto">
-                                    <button onclick="showLocation('baguio')" class="location-btn bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-all shadow-lg hover:shadow-xl border-2 border-indigo-700">
+                                    <button onclick="showBaguioLocations()" class="location-btn bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-all shadow-lg hover:shadow-xl border-2 border-indigo-700">
                                         📍 Baguio City
                                     </button>
                                     <button onclick="showLocation('santiago')" class="location-btn bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-all shadow-lg hover:shadow-xl border-2 border-green-700">
@@ -2707,10 +2707,29 @@
                         
                         <!-- Location Details Overlay -->
                         <div id="locationDetails" class="absolute inset-0 bg-white bg-opacity-95 hidden transition-all duration-500 border-2 border-indigo-300">
-                            <div class="h-full flex items-center justify-center p-8">
-                                <div class="text-center max-w-2xl">
-                                    <button onclick="hideLocation()" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-2xl border-2 border-gray-300 rounded-full w-10 h-10 flex items-center justify-center">×</button>
-                                    <div id="locationContent"></div>
+                            <div class="h-full flex flex-col">
+                                <!-- Header with close button -->
+                                <div class="flex justify-between items-center p-4 border-b-2 border-indigo-300">
+                                    <h3 id="mapTitle" class="text-2xl font-bold text-indigo-600">Santiago Branch</h3>
+                                    <button onclick="hideLocation()" class="text-gray-500 hover:text-gray-700 text-2xl border-2 border-gray-300 rounded-full w-8 h-8 flex items-center justify-center">×</button>
+                                </div>
+                                
+                                <!-- Map Container -->
+                                <div class="flex-1 p-4">
+                                    <div id="map" class="w-full h-full rounded-lg border-2 border-indigo-200" style="min-height: 400px;">
+                                        <!-- Map will be loaded here -->
+                                        <div class="w-full h-full flex items-center justify-center bg-gray-100 rounded-lg">
+                                            <div class="text-center">
+                                                <div class="text-4xl mb-2">🗺️</div>
+                                                <p class="text-gray-600">Loading map...</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Location Info Panel -->
+                                    <div id="locationInfo" class="mt-4 bg-white p-4 rounded-lg border-2 border-indigo-200">
+                                        <div id="locationDetailsContent"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -2837,6 +2856,8 @@
         </svg>
     </button>
 
+    <!-- Google Maps API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap" async defer></script>
     <script src="assets/script.js"></script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96d5e185a7fd8241',t:'MTc1NDg5NTg4OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

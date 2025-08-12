@@ -374,157 +374,313 @@ function updateEuropeSlider() {
     });
 }
 
+// Global map variable
+let map = null;
+let markers = [];
+
+// Location coordinates and details
+const locations = {
+    'main-office': {
+        name: 'Main Office',
+        lat: 16.4023,
+        lng: 120.5960,
+        address: 'Skyworld Commercial Center, Session Road, Baguio City 2600',
+        phone: '(074) 123-4567',
+        hours: 'Monday - Friday: 8:00 AM - 6:00 PM',
+        description: 'Central Baguio, near Session Road'
+    },
+    'sm-city': {
+        name: 'SM City Branch',
+        lat: 16.4023,
+        lng: 120.5960,
+        address: 'Upper Basement (Opposite DFA), SM City, Baguio City 2600',
+        phone: '(074) 123-4567',
+        hours: 'Monday - Sunday: 10:00 AM - 9:00 PM',
+        description: 'Inside SM City Mall, near DFA Office'
+    },
+    'ymca': {
+        name: 'YMCA Branch',
+        lat: 16.4023,
+        lng: 120.5960,
+        address: 'Ground Floor, YMCA Bldg., Upper Session Road, Baguio City 2600',
+        phone: '(074) 123-4567',
+        hours: 'Monday - Friday: 8:00 AM - 5:00 PM',
+        description: 'Historic YMCA Building'
+    },
+    'santiago': {
+        name: 'Santiago Branch',
+        lat: 16.6881,
+        lng: 121.5489,
+        address: 'Level 2 Robinsons Mall, Maharlika Highway, Santiago City, Isabela 3311',
+        phone: '(074) 123-4567',
+        hours: 'Monday - Sunday: 10:00 AM - 9:00 PM',
+        description: 'Inside Robinsons Mall',
+        manager: 'Corazon A. Balisong'
+    }
+};
+
+// Initialize map when Google Maps API loads
+function initMap() {
+    // Default to Santiago branch
+    showLocation('santiago');
+}
+
+// Show all Baguio locations
+function showBaguioLocations() {
+    const locationDetails = document.getElementById('locationDetails');
+    const locationDetailsContent = document.getElementById('locationDetailsContent');
+    const mapTitle = document.getElementById('mapTitle');
+    
+    if (!locationDetails) return;
+    
+    // Update title
+    if (mapTitle) mapTitle.textContent = 'Baguio City Locations';
+    
+    // Update location details
+    if (locationDetailsContent) {
+        locationDetailsContent.innerHTML = `
+            <div class="space-y-4">
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="bg-indigo-50 p-3 rounded-lg border-2 border-indigo-200">
+                        <h4 class="font-bold text-indigo-600 mb-2">🏢 Main Office</h4>
+                        <p class="text-sm text-gray-700">Skyworld Commercial Center<br>Session Road, Baguio City 2600</p>
+                        <div class="mt-2 text-xs text-indigo-600">📞 (074) 123-4567</div>
+                    </div>
+                    <div class="bg-blue-50 p-3 rounded-lg border-2 border-blue-200">
+                        <h4 class="font-bold text-blue-600 mb-2">🛍️ SM City Branch</h4>
+                        <p class="text-sm text-gray-700">Upper Basement (Opposite DFA)<br>SM City, Baguio City 2600</p>
+                        <div class="mt-2 text-xs text-blue-600">Near DFA Office</div>
+                    </div>
+                    <div class="bg-purple-50 p-3 rounded-lg border-2 border-purple-200">
+                        <h4 class="font-bold text-purple-600 mb-2">🏨 YMCA Branch</h4>
+                        <p class="text-sm text-gray-700">Ground Floor, YMCA Bldg.<br>Upper Session Road, Baguio City 2600</p>
+                        <div class="mt-2 text-xs text-purple-600">Historic Building</div>
+                    </div>
+                </div>
+                <div class="p-3 bg-gray-100 rounded-lg">
+                    <p class="text-gray-600 text-sm">🌡️ Cool mountain climate • 🚗 1,540m above sea level • 🌲 Summer capital of the Philippines</p>
+                </div>
+            </div>
+        `;
+    }
+    
+    // Show overlay
+    locationDetails.classList.remove('hidden');
+    locationDetails.style.opacity = '0';
+    
+    // Initialize map with all Baguio locations
+    setTimeout(() => {
+        locationDetails.style.opacity = '1';
+        initializeBaguioMap();
+    }, 10);
+}
+
+// Initialize map with all Baguio locations
+function initializeBaguioMap() {
+    const mapElement = document.getElementById('map');
+    if (!mapElement) return;
+    
+    // Clear existing map
+    if (map) {
+        map = null;
+    }
+    
+    // Clear existing markers
+    markers.forEach(marker => marker.setMap(null));
+    markers = [];
+    
+    // Create new map centered on Baguio
+    map = new google.maps.Map(mapElement, {
+        center: { lat: 16.4023, lng: 120.5960 },
+        zoom: 13,
+        mapTypeControl: false,
+        streetViewControl: false,
+        fullscreenControl: false,
+        styles: [
+            {
+                featureType: 'poi',
+                elementType: 'labels',
+                stylers: [{ visibility: 'off' }]
+            }
+        ]
+    });
+    
+    // Add markers for all Baguio locations
+    const baguioLocations = [
+        { name: 'Main Office', lat: 16.4023, lng: 120.5960, address: 'Skyworld Commercial Center, Session Road, Baguio City 2600' },
+        { name: 'SM City Branch', lat: 16.4023, lng: 120.5960, address: 'Upper Basement (Opposite DFA), SM City, Baguio City 2600' },
+        { name: 'YMCA Branch', lat: 16.4023, lng: 120.5960, address: 'Ground Floor, YMCA Bldg., Upper Session Road, Baguio City 2600' }
+    ];
+    
+    baguioLocations.forEach((loc, index) => {
+        const marker = new google.maps.Marker({
+            position: { lat: loc.lat, lng: loc.lng },
+            map: map,
+            title: loc.name,
+            animation: google.maps.Animation.DROP,
+            icon: {
+                url: `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(`
+                    <svg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="15" cy="15" r="12" fill="${index === 0 ? '#1e40af' : index === 1 ? '#3b82f6' : '#8b5cf6'}" stroke="white" stroke-width="2"/>
+                        <text x="15" y="20" text-anchor="middle" fill="white" font-size="12" font-weight="bold">${index + 1}</text>
+                    </svg>
+                `)}`,
+                scaledSize: new google.maps.Size(30, 30)
+            }
+        });
+        
+        const infoWindow = new google.maps.InfoWindow({
+            content: `
+                <div style="padding: 10px; max-width: 250px;">
+                    <h3 style="font-weight: bold; margin-bottom: 5px; color: #1e40af;">${loc.name}</h3>
+                    <p style="margin: 5px 0; color: #374151;">${loc.address}</p>
+                    <p style="margin: 5px 0; color: #374151;">📞 (074) 123-4567</p>
+                </div>
+            `
+        });
+        
+        marker.addListener('click', () => {
+            infoWindow.open(map, marker);
+        });
+        
+        markers.push(marker);
+    });
+    
+    // Trigger resize to ensure map displays correctly
+    setTimeout(() => {
+        google.maps.event.trigger(map, 'resize');
+    }, 100);
+}
+
 // Map functionality
 function showLocation(location) {
     const locationDetails = document.getElementById('locationDetails');
-    const locationContent = document.getElementById('locationContent');
-    let content = '';
+    const locationDetailsContent = document.getElementById('locationDetailsContent');
+    const mapTitle = document.getElementById('mapTitle');
     
-    switch(location) {
-        case 'baguio':
-            content = `
-                <div class="text-center">
-                    <div class="text-6xl mb-4">🏔️</div>
-                    <h3 class="text-3xl font-bold text-indigo-600 mb-4">Baguio City Locations</h3>
-                    <div class="grid md:grid-cols-3 gap-6 text-left">
-                        <div class="bg-indigo-50 p-4 rounded-lg border-2 border-indigo-200">
-                            <h4 class="font-bold text-indigo-600 mb-2">🏢 Main Office</h4>
-                            <p class="text-sm text-gray-700">Skyworld Commercial Center<br>Session Road, Baguio City 2600</p>
-                            <div class="mt-2 text-xs text-indigo-600">📞 (074) 123-4567</div>
-                        </div>
-                        <div class="bg-blue-50 p-4 rounded-lg border-2 border-blue-200">
-                            <h4 class="font-bold text-blue-600 mb-2">🛍️ SM City Branch</h4>
-                            <p class="text-sm text-gray-700">Upper Basement (Opposite DFA)<br>SM City, Baguio City 2600</p>
-                            <div class="mt-2 text-xs text-blue-600">Near DFA Office</div>
-                        </div>
-                        <div class="bg-purple-50 p-4 rounded-lg border-2 border-purple-200">
-                            <h4 class="font-bold text-purple-600 mb-2">🏨 YMCA Branch</h4>
-                            <p class="text-sm text-gray-700">Ground Floor, YMCA Bldg.<br>Upper Session Road, Baguio City 2600</p>
-                            <div class="mt-2 text-xs text-purple-600">Historic Building</div>
-                        </div>
-                    </div>
-                    <div class="mt-6 p-4 bg-gray-100 rounded-lg">
-                        <p class="text-gray-600">🌡️ Cool mountain climate • 🚗 1,540m above sea level • 🌲 Summer capital of the Philippines</p>
+    if (!locationDetails || !locations[location]) return;
+    
+    const loc = locations[location];
+    
+    // Update title
+    if (mapTitle) mapTitle.textContent = loc.name;
+    
+    // Update location details
+    if (locationDetailsContent) {
+        locationDetailsContent.innerHTML = `
+            <div class="space-y-3">
+                <div class="flex items-start space-x-3">
+                    <div class="text-2xl">📍</div>
+                    <div>
+                        <p class="font-semibold text-gray-800">Address:</p>
+                        <p class="text-gray-600">${loc.address}</p>
                     </div>
                 </div>
-            `;
-            break;
-            
-        case 'main-office':
-            content = `
-                <div class="text-center">
-                    <div class="text-6xl mb-4">🏢</div>
-                    <h3 class="text-3xl font-bold text-indigo-600 mb-4">Main Office</h3>
-                    <div class="max-w-md mx-auto">
-                        <div class="bg-indigo-50 p-6 rounded-lg border-2 border-indigo-200 text-left">
-                            <h4 class="font-bold text-indigo-600 mb-3 text-center">🏢 Main Office</h4>
-                            <div class="space-y-3">
-                                <p class="text-gray-700"><strong>Address:</strong> Skyworld Commercial Center<br>Session Road, Baguio City 2600</p>
-                                <p class="text-gray-700"><strong>Phone:</strong> (074) 123-4567</p>
-                                <p class="text-gray-700"><strong>Location:</strong> Central Baguio, near Session Road</p>
-                                <p class="text-gray-700"><strong>Hours:</strong> Monday - Friday: 8:00 AM - 6:00 PM</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-6 p-4 bg-gray-100 rounded-lg">
-                        <p class="text-gray-600">🏔️ Cool mountain climate • 🚗 1,540m above sea level • 🌲 Summer capital of the Philippines</p>
+                <div class="flex items-start space-x-3">
+                    <div class="text-2xl">📞</div>
+                    <div>
+                        <p class="font-semibold text-gray-800">Phone:</p>
+                        <p class="text-gray-600">${loc.phone}</p>
                     </div>
                 </div>
-            `;
-            break;
-            
-        case 'sm-city':
-            content = `
-                <div class="text-center">
-                    <div class="text-6xl mb-4">🛍️</div>
-                    <h3 class="text-3xl font-bold text-blue-600 mb-4">SM City Branch</h3>
-                    <div class="max-w-md mx-auto">
-                        <div class="bg-blue-50 p-6 rounded-lg border-2 border-blue-200 text-left">
-                            <h4 class="font-bold text-blue-600 mb-3 text-center">🛍️ SM City Branch</h4>
-                            <div class="space-y-3">
-                                <p class="text-gray-700"><strong>Address:</strong> Upper Basement (Opposite DFA)<br>SM City, Baguio City 2600</p>
-                                <p class="text-gray-700"><strong>Phone:</strong> (074) 123-4567</p>
-                                <p class="text-gray-700"><strong>Location:</strong> Inside SM City Mall, near DFA Office</p>
-                                <p class="text-gray-700"><strong>Hours:</strong> Monday - Sunday: 10:00 AM - 9:00 PM</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-6 p-4 bg-gray-100 rounded-lg">
-                        <p class="text-gray-600">🛍️ Shopping mall location • 📋 Near DFA Office • 🚗 Convenient parking</p>
+                <div class="flex items-start space-x-3">
+                    <div class="text-2xl">🕒</div>
+                    <div>
+                        <p class="font-semibold text-gray-800">Hours:</p>
+                        <p class="text-gray-600">${loc.hours}</p>
                     </div>
                 </div>
-            `;
-            break;
-            
-        case 'ymca':
-            content = `
-                <div class="text-center">
-                    <div class="text-6xl mb-4">🏨</div>
-                    <h3 class="text-3xl font-bold text-purple-600 mb-4">YMCA Branch</h3>
-                    <div class="max-w-md mx-auto">
-                        <div class="bg-purple-50 p-6 rounded-lg border-2 border-purple-200 text-left">
-                            <h4 class="font-bold text-purple-600 mb-3 text-center">🏨 YMCA Branch</h4>
-                            <div class="space-y-3">
-                                <p class="text-gray-700"><strong>Address:</strong> Ground Floor, YMCA Bldg.<br>Upper Session Road, Baguio City 2600</p>
-                                <p class="text-gray-700"><strong>Phone:</strong> (074) 123-4567</p>
-                                <p class="text-gray-700"><strong>Location:</strong> Historic YMCA Building</p>
-                                <p class="text-gray-700"><strong>Hours:</strong> Monday - Friday: 8:00 AM - 5:00 PM</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-6 p-4 bg-gray-100 rounded-lg">
-                        <p class="text-gray-600">🏨 Historic building • 🏛️ Upper Session Road • 🌲 Scenic mountain view</p>
+                ${loc.manager ? `
+                <div class="flex items-start space-x-3">
+                    <div class="text-2xl">👤</div>
+                    <div>
+                        <p class="font-semibold text-gray-800">Manager:</p>
+                        <p class="text-gray-600">${loc.manager}</p>
                     </div>
                 </div>
-            `;
-            break;
-            
-        case 'santiago':
-            content = `
-                <div class="text-center">
-                    <div class="text-6xl mb-4">🌾</div>
-                    <h3 class="text-3xl font-bold text-green-600 mb-4">Santiago Branch</h3>
-                    <div class="max-w-md mx-auto">
-                        <div class="bg-green-50 p-6 rounded-lg border-2 border-green-200 text-left">
-                            <h4 class="font-bold text-green-600 mb-3 text-center">🏬 Santiago Branch</h4>
-                            <div class="space-y-3">
-                                <p class="text-gray-700"><strong>Address:</strong> Level 2 Robinsons Mall<br>Maharlika Highway, Santiago City, Isabela 3311</p>
-                                <p class="text-gray-700"><strong>Manager:</strong> Corazon A. Balisong</p>
-                                <p class="text-gray-700"><strong>Phone:</strong> (074) 123-4567</p>
-                                <p class="text-gray-700"><strong>Location:</strong> Inside Robinsons Mall</p>
-                                <p class="text-gray-700"><strong>Hours:</strong> Monday - Sunday: 10:00 AM - 9:00 PM</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-6 p-4 bg-gray-100 rounded-lg">
-                        <p class="text-gray-600">🌾 Agricultural hub • 🛣️ Along Maharlika Highway • 🏪 Convenient mall location</p>
-                    </div>
-                    <div class="mt-4 text-sm text-gray-600">
-                        <p>Santiago City is the gateway to Northern Luzon and a major commercial center in Isabela province.</p>
+                ` : ''}
+                <div class="flex items-start space-x-3">
+                    <div class="text-2xl">ℹ️</div>
+                    <div>
+                        <p class="font-semibold text-gray-800">Location:</p>
+                        <p class="text-gray-600">${loc.description}</p>
                     </div>
                 </div>
-            `;
-            break;
-            
-        default:
-            content = `
-                <div class="text-center">
-                    <div class="text-6xl mb-4">📍</div>
-                    <h3 class="text-3xl font-bold text-gray-600 mb-4">Location Not Found</h3>
-                    <p class="text-gray-600">Please select a valid location from the map.</p>
-                </div>
-            `;
+            </div>
+        `;
     }
     
-    if (locationContent) locationContent.innerHTML = content;
-    if (locationDetails) {
-        locationDetails.classList.remove('hidden');
-        locationDetails.style.opacity = '0';
-        // Add fade-in animation
-        setTimeout(() => {
-            if (locationDetails) locationDetails.style.opacity = '1';
-        }, 10);
+    // Show overlay
+    locationDetails.classList.remove('hidden');
+    locationDetails.style.opacity = '0';
+    
+    // Initialize map after overlay is shown
+    setTimeout(() => {
+        locationDetails.style.opacity = '1';
+        initializeMap(loc);
+    }, 10);
+}
+
+// Initialize Google Map
+function initializeMap(location) {
+    const mapElement = document.getElementById('map');
+    if (!mapElement) return;
+    
+    // Clear existing map
+    if (map) {
+        map = null;
     }
+    
+    // Clear existing markers
+    markers.forEach(marker => marker.setMap(null));
+    markers = [];
+    
+    // Create new map
+    map = new google.maps.Map(mapElement, {
+        center: { lat: location.lat, lng: location.lng },
+        zoom: 15,
+        mapTypeControl: false,
+        streetViewControl: false,
+        fullscreenControl: false,
+        styles: [
+            {
+                featureType: 'poi',
+                elementType: 'labels',
+                stylers: [{ visibility: 'off' }]
+            }
+        ]
+    });
+    
+    // Add marker
+    const marker = new google.maps.Marker({
+        position: { lat: location.lat, lng: location.lng },
+        map: map,
+        title: location.name,
+        animation: google.maps.Animation.DROP
+    });
+    
+    // Add info window
+    const infoWindow = new google.maps.InfoWindow({
+        content: `
+            <div style="padding: 10px; max-width: 250px;">
+                <h3 style="font-weight: bold; margin-bottom: 5px; color: #1e40af;">${location.name}</h3>
+                <p style="margin: 5px 0; color: #374151;">${location.address}</p>
+                <p style="margin: 5px 0; color: #374151;">📞 ${location.phone}</p>
+            </div>
+        `
+    });
+    
+    marker.addListener('click', () => {
+        infoWindow.open(map, marker);
+    });
+    
+    markers.push(marker);
+    
+    // Trigger resize to ensure map displays correctly
+    setTimeout(() => {
+        google.maps.event.trigger(map, 'resize');
+        map.setCenter({ lat: location.lat, lng: location.lng });
+    }, 100);
 }
 
 function hideLocation() {
