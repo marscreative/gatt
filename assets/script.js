@@ -444,16 +444,25 @@ function showBaguioLocations() {
                         <h5 class="font-bold text-indigo-600 mb-1">🏢 Main Office</h5>
                         <p class="text-sm text-gray-700">Skyworld Commercial Center<br>Session Road, Baguio City 2600</p>
                         <div class="mt-2 text-xs text-indigo-600">📞 (074) 123-4567</div>
+                        <button onclick="openGoogleMaps('Skyworld Commercial Center, Session Road, Baguio City 2600', 16.4023, 120.5960)" class="mt-2 w-full bg-indigo-600 text-white py-1 px-2 rounded text-xs hover:bg-indigo-700 transition-all">
+                            🧭 Navigate
+                        </button>
                     </div>
                     <div class="bg-blue-50 p-3 rounded-lg border-2 border-blue-200">
                         <h5 class="font-bold text-blue-600 mb-1">🛍️ SM City Branch</h5>
                         <p class="text-sm text-gray-700">Upper Basement (Opposite DFA)<br>SM City, Baguio City 2600</p>
                         <div class="mt-2 text-xs text-blue-600">Near DFA Office</div>
+                        <button onclick="openGoogleMaps('Upper Basement (Opposite DFA), SM City, Baguio City 2600', 16.4023, 120.5960)" class="mt-2 w-full bg-blue-600 text-white py-1 px-2 rounded text-xs hover:bg-blue-700 transition-all">
+                            🧭 Navigate
+                        </button>
                     </div>
                     <div class="bg-purple-50 p-3 rounded-lg border-2 border-purple-200">
                         <h5 class="font-bold text-purple-600 mb-1">🏨 YMCA Branch</h5>
                         <p class="text-sm text-gray-700">Ground Floor, YMCA Bldg.<br>Upper Session Road, Baguio City 2600</p>
                         <div class="mt-2 text-xs text-purple-600">Historic Building</div>
+                        <button onclick="openGoogleMaps('Ground Floor, YMCA Bldg., Upper Session Road, Baguio City 2600', 16.4023, 120.5960)" class="mt-2 w-full bg-purple-600 text-white py-1 px-2 rounded text-xs hover:bg-purple-700 transition-all">
+                            🧭 Navigate
+                        </button>
                     </div>
                 </div>
                 <div class="p-3 bg-gray-100 rounded-lg">
@@ -600,6 +609,20 @@ function showLocation(location) {
                         </div>
                     </div>
                 </div>
+                
+                <!-- Navigation Buttons -->
+                <div class="pt-4 border-t border-gray-200">
+                    <div class="space-y-2">
+                        <button onclick="openGoogleMaps('${loc.address}', ${loc.lat}, ${loc.lng})" class="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-all shadow-md hover:shadow-lg flex items-center justify-center space-x-2">
+                            <span class="text-lg">🧭</span>
+                            <span>Navigate with Google Maps</span>
+                        </button>
+                        <button onclick="copyAddress('${loc.address}')" class="w-full bg-gray-600 text-white py-2 px-4 rounded-lg hover:bg-gray-700 transition-all shadow-md hover:shadow-lg flex items-center justify-center space-x-2">
+                            <span class="text-lg">📋</span>
+                            <span>Copy Address</span>
+                        </button>
+                    </div>
+                </div>
             </div>
         `;
     }
@@ -667,6 +690,51 @@ function hideLocation() {
         }
         markers = [];
     }
+}
+
+// Navigation functions
+function openGoogleMaps(address, lat, lng) {
+    // Create Google Maps URL with coordinates and address
+    const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(address)}&destination_place_id=&travelmode=driving`;
+    
+    // Open in new tab
+    window.open(googleMapsUrl, '_blank');
+}
+
+function copyAddress(address) {
+    // Copy address to clipboard
+    navigator.clipboard.writeText(address).then(function() {
+        // Show success message
+        showCopySuccess();
+    }).catch(function(err) {
+        // Fallback for older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = address;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        showCopySuccess();
+    });
+}
+
+function showCopySuccess() {
+    // Create temporary success message
+    const successMsg = document.createElement('div');
+    successMsg.innerHTML = `
+        <div class="fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg z-50 flex items-center space-x-2">
+            <span>✅</span>
+            <span>Address copied to clipboard!</span>
+        </div>
+    `;
+    document.body.appendChild(successMsg);
+    
+    // Remove after 3 seconds
+    setTimeout(() => {
+        if (successMsg.parentNode) {
+            successMsg.parentNode.removeChild(successMsg);
+        }
+    }, 3000);
 }
 
 // Initialize when page loads
