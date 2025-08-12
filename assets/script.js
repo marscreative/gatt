@@ -419,11 +419,11 @@ const locations = {
     }
 };
 
-// Initialize map when Google Maps API loads
-function initMap() {
+// Initialize map when page loads
+document.addEventListener('DOMContentLoaded', function() {
     // Default to Santiago branch
     showLocation('santiago');
-}
+});
 
 // Show all Baguio locations
 function showBaguioLocations() {
@@ -482,28 +482,20 @@ function initializeBaguioMap() {
     
     // Clear existing map
     if (map) {
+        map.remove();
         map = null;
     }
     
     // Clear existing markers
-    markers.forEach(marker => marker.setMap(null));
     markers = [];
     
     // Create new map centered on Baguio
-    map = new google.maps.Map(mapElement, {
-        center: { lat: 16.4023, lng: 120.5960 },
-        zoom: 13,
-        mapTypeControl: false,
-        streetViewControl: false,
-        fullscreenControl: false,
-        styles: [
-            {
-                featureType: 'poi',
-                elementType: 'labels',
-                stylers: [{ visibility: 'off' }]
-            }
-        ]
-    });
+    map = L.map(mapElement).setView([16.4023, 120.5960], 13);
+    
+    // Add OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
     
     // Add markers for all Baguio locations
     const baguioLocations = [
@@ -513,42 +505,44 @@ function initializeBaguioMap() {
     ];
     
     baguioLocations.forEach((loc, index) => {
-        const marker = new google.maps.Marker({
-            position: { lat: loc.lat, lng: loc.lng },
-            map: map,
-            title: loc.name,
-            animation: google.maps.Animation.DROP,
-            icon: {
-                url: `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(`
-                    <svg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="15" cy="15" r="12" fill="${index === 0 ? '#1e40af' : index === 1 ? '#3b82f6' : '#8b5cf6'}" stroke="white" stroke-width="2"/>
-                        <text x="15" y="20" text-anchor="middle" fill="white" font-size="12" font-weight="bold">${index + 1}</text>
-                    </svg>
-                `)}`,
-                scaledSize: new google.maps.Size(30, 30)
-            }
+        // Create custom icon
+        const customIcon = L.divIcon({
+            className: 'custom-marker',
+            html: `<div style="
+                width: 30px; 
+                height: 30px; 
+                background-color: ${index === 0 ? '#1e40af' : index === 1 ? '#3b82f6' : '#8b5cf6'}; 
+                border: 2px solid white; 
+                border-radius: 50%; 
+                display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                color: white; 
+                font-weight: bold; 
+                font-size: 12px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            ">${index + 1}</div>`,
+            iconSize: [30, 30],
+            iconAnchor: [15, 15]
         });
         
-        const infoWindow = new google.maps.InfoWindow({
-            content: `
-                <div style="padding: 10px; max-width: 250px;">
-                    <h3 style="font-weight: bold; margin-bottom: 5px; color: #1e40af;">${loc.name}</h3>
-                    <p style="margin: 5px 0; color: #374151;">${loc.address}</p>
-                    <p style="margin: 5px 0; color: #374151;">📞 (074) 123-4567</p>
-                </div>
-            `
-        });
+        const marker = L.marker([loc.lat, loc.lng], { icon: customIcon }).addTo(map);
         
-        marker.addListener('click', () => {
-            infoWindow.open(map, marker);
-        });
+        // Add popup
+        marker.bindPopup(`
+            <div style="padding: 10px; max-width: 250px;">
+                <h3 style="font-weight: bold; margin-bottom: 5px; color: #1e40af;">${loc.name}</h3>
+                <p style="margin: 5px 0; color: #374151;">${loc.address}</p>
+                <p style="margin: 5px 0; color: #374151;">📞 (074) 123-4567</p>
+            </div>
+        `);
         
         markers.push(marker);
     });
     
     // Trigger resize to ensure map displays correctly
     setTimeout(() => {
-        google.maps.event.trigger(map, 'resize');
+        map.invalidateSize();
     }, 100);
 }
 
@@ -621,65 +615,45 @@ function showLocation(location) {
     }, 10);
 }
 
-// Initialize Google Map
+// Initialize Leaflet Map
 function initializeMap(location) {
     const mapElement = document.getElementById('map');
     if (!mapElement) return;
     
     // Clear existing map
     if (map) {
+        map.remove();
         map = null;
     }
     
     // Clear existing markers
-    markers.forEach(marker => marker.setMap(null));
     markers = [];
     
     // Create new map
-    map = new google.maps.Map(mapElement, {
-        center: { lat: location.lat, lng: location.lng },
-        zoom: 15,
-        mapTypeControl: false,
-        streetViewControl: false,
-        fullscreenControl: false,
-        styles: [
-            {
-                featureType: 'poi',
-                elementType: 'labels',
-                stylers: [{ visibility: 'off' }]
-            }
-        ]
-    });
+    map = L.map(mapElement).setView([location.lat, location.lng], 15);
+    
+    // Add OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
     
     // Add marker
-    const marker = new google.maps.Marker({
-        position: { lat: location.lat, lng: location.lng },
-        map: map,
-        title: location.name,
-        animation: google.maps.Animation.DROP
-    });
+    const marker = L.marker([location.lat, location.lng]).addTo(map);
     
-    // Add info window
-    const infoWindow = new google.maps.InfoWindow({
-        content: `
-            <div style="padding: 10px; max-width: 250px;">
-                <h3 style="font-weight: bold; margin-bottom: 5px; color: #1e40af;">${location.name}</h3>
-                <p style="margin: 5px 0; color: #374151;">${location.address}</p>
-                <p style="margin: 5px 0; color: #374151;">📞 ${location.phone}</p>
-            </div>
-        `
-    });
-    
-    marker.addListener('click', () => {
-        infoWindow.open(map, marker);
-    });
+    // Add popup
+    marker.bindPopup(`
+        <div style="padding: 10px; max-width: 250px;">
+            <h3 style="font-weight: bold; margin-bottom: 5px; color: #1e40af;">${location.name}</h3>
+            <p style="margin: 5px 0; color: #374151;">${location.address}</p>
+            <p style="margin: 5px 0; color: #374151;">📞 ${location.phone}</p>
+        </div>
+    `);
     
     markers.push(marker);
     
     // Trigger resize to ensure map displays correctly
     setTimeout(() => {
-        google.maps.event.trigger(map, 'resize');
-        map.setCenter({ lat: location.lat, lng: location.lng });
+        map.invalidateSize();
     }, 100);
 }
 
