@@ -10,7 +10,7 @@
 }
 
 .nav-logo img {
-    object-fit: cover;
+    object-fit: contain;
 }
 
 /* Responsive logo sizing */
