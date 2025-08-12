@@ -110,7 +110,8 @@ function handlePackageClick(packageType) {
                 subjectField.value = 'Philippines Travel Package Inquiry';
                 break;
             case 'domestic':
-                subjectField.value = 'Domestic Travel Package Inquiry';
+                showTab('services');
+                return; // Don't populate subject, just redirect to services
                 break;
             default:
                 subjectField.value = 'Travel Package Inquiry';
