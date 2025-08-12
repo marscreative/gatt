@@ -1,0 +1,204 @@
+/* Custom Styles for Gracious Angeli Travel & Tours */
+.hero-bg {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%);
+}
+.nav-gradient {
+    background: linear-gradient(90deg, #1e40af 0%, #2563eb 50%, #3b82f6 100%);
+}
+.card-gradient {
+    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+}
+.button-gradient {
+    background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 50%, #3b82f6 100%);
+}
+.button-gradient:hover {
+    background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 50%, #2563eb 100%);
+}
+.section-gradient {
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 50%, #bfdbfe 100%);
+}
+.tab-content {
+    display: none;
+}
+.tab-content.active {
+    display: block;
+}
+.tab-button.active {
+    background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
+    color: white;
+}
+.tab-button:hover {
+    background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+    color: white;
+}
+.travel-card:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease;
+}
+.rating-stars {
+    color: #fbbf24;
+}
+.price-gradient {
+    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Mobile menu styles */
+.tab-button-mobile.active {
+    background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
+    color: white;
+}
+
+/* Loading spinner */
+.loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255,255,255,.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Prevent horizontal overflow */
+html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
+/* Smooth transitions */
+* {
+    transition: all 0.3s ease;
+}
+
+/* Focus styles for better accessibility */
+button:focus, input:focus, textarea:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* Services slider enhancements */
+#servicesSlider {
+    display: flex;
+    gap: 1.5rem;
+    transition: transform 0.5s ease-in-out;
+    width: fit-content; /* Allow container to fit content */
+}
+
+/* Services slider container responsive adjustments */
+@media (max-width: 768px) {
+    #servicesSlider {
+        gap: 1rem; /* Smaller gap on mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    #servicesSlider {
+        gap: 0.75rem; /* Even smaller gap on very small screens */
+    }
+}
+
+/* Progress bar styling */
+#servicesProgress {
+    transition: width 0.5s ease-in-out;
+}
+
+/* Service card sizing for consistent sliding */
+.service-card {
+    min-width: 280px; /* Reduced from 300px */
+    max-width: 320px; /* Added max-width for consistency */
+    flex-shrink: 0;
+    width: 100%; /* Ensure cards take full width on mobile */
+}
+
+/* Mobile-specific adjustments for service cards */
+@media (max-width: 768px) {
+    .service-card {
+        min-width: 280px; /* Increased to show 2 cards properly */
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .service-card {
+        min-width: 260px; /* Increased to show 1 card properly */
+        max-width: 280px;
+    }
+}
+
+/* Service card hover effects */
+.service-card {
+    transition: all 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Back to Top Button - Visible on all devices */
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    /* Ensure it's visible on all screen sizes */
+    display: block !important;
+}
+
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Mobile-specific adjustments for back to top button */
+@media (max-width: 768px) {
+    .back-to-top {
+        bottom: 15px;
+        right: 15px;
+        /* Ensure it's visible within mobile viewport */
+        transform: scale(0.9);
+    }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 480px) {
+    .back-to-top {
+        bottom: 10px;
+        right: 10px;
+        /* Ensure button stays within mobile viewport */
+        right: 10px;
+    }
+}
+
+/* Very small mobile devices */
+@media (max-width: 375px) {
+    .back-to-top {
+        bottom: 10px;
+        right: 5px;
+        /* Minimal right margin for very small screens */
+        transform: scale(0.75);
+    }
+}
+
+/* Services slider container */
+.services-slider-container {
+    overflow: hidden; /* Hide overflow to prevent horizontal scroll */
+    position: relative;
+    width: 100%;
+}
+
+/* Services tab layout - allow natural height */
+#services {
+    position: relative;
+    /* Remove min-height to allow natural content flow */
+}
