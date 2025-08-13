@@ -1,15 +1,4 @@
-const express = require('express');
 const nodemailer = require('nodemailer');
-const cors = require('cors');
-const path = require('path');
-
-const app = express();
-const PORT = process.env.PORT || 3000;
-
-// Middleware
-app.use(cors());
-app.use(express.json());
-app.use(express.static('.')); // Serve static files from current directory
 
 // Create transporter for Gmail
 const transporter = nodemailer.createTransporter({
@@ -20,8 +9,26 @@ const transporter = nodemailer.createTransporter({
     }
 });
 
-// Contact form endpoint
-app.post('/api/contact', async (req, res) => {
+module.exports = async (req, res) => {
+    // Enable CORS
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+    // Handle preflight requests
+    if (req.method === 'OPTIONS') {
+        res.status(200).end();
+        return;
+    }
+
+    // Only allow POST requests
+    if (req.method !== 'POST') {
+        return res.status(405).json({ 
+            success: false, 
+            message: 'Method not allowed' 
+        });
+    }
+
     try {
         const { name, email, subject, message } = req.body;
 
@@ -101,7 +108,7 @@ app.post('/api/contact', async (req, res) => {
         // Send email
         await transporter.sendMail(mailOptions);
 
-        res.json({ 
+        res.status(200).json({ 
             success: true, 
             message: 'Message sent successfully!' 
         });
@@ -113,15 +120,4 @@ app.post('/api/contact', async (req, res) => {
             message: 'Failed to send message. Please try again.' 
         });
     }
-});
-
-// Serve the main page
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
-});
-
-// Start server
-app.listen(PORT, () => {
-    console.log(`🚀 Server running on http://localhost:${PORT}`);
-    console.log(`📧 Contact form endpoint: http://localhost:${PORT}/api/contact`);
-});
+};
