@@ -160,7 +160,7 @@ if (surveyForm) {
     });
 }
 
-// Contact form submission with validation
+// Contact form submission with validation (simplified - no email sending)
 const contactForm = document.querySelector('form');
 if (contactForm && contactForm.id !== 'surveyForm') {
     contactForm.addEventListener('submit', function(e) {
@@ -189,7 +189,7 @@ if (contactForm && contactForm.id !== 'surveyForm') {
         submitBtn.textContent = 'Sending...';
         submitBtn.disabled = true;
         
-        // Simulate form submission (replace with actual form handling)
+        // Simulate form submission (no actual email sending)
         setTimeout(() => {
             showNotification('Thank you for your message! We will get back to you soon.', 'success');
             this.reset();
@@ -749,7 +749,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Handle contact form submission
+    // Handle contact form submission (simplified - no email sending)
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
@@ -769,36 +769,13 @@ document.addEventListener('DOMContentLoaded', function() {
             submitButton.textContent = 'Sending...';
             submitButton.disabled = true;
             
-            // Send to Node.js backend
-            fetch('/api/contact', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    name: name,
-                    email: email,
-                    subject: subject,
-                    message: message
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    showMessage('✅ Message sent successfully! We will get back to you soon.', 'success');
-                    contactForm.reset();
-                } else {
-                    showMessage('❌ ' + data.message, 'error');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                showMessage('❌ Failed to send message. Please try again or contact us directly.', 'error');
-            })
-            .finally(() => {
+            // Simulate form submission (no actual email sending)
+            setTimeout(() => {
+                showMessage('✅ Thank you for your message! We will get back to you soon.', 'success');
+                contactForm.reset();
                 submitButton.textContent = originalText;
                 submitButton.disabled = false;
-            });
+            }, 2000);
         });
     }
 });

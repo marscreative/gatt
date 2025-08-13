@@ -6,7 +6,7 @@ A modern, responsive website for Gracious Angeli Travel & Tours, a trusted trave
 
 - **Responsive Design**: Works perfectly on desktop, tablet, and mobile devices
 - **Modern UI**: Beautiful gradient designs and smooth animations
-- **Interactive Elements**: Tabbed navigation, sliders, and booking forms
+- **Interactive Elements**: Tabbed navigation, sliders, and contact forms
 - **Comprehensive Services**: 
   - International and Domestic Tours
   - Flight Booking
@@ -57,9 +57,9 @@ Founded in June 1999, Gracious Angeli Travel & Tours has been providing exceptio
 
 ## 🚀 Getting Started
 
-1. Clone this repository
-2. Open `index.html` in your web browser
-3. Explore the different sections using the navigation tabs
+1. Open `index.html` in your web browser
+2. Explore the different sections using the navigation tabs
+3. Use the contact form to send inquiries (form validation included)
 
 ## 📞 Contact Information
 
