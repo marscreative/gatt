@@ -769,43 +769,36 @@ document.addEventListener('DOMContentLoaded', function() {
             submitButton.textContent = 'Sending...';
             submitButton.disabled = true;
             
-            // Try to use EmailJS if available, otherwise fallback to mailto
-            if (typeof emailjs !== 'undefined') {
-                // EmailJS method (requires setup)
-                emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
-                    to_email: 'graciousangeli.santaigo@gmail.com',
-                    from_name: name,
-                    from_email: email,
+            // Send to Node.js backend
+            fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
                     subject: subject,
                     message: message
                 })
-                .then(function(response) {
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
                     showMessage('✅ Message sent successfully! We will get back to you soon.', 'success');
                     contactForm.reset();
-                })
-                .catch(function(error) {
-                    showMessage('❌ Failed to send message. Please try again or contact us directly.', 'error');
-                    console.error('EmailJS Error:', error);
-                })
-                .finally(() => {
-                    submitButton.textContent = originalText;
-                    submitButton.disabled = false;
-                });
-            } else {
-                // Fallback to mailto link
-                const mailtoLink = `mailto:graciousangeli.santaigo@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
-                
-                // Try to open email client
-                window.location.href = mailtoLink;
-                
-                // Show success message
-                setTimeout(() => {
-                    showMessage('✅ Email client opened! Please send the message to complete your inquiry.', 'success');
-                    contactForm.reset();
-                    submitButton.textContent = originalText;
-                    submitButton.disabled = false;
-                }, 1000);
-            }
+                } else {
+                    showMessage('❌ ' + data.message, 'error');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showMessage('❌ Failed to send message. Please try again or contact us directly.', 'error');
+            })
+            .finally(() => {
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+            });
         });
     }
 });
