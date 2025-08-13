@@ -748,4 +748,95 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // Handle contact form submission
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(contactForm);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const subject = formData.get('subject');
+            const message = formData.get('message');
+            
+            const submitButton = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            
+            // Show loading state
+            submitButton.textContent = 'Sending...';
+            submitButton.disabled = true;
+            
+            // Try to use EmailJS if available, otherwise fallback to mailto
+            if (typeof emailjs !== 'undefined') {
+                // EmailJS method (requires setup)
+                emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
+                    to_email: 'graciousangeli.santaigo@gmail.com',
+                    from_name: name,
+                    from_email: email,
+                    subject: subject,
+                    message: message
+                })
+                .then(function(response) {
+                    showMessage('✅ Message sent successfully! We will get back to you soon.', 'success');
+                    contactForm.reset();
+                })
+                .catch(function(error) {
+                    showMessage('❌ Failed to send message. Please try again or contact us directly.', 'error');
+                    console.error('EmailJS Error:', error);
+                })
+                .finally(() => {
+                    submitButton.textContent = originalText;
+                    submitButton.disabled = false;
+                });
+            } else {
+                // Fallback to mailto link
+                const mailtoLink = `mailto:graciousangeli.santaigo@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+                
+                // Try to open email client
+                window.location.href = mailtoLink;
+                
+                // Show success message
+                setTimeout(() => {
+                    showMessage('✅ Email client opened! Please send the message to complete your inquiry.', 'success');
+                    contactForm.reset();
+                    submitButton.textContent = originalText;
+                    submitButton.disabled = false;
+                }, 1000);
+            }
+        });
+    }
 });
+
+// Show success/error messages
+function showMessage(message, type) {
+    // Remove existing messages
+    const existingMessage = document.querySelector('.message-notification');
+    if (existingMessage) {
+        existingMessage.remove();
+    }
+    
+    // Create message element
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message-notification fixed top-4 right-4 px-6 py-4 rounded-lg shadow-lg z-50 max-w-md ${
+        type === 'success' ? 'bg-green-500 text-white' : 'bg-red-500 text-white'
+    }`;
+    messageDiv.innerHTML = `
+        <div class="flex items-center space-x-3">
+            <span class="text-lg">${type === 'success' ? '✅' : '❌'}</span>
+            <span>${message}</span>
+        </div>
+    `;
+    
+    // Add to page
+    document.body.appendChild(messageDiv);
+    
+    // Auto remove after 5 seconds
+    setTimeout(() => {
+        if (messageDiv.parentNode) {
+            messageDiv.parentNode.removeChild(messageDiv);
+        }
+    }, 5000);
+}
