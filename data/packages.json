@@ -1,0 +1,174 @@
+{
+  "domestic": {
+    "boracay": {
+      "id": "boracay",
+      "title": "Boracay Island",
+      "description": "White sand beaches and crystal clear waters",
+      "duration": "4 Days 3 Nights",
+      "minPax": 2,
+      "price": "₱9,999",
+      "priceNote": "Land Arrangement Only",
+      "emoji": "🏝️",
+      "gradient": "from-blue-500 to-cyan-500",
+      "borderColor": "blue-200",
+      "accentColor": "blue-400",
+      "inclusions": [
+        "Hotel Accommodation",
+        "Daily Breakfast",
+        "Airport Transfer",
+        "Island Hopping",
+        "Land Tours"
+      ],
+      "exclusions": [
+        "Roundtrip Airfare Ticket",
+        "Other Personal Expenses"
+      ],
+      "highlights": [
+        "White Beach",
+        "Puka Shell Beach", 
+        "Crystal Cove Island",
+        "Sunset Sailing"
+      ]
+    },
+    "palawan": {
+      "id": "palawan",
+      "title": "Puerto Princesa - El Nido",
+      "description": "The Last Frontier - Underground rivers and pristine lagoons",
+      "duration": "4 Days 3 Nights",
+      "minPax": 2,
+      "price": "₱12,999",
+      "priceNote": "Land Arrangement Only",
+      "emoji": "🌴",
+      "gradient": "from-green-500 via-emerald-500 to-teal-500",
+      "borderColor": "green-200",
+      "accentColor": "green-400",
+      "inclusions": [
+        "Hotel Accommodation",
+        "Daily Breakfast",
+        "Island Hopping",
+        "Land Tours",
+        "Airport Transfer"
+      ],
+      "exclusions": [
+        "Roundtrip Airfare Ticket",
+        "Other Personal Expenses"
+      ],
+      "highlights": [
+        "Underground River",
+        "Big Lagoon",
+        "Small Lagoon",
+        "Shimizu Island"
+      ]
+    },
+    "cebu": {
+      "id": "cebu",
+      "title": "Cebu",
+      "description": "Queen City of the South - Rich history and beautiful beaches",
+      "duration": "4 Days 3 Nights",
+      "minPax": 2,
+      "price": "₱11,999",
+      "priceNote": "Land Arrangement Only",
+      "emoji": "⛪",
+      "gradient": "from-orange-500 via-red-500 to-pink-500",
+      "borderColor": "orange-200",
+      "accentColor": "orange-400",
+      "inclusions": [
+        "Hotel Accommodation",
+        "Daily Breakfast",
+        "Island Hopping",
+        "Land Tours",
+        "Airport Transfer"
+      ],
+      "exclusions": [
+        "Roundtrip Airfare Ticket",
+        "Other Personal Expenses"
+      ],
+      "highlights": [
+        "Magellan's Cross",
+        "Basilica del Santo Niño",
+        "Temple of Leah",
+        "Oslob Whale Sharks"
+      ]
+    }
+  },
+  "international": {
+    "hongkong": {
+      "free_easy": {
+        "id": "hk-free-easy",
+        "title": "Hong Kong - Free & Easy",
+        "duration": "4 Days 3 Nights",
+        "minPax": 2,
+        "price": "₱12,999",
+        "emoji": "🗽",
+        "gradient": "from-blue-500 to-cyan-500",
+        "inclusions": [
+          "Hotel Accommodation",
+          "Daily Breakfast",
+          "Half day City tour",
+          "Airport Transfer",
+          "Travel Tax"
+        ],
+        "exclusions": [
+          "Roundtrip Airfare Ticket",
+          "Any Surcharge",
+          "Travel Insurance",
+          "Compulsory Tipping USD 7 or HKD 50 per pax",
+          "Other Personal Expenses"
+        ]
+      },
+      "disneyland": {
+        "id": "hk-disneyland",
+        "title": "Hong Kong - Disneyland",
+        "duration": "4 Days 3 Nights",
+        "minPax": 2,
+        "price": "₱19,999",
+        "emoji": "🏰",
+        "gradient": "from-pink-500 to-purple-500",
+        "inclusions": [
+          "Hotel Accommodation",
+          "Daily Breakfast",
+          "Disneyland Tour",
+          "Half day City tour",
+          "Airport Transfer",
+          "Travel Tax"
+        ],
+        "exclusions": [
+          "Roundtrip Airfare Ticket",
+          "Any Surcharge", 
+          "Travel Insurance",
+          "Compulsory Tipping USD 7 or HKD 50 per pax",
+          "Other Personal Expenses"
+        ]
+      }
+    },
+    "europe": [
+      {
+        "id": "europe-1",
+        "title": "Europe Package Tour 1",
+        "subtitle": "Multi-Country Adventure",
+        "countries": ["Switzerland", "Germany", "Liechtenstein", "Czech Republic", "Hungary", "Slovakia", "Austria"],
+        "duration": "10 Days",
+        "minPax": 2,
+        "price": "₱125,999",
+        "emoji": "🇨🇭",
+        "gradient": "from-blue-500 via-indigo-500 to-purple-500",
+        "inclusions": [
+          "Hotel Accommodation",
+          "Daily Hotel Breakfast",
+          "All Airport Transfer",
+          "Tour Activities",
+          "Guided Tours (English)",
+          "Travel Tax"
+        ],
+        "exclusions": [
+          "Roundtrip Tickets",
+          "Other Personal Expenses",
+          "Visa Fee",
+          "Optional Tours",
+          "Tippings",
+          "Hotel City Tax"
+        ]
+      }
+    ]
+  }
+}

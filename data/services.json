@@ -1,0 +1,84 @@
+{
+  "services": [
+    {
+      "id": "flight-booking",
+      "name": "Flight Booking",
+      "description": "International and Domestic",
+      "emoji": "✈️",
+      "color": "blue",
+      "details": "Complete flight booking services for both domestic and international destinations"
+    },
+    {
+      "id": "psa-passport",
+      "name": "PSA & Passport",
+      "description": "Online Assistance",
+      "emoji": "📄",
+      "color": "green",
+      "details": "Professional assistance with PSA birth certificates and passport applications"
+    },
+    {
+      "id": "travel-insurance",
+      "name": "Travel Insurance",
+      "description": "Comprehensive coverage",
+      "emoji": "🛡️",
+      "color": "purple",
+      "details": "Complete travel insurance coverage for peace of mind during your trips"
+    },
+    {
+      "id": "study-visa",
+      "name": "Study Visa",
+      "description": "Educational opportunities abroad",
+      "emoji": "🎓",
+      "color": "yellow",
+      "details": "Expert assistance with study visa applications for Australia and Canada"
+    },
+    {
+      "id": "immigrant-visa",
+      "name": "Immigrant Visa",
+      "description": "Permanent residency assistance",
+      "emoji": "🏠",
+      "color": "indigo",
+      "details": "Professional support for permanent residency and immigration applications"
+    },
+    {
+      "id": "skilled-worker-visa",
+      "name": "Skilled Worker Visa",
+      "description": "Work opportunities overseas",
+      "emoji": "👷",
+      "color": "orange",
+      "details": "Specialized assistance for skilled worker visa applications"
+    },
+    {
+      "id": "tourist-visa",
+      "name": "Tourist Visa",
+      "description": "Vacation and leisure travel",
+      "emoji": "🌍",
+      "color": "teal",
+      "details": "Tourist visa processing for various international destinations"
+    },
+    {
+      "id": "package-tour",
+      "name": "Package Tour",
+      "description": "International and Domestic",
+      "emoji": "🏖️",
+      "color": "pink",
+      "details": "Customized tour packages for domestic and international destinations"
+    },
+    {
+      "id": "ferry-booking",
+      "name": "2GO Ferry Booking",
+      "description": "Booking Assistance",
+      "emoji": "⛴️",
+      "color": "cyan",
+      "details": "Professional assistance with 2GO ferry bookings for inter-island travel"
+    },
+    {
+      "id": "hotel-booking",
+      "name": "Hotel Booking",
+      "description": "& Reservation",
+      "emoji": "🏨",
+      "color": "red",
+      "details": "Hotel booking and reservation services worldwide"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+<!-- Service Card Component Template -->
+<article class="service-card bg-white p-6 rounded-xl shadow-xl border-2 border-{{color}}-200 border-l-4 border-l-{{color}}-400 transform hover:scale-110 transition-all duration-300 hover:shadow-2xl"
+         data-service-id="{{id}}"
+         role="article"
+         aria-label="{{name}} service">
+    <header class="text-center">
+        <div class="text-5xl mb-4 border-b-2 border-{{color}}-300 pb-3" role="img" aria-label="{{name}} icon">{{emoji}}</div>
+        <h3 class="text-xl font-bold mb-3 border-b-2 border-gray-300 pb-2 text-{{color}}-600">{{name}}</h3>
+        <p class="text-gray-600 p-3 border border-gray-200 rounded-lg bg-{{color}}-50 font-medium">{{description}}</p>
+    </header>
+    
+    {{#if details}}
+    <div class="mt-4 p-3 bg-gray-50 rounded-lg border border-gray-200">
+        <p class="text-sm text-gray-700">{{details}}</p>
+    </div>
+    {{/if}}
+    
+    <footer class="mt-4">
+        <button 
+            onclick="showTab('contact')" 
+            class="w-full bg-gradient-to-r from-{{color}}-600 to-{{color}}-700 text-white py-2 rounded-lg hover:from-{{color}}-700 hover:to-{{color}}-800 font-semibold transition-all shadow-lg hover:shadow-xl"
+            aria-label="Contact us about {{name}} service">
+            Learn More
+        </button>
+    </footer>
+</article>
