@@ -71,8 +71,10 @@ function showTab(tabName) {
     // Show selected tab content
     document.getElementById(tabName).classList.add('active');
 
-    // Add active class to clicked button
-    event.target.classList.add('active');
+    // Add active class to clicked button (when called from a click handler)
+    if (typeof event !== 'undefined' && event && event.target) {
+        event.target.classList.add('active');
+    }
 
     // Scroll to top
     window.scrollTo(0, 0);
@@ -160,44 +162,7 @@ if (surveyForm) {
     });
 }
 
-// Contact form submission with validation (simplified - no email sending)
-const contactForm = document.querySelector('form');
-if (contactForm && contactForm.id !== 'surveyForm') {
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Get form data
-        const formData = new FormData(this);
-        const name = this.querySelector('input[type="text"]').value.trim();
-        const email = this.querySelector('input[type="email"]').value.trim();
-        const message = this.querySelector('textarea').value.trim();
-        
-        // Basic validation
-        if (!name || !email || !message) {
-            showNotification('Please fill in all fields.', 'error');
-            return;
-        }
-        
-        if (!isValidEmail(email)) {
-            showNotification('Please enter a valid email address.', 'error');
-            return;
-        }
-        
-        // Show loading state
-        const submitBtn = this.querySelector('button[type="submit"]');
-        const originalText = submitBtn.textContent;
-        submitBtn.textContent = 'Sending...';
-        submitBtn.disabled = true;
-        
-        // Simulate form submission (no actual email sending)
-        setTimeout(() => {
-            showNotification('Thank you for your message! We will get back to you soon.', 'success');
-            this.reset();
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
-        }, 2000);
-    });
-}
+/* Removed duplicate contact form listener (now handled by #contactForm) */
 
 // Email validation function
 function isValidEmail(email) {
@@ -331,6 +296,13 @@ function bookTour(packageName = '', price = '') {
 // Enhanced book tour function for specific packages
 function bookSpecificTour(packageName, price) {
     bookTour(packageName, price);
+}
+
+function scrollRow(containerId, direction) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    const scrollAmount = Math.max(container.clientWidth * 0.9, 320);
+    container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
 }
 
 // Services Grid - All services displayed in a beautiful grid layout
