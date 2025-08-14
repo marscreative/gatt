@@ -114,8 +114,8 @@ html, body {
     max-width: 100%;
 }
 
-/* Smooth transitions */
-* {
+/* Smooth transitions for interactive elements only */
+a, button, .travel-card, .tab-button, .tab-button-mobile, .service-card, .button-gradient {
     transition: all 0.3s ease;
 }
 
@@ -238,3 +238,9 @@ button:focus, input:focus, textarea:focus {
         margin-top: 4rem !important; /* 64px for mobile */
     }
 }
+
+/* Horizontal package row */
+.package-row { scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; display: flex; gap: 1rem; overflow-x: auto; padding-bottom: 0.5rem; }
+.package-card { scroll-snap-align: start; min-width: 280px; }
+.package-row::-webkit-scrollbar { display: none; }
+.package-row { -ms-overflow-style: none; scrollbar-width: none; }
