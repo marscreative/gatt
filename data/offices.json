@@ -1,0 +1,69 @@
+{
+  "offices": [
+    {
+      "id": "main-office",
+      "name": "Main Office", 
+      "type": "main",
+      "address": "Skyworld Commercial Center, Session Road, Baguio City 2600",
+      "phone": "(074) 123-4567",
+      "email": "info@graciousangeli.com",
+      "hours": "Monday - Friday: 8:00 AM - 6:00 PM",
+      "description": "Central Baguio, near Session Road",
+      "coordinates": {
+        "lat": 16.4023,
+        "lng": 120.5960
+      },
+      "color": "indigo",
+      "city": "Baguio"
+    },
+    {
+      "id": "sm-city",
+      "name": "SM City Branch",
+      "type": "branch",
+      "address": "Upper Basement (Opposite DFA), SM City, Baguio City 2600",
+      "phone": "(074) 123-4567",
+      "email": "smcity@graciousangeli.com",
+      "hours": "Monday - Sunday: 10:00 AM - 9:00 PM",
+      "description": "Inside SM City Mall, near DFA Office",
+      "coordinates": {
+        "lat": 16.4023,
+        "lng": 120.5960
+      },
+      "color": "blue",
+      "city": "Baguio"
+    },
+    {
+      "id": "ymca",
+      "name": "YMCA Branch",
+      "type": "branch",
+      "address": "Ground Floor, YMCA Bldg., Upper Session Road, Baguio City 2600",
+      "phone": "(074) 123-4567",
+      "email": "ymca@graciousangeli.com",
+      "hours": "Monday - Friday: 8:00 AM - 5:00 PM",
+      "description": "Historic YMCA Building",
+      "coordinates": {
+        "lat": 16.4023,
+        "lng": 120.5960
+      },
+      "color": "purple",
+      "city": "Baguio"
+    },
+    {
+      "id": "santiago",
+      "name": "Santiago Branch",
+      "type": "branch",
+      "address": "Level 2 Robinsons Mall, Maharlika Highway, Santiago City, Isabela 3311",
+      "phone": "(074) 123-4567",
+      "email": "santiago@graciousangeli.com",
+      "hours": "Monday - Sunday: 10:00 AM - 9:00 PM",
+      "description": "Inside Robinsons Mall",
+      "manager": "Corazon A. Balisong",
+      "coordinates": {
+        "lat": 16.6881,
+        "lng": 121.5489
+      },
+      "color": "green",
+      "city": "Santiago"
+    }
+  ]
+}

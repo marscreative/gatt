@@ -3,41 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gracious Angeli Travel & Tours - Your Trusted Travel Partner Since 1999</title>
+    
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com; style-src 'self' 'unsafe-inline' https://unpkg.com https://cdn.tailwindcss.com; img-src 'self' data: https:; connect-src 'self'; font-src 'self' https:;">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Gracious Angeli Travel & Tours offers international and domestic travel packages, visa assistance, air ticketing, and study abroad programs. 26 years of trusted travel services in Baguio City and Santiago City.">
-    <meta name="keywords" content="travel agency, tour packages, visa assistance, air ticketing, study abroad, Baguio travel, Philippines travel, international tours, domestic tours">
+    <title>Gracious Angeli Travel & Tours - DOT Accredited Travel Agency Since 1999 | Philippines</title>
+    <meta name="description" content="DOT-accredited Gracious Angeli Travel & Tours offers premium international and domestic travel packages, visa assistance, study abroad programs in Australia & Canada. 26+ years serving Baguio City and Santiago City, Philippines.">
+    <meta name="keywords" content="DOT accredited travel agency, Philippines travel packages, visa assistance, study abroad Australia Canada, Baguio travel agency, Santiago City travel, international tours, domestic tours, PSA passport services">
     <meta name="author" content="Gracious Angeli Travel & Tours">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <link rel="canonical" href="https://graciousangeli.com">
     
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Gracious Angeli Travel & Tours">
-    <meta property="og:description" content="Your trusted travel partner since 1999. International and domestic tours, visa assistance, and study abroad programs.">
+    <meta property="og:title" content="Gracious Angeli Travel & Tours - DOT Accredited Travel Agency Philippines">
+    <meta property="og:description" content="Your trusted travel partner since 1999. DOT-accredited agency offering international tours, domestic packages, visa assistance, and study abroad programs in Australia & Canada.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://graciousangeli.com">
-    <meta property="og:image" content="https://graciousangeli.com/assets/og-image.jpg">
+    <meta property="og:image" content="https://graciousangeli.com/images/gatt_logo_circle.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Gracious Angeli Travel & Tours">
+    <meta property="og:locale" content="en_PH">
     
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Gracious Angeli Travel & Tours">
-    <meta name="twitter:description" content="Your trusted travel partner since 1999">
+    <meta name="twitter:title" content="Gracious Angeli Travel & Tours - DOT Accredited Travel Agency Philippines">
+    <meta name="twitter:description" content="Your trusted travel partner since 1999. DOT-accredited agency offering tours, visa assistance, and study abroad programs.">
+    <meta name="twitter:image" content="https://graciousangeli.com/images/gatt_logo_circle.png">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TravelAgency",
+        "name": "Gracious Angeli Travel & Tours",
+        "description": "DOT-accredited travel agency serving Philippines since 1999",
+        "url": "https://graciousangeli.com",
+        "logo": "https://graciousangeli.com/images/gatt_logo_circle.png",
+        "foundingDate": "1999-06",
+        "founders": [
+            {
+                "@type": "Person",
+                "name": "Judith Balisong Balabag",
+                "jobTitle": "CEO & General Manager"
+            }
+        ],
+        "address": [
+            {
+                "@type": "PostalAddress",
+                "streetAddress": "Skyworld Commercial Center, Session Road",
+                "addressLocality": "Baguio City",
+                "postalCode": "2600",
+                "addressCountry": "PH"
+            },
+            {
+                "@type": "PostalAddress", 
+                "streetAddress": "Level 2 Robinsons Mall, Maharlika Highway",
+                "addressLocality": "Santiago City",
+                "addressRegion": "Isabela",
+                "postalCode": "3311",
+                "addressCountry": "PH"
+            }
+        ],
+        "telephone": "(074) 123-4567",
+        "email": "info@graciousangeli.com",
+        "areaServed": ["Philippines", "Australia", "Canada", "Europe", "Asia"],
+        "serviceType": ["Travel Agency", "Tour Operator", "Visa Services"],
+        "hasCredential": "Department of Tourism Accreditation",
+        "sameAs": [
+            "https://facebook.com/graciousangeli",
+            "https://instagram.com/graciousangeli"
+        ]
+    }
+    </script>
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/gatt_logo_circle.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/gatt_logo_circle.png">
+    
+    <!-- CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="assets/style.css">
-         <!-- Back to Top Button CSS moved to external stylesheet -->
+    <link rel="stylesheet" href="css/main.css">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="css/main.css" as="style">
+    <link rel="preload" href="js/main.js" as="script">
+    <link rel="preload" href="images/gatt_logo_circle.png" as="image">
 </head>
 <body class="bg-gradient-to-br from-blue-50 via-white to-blue-50">
+    <!-- Skip Link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
     <!-- Navigation -->
-    <nav class="nav-gradient shadow-lg sticky top-0 z-50">
+    <nav class="nav-gradient shadow-lg sticky top-0 z-50" role="navigation" aria-label="Main navigation">
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex justify-between items-center py-4">
                 <div class="flex items-center">
                     <a href="#" onclick="showTab('home'); return false;" class="nav-logo flex items-center hover:opacity-80 transition-opacity duration-300 cursor-pointer">
-                        <img src="assets/gatt_logo_circle.png" alt="GATT Logo" class="w-16 h-12 mr-3 shadow-lg">
+                        <img src="images/gatt_logo_circle.png" alt="Gracious Angeli Travel & Tours Logo" class="w-16 h-12 mr-3 shadow-lg">
                         <div>
                             <h1 class="text-2xl font-bold text-white">Gracious Angeli</h1>
                             <span class="text-blue-100 text-sm">Travel & Tours</span>
@@ -46,18 +114,18 @@
                 </div>
                 
                 <!-- Desktop Navigation -->
-                <div class="hidden md:flex space-x-8">
-                    <button onclick="showTab('home')" class="tab-button active px-4 py-2 rounded-lg transition-all text-white">Home</button>
-                    <button onclick="showTab('about')" class="tab-button px-4 py-2 rounded-lg transition-all text-blue-100 hover:text-white">About Us</button>
-                    <button onclick="showTab('services')" class="tab-button px-4 py-2 rounded-lg transition-all text-blue-100 hover:text-white">Services</button>
-                    <button onclick="showTab('partners')" class="tab-button px-4 py-2 rounded-lg transition-all text-blue-100 hover:text-white">Partners</button>
-                    <button onclick="showTab('contact')" class="tab-button px-4 py-2 rounded-lg transition-all text-blue-100 hover:text-white">Contact Us</button>
+                <div class="hidden md:flex space-x-8" role="tablist" aria-label="Main navigation tabs">
+                    <button onclick="showTab('home')" class="tab-button active px-4 py-2 rounded-lg transition-all text-white" role="tab" aria-selected="true" aria-controls="home" tabindex="0">Home</button>
+                    <button onclick="showTab('about')" class="tab-button px-4 py-2 rounded-lg transition-all text-blue-100 hover:text-white" role="tab" aria-selected="false" aria-controls="about" tabindex="0">About Us</button>
+                    <button onclick="showTab('services')" class="tab-button px-4 py-2 rounded-lg transition-all text-blue-100 hover:text-white" role="tab" aria-selected="false" aria-controls="services" tabindex="0">Services</button>
+                    <button onclick="showTab('partners')" class="tab-button px-4 py-2 rounded-lg transition-all text-blue-100 hover:text-white" role="tab" aria-selected="false" aria-controls="partners" tabindex="0">Partners</button>
+                    <button onclick="showTab('contact')" class="tab-button px-4 py-2 rounded-lg transition-all text-blue-100 hover:text-white" role="tab" aria-selected="false" aria-controls="contact" tabindex="0">Contact Us</button>
                 </div>
                 
                 <!-- Mobile Menu Button -->
                 <div class="md:hidden">
-                    <button id="mobileMenuBtn" class="text-white hover:text-blue-200 focus:outline-none focus:text-blue-200">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <button id="mobileMenuBtn" class="text-white hover:text-blue-200 focus:outline-none focus:text-blue-200" aria-expanded="false" aria-controls="mobileMenu" aria-label="Toggle mobile menu">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
                     </button>
@@ -77,8 +145,10 @@
         </div>
     </nav>
 
-    <!-- Home Tab -->
-    <div id="home" class="tab-content active">
+    <!-- Main Content Area -->
+    <main id="main-content" role="main">
+        <!-- Home Tab -->
+        <section id="home" class="tab-content active" role="tabpanel" aria-labelledby="home-tab" aria-hidden="false">
         <!-- Hero Section -->
         <section class="hero-bg text-white py-20">
             <div class="max-w-7xl mx-auto px-4 text-center">
@@ -402,10 +472,10 @@
                 </div>
             </div>
         </section>
-    </div>
+        </section>
 
-    <!-- About Us Tab -->
-    <div id="about" class="tab-content">
+        <!-- About Us Tab -->
+        <section id="about" class="tab-content" role="tabpanel" aria-labelledby="about-tab" aria-hidden="true">
         <div class="max-w-7xl mx-auto px-4 py-16">
             <h2 class="text-4xl font-bold text-center mb-12">About Gracious Angeli Travel & Tours</h2>
             
@@ -571,10 +641,10 @@
                 </div>
             </section>
         </div>
-    </div>
+        </section>
 
-    <!-- Services Tab -->
-    <div id="services" class="tab-content">
+        <!-- Services Tab -->
+        <section id="services" class="tab-content" role="tabpanel" aria-labelledby="services-tab" aria-hidden="true">
         <!-- Services Hero Section -->
         <section class="hero-bg text-white py-20">
             <div class="max-w-7xl mx-auto px-4 text-center">
@@ -2495,10 +2565,10 @@
                 </div>
             </section>
         </div>
-    </div>
+        </section>
 
-    <!-- Partners Tab -->
-    <div id="partners" class="tab-content">
+        <!-- Partners Tab -->
+        <section id="partners" class="tab-content" role="tabpanel" aria-labelledby="partners-tab" aria-hidden="true">
         <div class="max-w-7xl mx-auto px-4 py-16">
             <h2 class="text-4xl font-bold text-center mb-12">Our Partners</h2>
             
@@ -2676,10 +2746,10 @@
                 </div>
             </section>
         </div>
-    </div>
+        </section>
 
-    <!-- Contact Us Tab -->
-    <div id="contact" class="tab-content">
+        <!-- Contact Us Tab -->
+        <section id="contact" class="tab-content" role="tabpanel" aria-labelledby="contact-tab" aria-hidden="true">
         <div class="max-w-7xl mx-auto px-4 py-16">
             <h2 class="text-4xl font-bold text-center mb-12">Contact Us</h2>
             
@@ -2837,10 +2907,11 @@
                 </div>
             </div>
         </div>
-    </div>
+        </section>
+    </main>
 
     <!-- Footer -->
-    <footer class="bg-gradient-to-r from-gray-800 via-blue-900 to-gray-800 text-white py-12">
+    <footer class="bg-gradient-to-r from-gray-800 via-blue-900 to-gray-800 text-white py-12" role="contentinfo">
         <div class="max-w-7xl mx-auto px-4">
             <div class="grid md:grid-cols-4 gap-8">
                 <div>
@@ -2892,8 +2963,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     
-
-    
-    <script src="assets/script.js"></script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96d5e185a7fd8241',t:'MTc1NDg5NTg4OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+    <!-- Main Application Script -->
+    <script src="js/main.js"></script>
+</body>
 </html>

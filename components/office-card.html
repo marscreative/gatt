@@ -1,0 +1,61 @@
+<!-- Office Card Component Template -->
+<article class="bg-white p-6 rounded-lg shadow-lg border-2 border-{{color}}-200 border-l-4 border-l-{{color}}-400 hover:shadow-xl transition-all cursor-pointer"
+         data-office-id="{{id}}"
+         role="article"
+         aria-label="{{name}} office location"
+         onclick="showLocation('{{id}}')">
+    <header class="mb-4">
+        <h4 class="font-bold text-lg mb-2 text-{{color}}-600 border-b-2 border-{{color}}-300 pb-2">{{name}}</h4>
+        {{#if manager}}
+        <p class="text-sm text-{{color}}-600 mb-2 border-b border-{{color}}-200 pb-1">Manager: {{manager}}</p>
+        {{/if}}
+    </header>
+    
+    <div class="space-y-3">
+        <div class="p-3 border-2 border-gray-200 rounded-lg bg-gray-50">
+            <div class="flex items-start space-x-2">
+                <span class="text-lg" role="img" aria-label="Address">📍</span>
+                <div>
+                    <p class="font-semibold text-gray-800">Address:</p>
+                    <p class="text-gray-700 text-sm">{{address}}</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+            <div class="flex items-center space-x-2">
+                <span role="img" aria-label="Phone">📞</span>
+                <span class="text-gray-700">{{phone}}</span>
+            </div>
+            <div class="flex items-center space-x-2">
+                <span role="img" aria-label="Email">📧</span>
+                <span class="text-gray-700">{{email}}</span>
+            </div>
+        </div>
+        
+        <div class="p-2 bg-{{color}}-50 rounded border border-{{color}}-200">
+            <div class="flex items-start space-x-2">
+                <span class="text-sm" role="img" aria-label="Hours">🕒</span>
+                <div>
+                    <p class="font-semibold text-{{color}}-700 text-sm">Hours:</p>
+                    <p class="text-{{color}}-600 text-xs">{{hours}}</p>
+                </div>
+            </div>
+        </div>
+        
+        {{#if description}}
+        <div class="p-2 bg-gray-50 rounded border border-gray-200">
+            <p class="text-xs text-gray-600">💡 {{description}}</p>
+        </div>
+        {{/if}}
+    </div>
+    
+    <footer class="mt-4 pt-3 border-t border-{{color}}-200">
+        <button 
+            onclick="showLocation('{{id}}')" 
+            class="w-full bg-gradient-to-r from-{{color}}-600 to-{{color}}-700 text-white py-2 rounded-lg hover:from-{{color}}-700 hover:to-{{color}}-800 font-semibold transition-all shadow-md hover:shadow-lg text-sm"
+            aria-label="View {{name}} on map">
+            📍 View on Map
+        </button>
+    </footer>
+</article>
