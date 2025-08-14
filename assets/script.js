@@ -424,12 +424,12 @@ function renderPackages(category) {
         return;
     }
     
-    console.log(`Rendering ${packages.length} packages for ${category}`);
+    console.log(`Rendering ${packages.length} packages for ${category}:`, packages.map(p => p.country));
     
-    container.innerHTML = packages.map(pkg => `
-        <div class="package-card bg-white rounded-lg shadow-lg border-2 border-gray-200 overflow-hidden transform hover:scale-105 transition-all duration-300 hover:shadow-xl min-w-[300px] flex-shrink-0">
+    container.innerHTML = packages.map((pkg, index) => `
+        <div class="package-card bg-white rounded-lg shadow-lg border-2 border-gray-200 overflow-hidden transform hover:scale-105 transition-all duration-300 hover:shadow-xl min-w-[300px] flex-shrink-0" data-index="${index}">
             <div class="relative">
-                <img src="${pkg.image}" alt="${pkg.country}" class="w-full h-48 object-cover">
+                <img src="${pkg.image}" alt="${pkg.country}" class="w-full h-48 object-cover" onerror="this.src='https://via.placeholder.com/400x300/cccccc/666666?text=${encodeURIComponent(pkg.country)}'">
                 <div class="absolute top-2 left-2 bg-white px-2 py-1 rounded text-xs font-bold text-indigo-600">${pkg.location}</div>
             </div>
             
@@ -465,6 +465,10 @@ function renderPackages(category) {
         </div>
     `).join('');
     
+    // Verify all cards were rendered
+    const renderedCards = container.querySelectorAll('.package-card');
+    console.log(`Successfully rendered ${renderedCards.length} cards out of ${packages.length} packages`);
+    
     // Use requestAnimationFrame to ensure DOM is painted before calculating positions
     requestAnimationFrame(() => {
         updatePackageSlider(category);
@@ -489,14 +493,18 @@ function slidePackages(direction) {
     
     if (!container) return;
     
-    // Calculate visible cards dynamically
+    // Calculate visible cards dynamically with proper gap calculation
     const firstCard = container.querySelector('.package-card');
     if (!firstCard) return;
     
-    const cardWidth = firstCard.offsetWidth + 20;
-    const containerWidth = container.parentElement.offsetWidth;
+    // Get the computed gap from CSS (space-x-5 = 1.25rem = 20px)
+    const gap = 20; // space-x-5 gap
+    const cardWidth = firstCard.offsetWidth + gap;
+    const containerWidth = container.parentElement.offsetWidth - 32; // Account for padding (px-4 = 16px on each side)
     const visibleCards = Math.max(1, Math.floor(containerWidth / cardWidth));
     const maxSlides = Math.max(0, packages.length - visibleCards);
+    
+    console.log(`Sliding ${direction}: current=${currentPackageSlides[category]}, max=${maxSlides}, visible=${visibleCards}, total=${packages.length}, containerWidth=${containerWidth}, cardWidth=${cardWidth}`);
     
     if (direction === 'next') {
         currentPackageSlides[category] = Math.min(currentPackageSlides[category] + 1, maxSlides);
@@ -512,20 +520,23 @@ function updatePackageSlider(category) {
     const container = document.getElementById('packageCarousel');
     if (!container) return;
     
-    // Get actual card width from rendered elements
+    // Get actual card width from rendered elements with proper gap
     const firstCard = container.querySelector('.package-card');
     if (!firstCard) return;
     
-    const cardWidth = firstCard.offsetWidth + 20; // Card width + gap
+    const gap = 20; // space-x-5 gap
+    const cardWidth = firstCard.offsetWidth + gap;
     const translateX = -currentPackageSlides[category] * cardWidth;
     
     container.style.transform = `translateX(${translateX}px)`;
     
     // Update navigation buttons with responsive calculation
     const packages = travelPackages[category];
-    const containerWidth = container.parentElement.offsetWidth;
+    const containerWidth = container.parentElement.offsetWidth - 32; // Account for padding (px-4 = 16px on each side)
     const visibleCards = Math.floor(containerWidth / cardWidth);
     const maxSlides = Math.max(0, packages.length - visibleCards);
+    
+    console.log(`Slider update: category=${category}, current=${currentPackageSlides[category]}, max=${maxSlides}, visible=${visibleCards}, total=${packages.length}`);
     
     const prevBtn = document.getElementById('packagePrevBtn');
     const nextBtn = document.getElementById('packageNextBtn');
@@ -536,6 +547,19 @@ function updatePackageSlider(category) {
         
         prevBtn.style.pointerEvents = currentPackageSlides[category] === 0 ? 'none' : 'auto';
         nextBtn.style.pointerEvents = currentPackageSlides[category] === maxSlides ? 'none' : 'auto';
+        
+        // Ensure the last card is fully visible by adjusting the container padding
+        if (currentPackageSlides[category] === maxSlides && maxSlides > 0) {
+            const lastCardIndex = packages.length - 1;
+            const lastCardPosition = lastCardIndex * cardWidth;
+            const containerEndPosition = containerWidth;
+            
+            // If the last card would be cut off, adjust the translation
+            if (lastCardPosition - translateX > containerEndPosition - cardWidth) {
+                const adjustedTranslateX = lastCardPosition - containerEndPosition + cardWidth;
+                container.style.transform = `translateX(${-adjustedTranslateX}px)`;
+            }
+        }
     }
 }
 
@@ -571,15 +595,42 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize packages if on services page with delay to ensure DOM is rendered
     setTimeout(() => {
         if (document.getElementById('packageCarousel')) {
+            console.log('Initializing package carousel...');
             switchPackageCategory('asia');
             addPackageCarouselTouchSupport();
             
             // Add window resize listener to recalculate on window resize
             window.addEventListener('resize', function() {
                 if (currentPackageCategory) {
+                    console.log('Window resized, updating slider...');
                     updatePackageSlider(currentPackageCategory);
                 }
             });
+            
+            // Debug function to check carousel state
+            window.debugCarousel = function() {
+                const container = document.getElementById('packageCarousel');
+                const cards = container.querySelectorAll('.package-card');
+                const category = currentPackageCategory;
+                const packages = travelPackages[category];
+                
+                console.log('=== CAROUSEL DEBUG ===');
+                console.log('Category:', category);
+                console.log('Total packages:', packages.length);
+                console.log('Rendered cards:', cards.length);
+                console.log('Current slide:', currentPackageSlides[category]);
+                console.log('Container width:', container.parentElement.offsetWidth);
+                console.log('First card width:', cards[0]?.offsetWidth);
+                console.log('Visible cards calculation:', Math.floor((container.parentElement.offsetWidth - 32) / (cards[0]?.offsetWidth + 20)));
+                console.log('=====================');
+            };
+            
+            // Force a recalculation after a short delay to ensure proper positioning
+            setTimeout(() => {
+                if (currentPackageCategory) {
+                    updatePackageSlider(currentPackageCategory);
+                }
+            }, 200);
         }
     }, 100);
 });

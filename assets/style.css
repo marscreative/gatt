@@ -5,15 +5,38 @@
     position: relative;
     overflow: hidden;
     transition: all 0.3s ease;
+    border: 2px solid transparent;
 }
 
 .package-category-btn.active {
     transform: scale(1.05);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    border-color: currentColor;
+    font-weight: bold;
 }
 
 .package-category-btn:hover {
     transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Specific active states for each category */
+.package-category-btn[data-category="asia"].active {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: white;
+    border-color: #dc2626;
+}
+
+.package-category-btn[data-category="europe"].active {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+    border-color: #2563eb;
+}
+
+.package-category-btn[data-category="philippines"].active {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    border-color: #059669;
 }
 
 /* Package Carousel Styles */
