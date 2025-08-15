@@ -438,13 +438,13 @@ function renderPackages(category) {
                 <p class="text-sm text-center text-gray-600 mb-4">${pkg.duration} | ${pkg.minPax}</p>
                 
                 <div class="grid grid-cols-2 gap-2 mb-4 text-xs">
-                    <div>
+                    <div class="border border-green-200 rounded-lg p-2 bg-green-50">
                         <h5 class="font-semibold text-green-600 mb-1">INCLUSION</h5>
                         <ul class="text-gray-600 space-y-0.5">
                             ${pkg.inclusions.slice(0, 5).map(item => `<li>• ${item}</li>`).join('')}
                         </ul>
                     </div>
-                    <div>
+                    <div class="border border-red-200 rounded-lg p-2 bg-red-50">
                         <h5 class="font-semibold text-red-600 mb-1">EXCLUSION</h5>
                         <ul class="text-gray-600 space-y-0.5">
                             ${pkg.exclusions.slice(0, 5).map(item => `<li>• ${item}</li>`).join('')}
@@ -452,12 +452,12 @@ function renderPackages(category) {
                     </div>
                 </div>
                 
-                <div class="text-center">
-                    <div class="bg-gradient-to-r ${getCategoryColor(category)} text-white py-2 rounded-lg font-bold text-lg mb-3">
+                <div class="flex gap-2">
+                    <div class="bg-gradient-to-r ${getCategoryColor(category)} text-white py-2 px-3 rounded-lg font-bold text-sm flex-1 flex items-center justify-center">
                         START AT ${pkg.price} /PAX
                     </div>
                     <button onclick="bookSpecificTour('${pkg.country}', '${pkg.price}')" 
-                            class="w-full bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 transition-all font-semibold">
+                            class="bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 transition-all font-semibold whitespace-nowrap">
                         📞 Book Now
                     </button>
                 </div>
