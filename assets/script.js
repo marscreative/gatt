@@ -497,7 +497,7 @@ function renderPackages(category) {
                 </div>
                 
                 <div class="flex gap-2">
-                    <div class="bg-gradient-to-r ${getCategoryColor(category)} text-white py-2 px-3 rounded-lg font-bold text-sm flex-1 flex items-center justify-center">
+                    <div class="bg-gradient-to-r ${getPriceColor(pkg.location)} text-white py-2 px-3 rounded-lg font-bold text-sm flex-1 flex items-center justify-center">
                         START AT ${pkg.price} /PAX
                     </div>
                     <button onclick="bookSpecificTour('${pkg.country}', '${pkg.price}')" 
@@ -527,6 +527,63 @@ function getCategoryColor(category) {
         philippines: 'from-green-500 to-green-600'
     };
     return colors[category] || 'from-indigo-500 to-indigo-600';
+}
+
+// Get Button Color based on package location
+function getButtonColor(location) {
+    if (location.includes('GREEN LINE')) {
+        return 'bg-green-600';
+    } else if (location.includes('ORANGE LINE')) {
+        return 'bg-orange-600';
+    } else if (location.includes('RED LINE')) {
+        return 'bg-red-600';
+    } else if (location.includes('PINK LINE')) {
+        return 'bg-pink-600';
+    } else if (location.includes('BLUE LINE')) {
+        return 'bg-blue-600';
+    } else if (location.includes('YELLOW LINE')) {
+        return 'bg-yellow-600';
+    } else {
+        return 'bg-indigo-600'; // Default color
+    }
+}
+
+// Get Button Hover Color based on package location
+function getButtonHoverColor(location) {
+    if (location.includes('GREEN LINE')) {
+        return 'hover:bg-green-700';
+    } else if (location.includes('ORANGE LINE')) {
+        return 'hover:bg-orange-700';
+    } else if (location.includes('RED LINE')) {
+        return 'hover:bg-red-700';
+    } else if (location.includes('PINK LINE')) {
+        return 'hover:bg-pink-700';
+    } else if (location.includes('BLUE LINE')) {
+        return 'hover:bg-blue-700';
+    } else if (location.includes('YELLOW LINE')) {
+        return 'hover:bg-yellow-700';
+    } else {
+        return 'hover:bg-indigo-700'; // Default hover color
+    }
+}
+
+// Get Price Color based on package location
+function getPriceColor(location) {
+    if (location.includes('GREEN LINE')) {
+        return 'from-green-500 to-green-600';
+    } else if (location.includes('ORANGE LINE')) {
+        return 'from-orange-500 to-orange-600';
+    } else if (location.includes('RED LINE')) {
+        return 'from-red-500 to-red-600';
+    } else if (location.includes('PINK LINE')) {
+        return 'from-pink-500 to-pink-600';
+    } else if (location.includes('BLUE LINE')) {
+        return 'from-blue-500 to-blue-600';
+    } else if (location.includes('YELLOW LINE')) {
+        return 'from-yellow-500 to-yellow-600';
+    } else {
+        return 'from-indigo-500 to-indigo-600'; // Default color
+    }
 }
 
 // Package Slider Navigation
