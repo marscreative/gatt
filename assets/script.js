@@ -1340,7 +1340,6 @@ const locations = {
         phone: '+63-9175061996',
         hours: '9:00 AM - 6:00 PM (Monday to Saturday)',
         description: 'Central Baguio, near Session Road',
-        manager: 'Judith B. Balabag',
         coordinates: [16.4023, 120.5960]
     },
     'sm-city': {
@@ -1365,7 +1364,6 @@ const locations = {
         phone: '+63-9958424115',
         hours: '10:00 AM - 9:00 PM (Monday to Sunday)',
         description: 'Inside Robinsons Mall',
-        manager: 'Corazon A. Balisong',
         coordinates: [16.6881, 121.5489]
     }
 };
@@ -1495,16 +1493,6 @@ function showLocation(locationId) {
     
     title.textContent = location.name;
     
-    const managerInfo = location.manager ? `
-        <div class="flex items-start space-x-3">
-            <div class="text-xl">👤</div>
-            <div>
-                <p class="font-semibold text-gray-800">Manager:</p>
-                <p class="text-gray-600 text-sm">${location.manager}</p>
-            </div>
-        </div>
-    ` : '';
-    
     content.innerHTML = `
         <div class="space-y-4">
             <h4 class="text-lg font-bold text-indigo-600 border-b border-indigo-200 pb-2">📍 ${location.name}</h4>
@@ -1517,21 +1505,18 @@ function showLocation(locationId) {
                     </div>
                 </div>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
-                    <div class="flex items-center space-x-2">
-                        <span>📞</span>
-                        <span class="text-gray-700">${location.phone}</span>
-                    </div>
-                    <div class="flex items-start space-x-2">
-                        <span class="text-sm">🕒</span>
-                        <div>
-                            <p class="font-semibold text-gray-700 text-sm">Hours:</p>
-                            <p class="text-gray-600 text-xs">${location.hours}</p>
-                        </div>
+                <div class="flex items-start space-x-3">
+                    <div class="text-xl">🕒</div>
+                    <div>
+                        <p class="font-semibold text-gray-800">Hours:</p>
+                        <p class="text-gray-600 text-sm">${location.hours}</p>
                     </div>
                 </div>
                 
-                ${managerInfo}
+                <div class="flex items-center space-x-2">
+                    <span>📞</span>
+                    <span class="text-gray-700">${location.phone}</span>
+                </div>
                 
                 <div class="p-2 bg-gray-50 rounded border border-gray-200">
                     <p class="text-xs text-gray-600">💡 ${location.description}</p>
