@@ -12,7 +12,7 @@ const travelPackages = {
             duration: '4 DAYS 3 NIGHTS',
             minPax: 'MIN OF 2 PAX',
             price: '29,999',
-            image: 'https://images.unsplash.com/photo-1559083532-d3d1e7e1b8f8?w=400&h=300&fit=crop',
+            image: 'assets/GATT WEBSITE UPDATES/SERVICES/Taiwan.png',
             inclusions: ['Hotel Accommodation', 'Daily Hotel Breakfast', 'All Transfers', 'Temple Hopping', 'Travel Tax'],
             exclusions: ['Roundtrip Flight Ticket', 'Visa Surcharge', 'Travel Insurance', 'Compulsory Tipping', 'Personal Expenses', 'Other Personal Expenses']
         },
@@ -23,7 +23,7 @@ const travelPackages = {
             duration: '4 DAYS 3 NIGHTS',
             minPax: 'MIN OF 2 PAX',
             price: '14,999',
-            image: 'https://images.unsplash.com/photo-1559221030-f9d8c17c6e0b?w=400&h=300&fit=crop',
+            image: 'assets/GATT WEBSITE UPDATES/SERVICES/Vietnaman Da Nang.png',
             inclusions: ['Hotel Accommodation', 'Daily Hotel Breakfast', 'All Transfers', 'Temple Hopping', 'Travel Tax'],
             exclusions: ['Roundtrip Flight Ticket', 'Visa Surcharge', 'Travel Insurance', 'Compulsory Tipping', 'Other Personal Expenses']
         },
@@ -34,7 +34,7 @@ const travelPackages = {
             duration: '4 DAYS 3 NIGHTS',
             minPax: 'MIN OF 2 PAX',
             price: '14,999',
-            image: 'https://images.unsplash.com/photo-1508062878650-88b52897f298?w=400&h=300&fit=crop',
+            image: 'assets/GATT WEBSITE UPDATES/SERVICES/Vietnam Ha Noi.png',
             inclusions: ['Hotel Accommodation', 'Daily Hotel Breakfast', 'All Transfers', 'Half Day City Tour', 'Ocean Park', 'Travel Tax'],
             exclusions: ['Roundtrip Flight Ticket', 'Visa Surcharge', 'Travel Insurance', 'Compulsory Tipping', 'Other Personal Expenses']
         },
@@ -45,7 +45,7 @@ const travelPackages = {
             duration: '4 DAYS 3 NIGHTS',
             minPax: 'MIN OF 2 PAX',
             price: '14,999',
-            image: 'https://images.unsplash.com/photo-1568214379698-8d4b9e27c9a9?w=400&h=300&fit=crop',
+            image: 'assets/GATT WEBSITE UPDATES/SERVICES/Sapa.png',
             inclusions: ['Hotel Accommodation', 'Daily Hotel Breakfast', 'All Transfers', 'Half Day City Tour', 'Disneyland', 'Travel Tax'],
             exclusions: ['Roundtrip Flight Ticket', 'Visa Surcharge', 'Travel Insurance', 'Compulsory Tipping', 'Other Personal Expenses']
         },
@@ -56,7 +56,7 @@ const travelPackages = {
             duration: '4 DAYS 3 NIGHTS',
             minPax: 'MIN OF 2 PAX',
             price: '9,999',
-            image: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=400&h=300&fit=crop',
+            image: 'assets/GATT WEBSITE UPDATES/SERVICES/Indonesia Bali.png',
             inclusions: ['Hotel Accommodation', 'Daily Hotel Breakfast', 'All Transfers', 'Half Day City Tour', 'Moral Tour and Land', 'Travel Tax'],
             exclusions: ['Roundtrip Flight Ticket', 'Visa Surcharge', 'Travel Insurance', 'Compulsory Tipping', 'Other Personal Expenses']
         },
@@ -67,7 +67,7 @@ const travelPackages = {
             duration: '4 DAYS 3 NIGHTS',
             minPax: 'MIN OF 2 PAX',
             price: '49,999',
-            image: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=400&h=300&fit=crop',
+            image: 'assets/GATT WEBSITE UPDATES/SERVICES/Tokyo, Japan.png',
             inclusions: ['Hotel Accommodation', 'Daily Hotel Breakfast', 'All Transfers', 'Half Day City Tour', 'Travel Tax'],
             exclusions: ['Roundtrip Flight Ticket', 'Visa Surcharge', 'Travel Insurance', 'Compulsory Tipping', 'Other Personal Expenses']
         },
@@ -78,7 +78,7 @@ const travelPackages = {
             duration: '4 DAYS 3 NIGHTS',
             minPax: 'MIN OF 2 PAX',
             price: '49,999',
-            image: 'https://images.unsplash.com/photo-1605034313761-73ea4a0cfbf3?w=400&h=300&fit=crop',
+            image: 'assets/GATT WEBSITE UPDATES/SERVICES/Hokkaido, Japan.png',
             inclusions: ['Hotel Accommodation', 'Daily Hotel Breakfast', 'All Transfers', 'Half Day City Tour', 'Ocean Park', 'Travel Tax'],
             exclusions: ['Roundtrip Flight Ticket', 'Visa Surcharge', 'Travel Insurance', 'Compulsory Tipping', 'Other Personal Expenses']
         },
@@ -89,7 +89,7 @@ const travelPackages = {
             duration: '4 DAYS 3 NIGHTS',
             minPax: 'MIN OF 2 PAX',
             price: '49,999',
-            image: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=400&h=300&fit=crop',
+            image: 'assets/GATT WEBSITE UPDATES/SERVICES/Kyoto, Japan.png',
             inclusions: ['Hotel Accommodation', 'Daily Hotel Breakfast', 'All Transfers', 'Half Day City Tour', 'Disneyland', 'Travel Tax'],
             exclusions: ['Roundtrip Flight Ticket', 'Visa Surcharge', 'Travel Insurance', 'Compulsory Tipping', 'Other Personal Expenses']
         },
@@ -100,7 +100,7 @@ const travelPackages = {
             duration: '4 DAYS 3 NIGHTS',
             minPax: 'MIN OF 2 PAX',
             price: '49,999',
-            image: 'https://images.unsplash.com/photo-1590253230532-eabf8ac67f42?w=400&h=300&fit=crop',
+            image: 'assets/GATT WEBSITE UPDATES/SERVICES/Osaka, Japan.png',
             inclusions: ['Hotel Accommodation', 'Daily Hotel Breakfast', 'All Transfers', 'Half Day City Tour', 'Moral Tour and Land', 'Travel Tax'],
             exclusions: ['Roundtrip Flight Ticket', 'Visa Surcharge', 'Travel Insurance', 'Compulsory Tipping', 'Other Personal Expenses']
         },
@@ -111,7 +111,7 @@ const travelPackages = {
             duration: '4 DAYS 3 NIGHTS',
             minPax: 'MIN OF 2 PAX',
             price: '12,999',
-            image: 'https://images.unsplash.com/photo-1536431311719-398b6704d4cc?w=400&h=300&fit=crop',
+            image: 'assets/GATT WEBSITE UPDATES/SERVICES/Hongkong Free&Easy.png',
             inclusions: ['Hotel Accommodation', 'Daily Hotel Breakfast', 'All Transfers', 'Half Day City Tour', 'Travel Tax'],
             exclusions: ['Roundtrip Flight Ticket', 'Visa Surcharge', 'Travel Insurance', 'Compulsory Tipping', 'Other Personal Expenses']
         },
@@ -122,7 +122,7 @@ const travelPackages = {
             duration: '4 DAYS 3 NIGHTS',
             minPax: 'MIN OF 2 PAX',
             price: '126,999',
-            image: 'https://images.unsplash.com/photo-1518403841153-86fd4a66cbe5?w=400&h=300&fit=crop',
+            image: 'assets/GATT WEBSITE UPDATES/SERVICES/Hongkong OceanPark.png',
             inclusions: ['Hotel Accommodation', 'Daily Hotel Breakfast', 'All Transfers', 'Half Day City Tour', 'Ocean Park', 'Travel Tax'],
             exclusions: ['Roundtrip Flight Ticket', 'Visa Surcharge', 'Travel Insurance', 'Compulsory Tipping', 'Other Personal Expenses']
         },
@@ -133,7 +133,7 @@ const travelPackages = {
             duration: '4 DAYS 3 NIGHTS',
             minPax: 'MIN OF 2 PAX',
             price: '19,999',
-            image: 'https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?w=400&h=300&fit=crop',
+            image: 'assets/GATT WEBSITE UPDATES/SERVICES/Hongkong Disneyland.png',
             inclusions: ['Hotel Accommodation', 'Daily Hotel Breakfast', 'All Transfers', 'Half Day City Tour', 'Disneyland', 'Travel Tax'],
             exclusions: ['Roundtrip Flight Ticket', 'Visa Surcharge', 'Travel Insurance', 'Compulsory Tipping', 'Other Personal Expenses']
         },
@@ -144,7 +144,7 @@ const travelPackages = {
             duration: '4 DAYS 3 NIGHTS',
             minPax: 'MIN OF 2 PAX',
             price: '19,999',
-            image: 'https://images.unsplash.com/photo-1555798765-7a7d4e8e6e1a?w=400&h=300&fit=crop',
+            image: 'assets/GATT WEBSITE UPDATES/SERVICES/Hongkong Macau.png',
             inclusions: ['Hotel Accommodation', 'Daily Hotel Breakfast', 'All Transfers', 'Half Day City Tour', 'Moral Tour and Land', 'Travel Tax'],
             exclusions: ['Roundtrip Flight Ticket', 'Visa Surcharge', 'Travel Insurance', 'Compulsory Tipping', 'Other Personal Expenses']
         },
@@ -155,7 +155,7 @@ const travelPackages = {
             duration: '4 DAYS 3 NIGHTS',
             minPax: 'MIN OF 2 PAX',
             price: '49,999',
-            image: 'https://images.unsplash.com/photo-1517154421773-0529f29ea451?w=400&h=300&fit=crop',
+            image: 'assets/GATT WEBSITE UPDATES/SERVICES/South Korea.png',
             inclusions: ['Hotel Accommodation', 'Daily Hotel Breakfast', 'All Transfers', 'Temple Hopping', 'Travel Tax'],
             exclusions: ['Roundtrip Flight Ticket', 'Visa Surcharge', 'Travel Insurance', 'Compulsory Tipping', 'Other Personal Expenses']
         },
@@ -166,7 +166,7 @@ const travelPackages = {
             duration: '4 DAYS 3 NIGHTS',
             minPax: 'MIN OF 2 PAX',
             price: '19,999',
-            image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=400&h=300&fit=crop',
+            image: 'assets/GATT WEBSITE UPDATES/SERVICES/Singapore.png',
             inclusions: ['Hotel Accommodation', 'Daily Hotel Breakfast', 'All Transfers', 'Half Day City Tour', 'Ocean Park', 'Travel Tax'],
             exclusions: ['Roundtrip Flight Ticket', 'Visa Surcharge', 'Travel Insurance', 'Compulsory Tipping', 'Other Personal Expenses']
         },
@@ -177,7 +177,7 @@ const travelPackages = {
             duration: '4 DAYS 3 NIGHTS',
             minPax: 'MIN OF 2 PAX',
             price: '14,999',
-            image: 'https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=400&h=300&fit=crop',
+            image: 'assets/GATT WEBSITE UPDATES/SERVICES/Malaysia.png',
             inclusions: ['Hotel Accommodation', 'Daily Hotel Breakfast', 'All Transfers', 'Half Day City Tour', 'Disneyland', 'Travel Tax'],
             exclusions: ['Roundtrip Flight Ticket', 'Visa Surcharge', 'Travel Insurance', 'Compulsory Tipping', 'Other Personal Expenses']
         },
@@ -188,7 +188,7 @@ const travelPackages = {
             duration: '4 DAYS 3 NIGHTS',
             minPax: 'MIN OF 2 PAX',
             price: '9,999',
-            image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop',
+            image: 'assets/GATT WEBSITE UPDATES/SERVICES/Thailand.png',
             inclusions: ['Hotel Accommodation', 'Daily Hotel Breakfast', 'All Transfers', 'Half Day City Tour', 'Moral Tour and Land', 'Travel Tax'],
             exclusions: ['Roundtrip Flight Ticket', 'Visa Surcharge', 'Travel Insurance', 'Compulsory Tipping', 'Other Personal Expenses']
         }
@@ -202,7 +202,7 @@ const travelPackages = {
             duration: '10 DAYS',
             minPax: 'MIN OF 2 PAX',
             price: '125,999',
-            image: 'https://images.unsplash.com/photo-1527838832700-5059252407fa?w=400&h=300&fit=crop',
+            image: 'assets/GATT WEBSITE UPDATES/SERVICES/Europe - Blue Line.png',
             inclusions: ['Hotel Accommodation', 'Daily Hotel Breakfast', 'All Transfers', 'Tours (Tagalog)', 'Guided Tours', 'Travel Tax'],
             exclusions: ['Roundtrip Flight Ticket', 'Other Personal Expenses', 'Travel Insurance', 'Optional Tours', 'Tipping', 'Hotel City Tax']
         },
@@ -213,7 +213,7 @@ const travelPackages = {
             duration: '17 DAYS',
             minPax: 'MIN OF 2 PAX',
             price: '180,840',
-            image: 'https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=400&h=300&fit=crop',
+            image: 'assets/GATT WEBSITE UPDATES/SERVICES/Europe - Blue - Red Line.png',
             inclusions: ['Hotel Accommodation', 'Daily Hotel Breakfast', 'All Transfers', 'Tours (Tagalog)', 'Guided Tours', 'Travel Tax'],
             exclusions: ['Roundtrip Flight Ticket', 'Other Personal Expenses', 'Travel Insurance', 'Optional Tours', 'Tipping', 'Hotel City Tax']
         },
@@ -224,7 +224,7 @@ const travelPackages = {
             duration: '12 DAYS',
             minPax: 'MIN OF 2 PAX',
             price: '165,250',
-            image: 'https://images.unsplash.com/photo-1539650116574-75c0c6d03638?w=400&h=300&fit=crop',
+            image: 'assets/GATT WEBSITE UPDATES/SERVICES/Europe - Yellow Line 12 Days.png',
             inclusions: ['Hotel Accommodation', 'Daily Hotel Breakfast', 'All Transfers', 'Tours (Tagalog)', 'Guided Tours', 'Travel Tax'],
             exclusions: ['Roundtrip Flight Ticket', 'Other Personal Expenses', 'Travel Insurance', 'Optional Tours', 'Tipping', 'Hotel City Tax']
         },
@@ -235,7 +235,7 @@ const travelPackages = {
             duration: '10 DAYS',
             minPax: 'MIN OF 2 PAX',
             price: '125,999',
-            image: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=400&h=300&fit=crop',
+            image: 'assets/GATT WEBSITE UPDATES/SERVICES/Europe - Yellow Line 10 Days.png',
             inclusions: ['Hotel Accommodation', 'Daily Hotel Breakfast', 'All Transfers', 'Tours (Tagalog)', 'Guided Tours', 'Travel Tax'],
             exclusions: ['Roundtrip Flight Ticket', 'Other Personal Expenses', 'Travel Insurance', 'Optional Tours', 'Tipping', 'Hotel City Tax']
         }
@@ -249,7 +249,7 @@ const travelPackages = {
             duration: '4 DAYS 3 NIGHTS',
             minPax: 'MIN OF 2 PAX',
             price: '9,999',
-            image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop',
+            image: 'assets/GATT WEBSITE UPDATES/SERVICES/Dumaguete.png',
             inclusions: ['Hotel Accommodation', 'Daily Breakfast', 'All Transfers', 'Environmental & Entrance Fees', 'City Tour'],
             exclusions: ['Roundtrip Airfare Ticket', 'Lunch and Dinner', 'Other Personal Expenses', 'Tips']
         },
@@ -260,7 +260,7 @@ const travelPackages = {
             duration: '4 DAYS 3 NIGHTS',
             minPax: 'MIN OF 2 PAX',
             price: '16,999',
-            image: 'https://images.unsplash.com/photo-1519451241324-20b4bd2c235e?w=400&h=300&fit=crop',
+            image: 'assets/GATT WEBSITE UPDATES/SERVICES/Dumaguete & Siquijor.png',
             inclusions: ['Hotel Accommodation', 'Daily Breakfast', 'All Transfers', 'Environmental & Entrance Fees'],
             exclusions: ['Roundtrip Airfare Ticket', 'Lunch and Dinner', 'Other Personal Expenses', 'Tips']
         },
@@ -271,7 +271,7 @@ const travelPackages = {
             duration: '4 DAYS 3 NIGHTS',
             minPax: 'MIN OF 2 PAX',
             price: '9,999',
-            image: 'https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?w=400&h=300&fit=crop',
+            image: 'assets/GATT WEBSITE UPDATES/SERVICES/Boracay.png',
             inclusions: ['Hotel Accommodation', 'Daily Breakfast', 'All Transfers', 'Environmental & Entrance Fees', 'City Tour'],
             exclusions: ['Roundtrip Airfare Ticket', 'Lunch and Dinner', 'Other Personal Expenses']
         },
@@ -282,7 +282,7 @@ const travelPackages = {
             duration: '4 DAYS 3 NIGHTS',
             minPax: 'MIN OF 2 PAX',
             price: '11,999',
-            image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop',
+            image: 'assets/GATT WEBSITE UPDATES/SERVICES/Cebu.png',
             inclusions: ['Hotel Accommodation', 'Daily Breakfast', 'All Transfers', 'Environmental & Entrance Fees', 'Cebu City and Mountain Tour'],
             exclusions: ['Roundtrip Airfare Ticket', 'Lunch and Dinner', 'Other Personal Expenses', 'Tips']
         },
@@ -293,7 +293,7 @@ const travelPackages = {
             duration: '4 DAYS 3 NIGHTS',
             minPax: 'MIN OF 2 PAX',
             price: '12,999',
-            image: 'https://images.unsplash.com/photo-1568214379698-8d4b9e27c9a9?w=400&h=300&fit=crop',
+            image: 'assets/GATT WEBSITE UPDATES/SERVICES/Bohol.png',
             inclusions: ['Hotel Accommodation', 'Daily Breakfast', 'All Transfers', 'Environmental & Entrance Fees', 'Bohol Countryside Tour'],
             exclusions: ['Roundtrip Airfare Ticket', 'Lunch and Dinner', 'Other Personal Expenses', 'Tips']
         },
@@ -304,7 +304,7 @@ const travelPackages = {
             duration: '4 DAYS 3 NIGHTS',
             minPax: 'MIN OF 2 PAX',
             price: '19,999',
-            image: 'https://images.unsplash.com/photo-1519451241324-20b4bd2c235e?w=400&h=300&fit=crop',
+            image: 'assets/GATT WEBSITE UPDATES/SERVICES/Cebu & Bohol.png',
             inclusions: ['Hotel Accommodation', 'Daily Breakfast', 'All Transfers', 'Environmental & Entrance Fees', 'Bohol Countryside Tour', 'Cebu City and Mountain Tour'],
             exclusions: ['Roundtrip Airfare Ticket', 'Lunch and Dinner', 'Other Personal Expenses', 'Tips']
         },
@@ -315,7 +315,7 @@ const travelPackages = {
             duration: '4 DAYS 3 NIGHTS',
             minPax: 'MIN OF 2 PAX',
             price: '8,999',
-            image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400&h=300&fit=crop',
+            image: 'assets/GATT WEBSITE UPDATES/SERVICES/PUERTO PRINCESA.png',
             inclusions: ['Hotel Accommodation', 'Daily Breakfast', 'All Transfers', 'Environmental & Entrance Fees', 'Underground River', 'City Tour'],
             exclusions: ['Roundtrip Airfare Ticket', 'Lunch and Dinner', 'Other Personal Expenses', 'Tips']
         },
@@ -326,7 +326,7 @@ const travelPackages = {
             duration: '4 DAYS 3 NIGHTS',
             minPax: 'MIN OF 2 PAX',
             price: '10,999',
-            image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop',
+            image: 'assets/GATT WEBSITE UPDATES/SERVICES/Palawan El Nido.png',
             inclusions: ['Hotel Accommodation', 'Daily Breakfast', 'All Transfers', 'Environmental & Entrance Fees', 'Island Hopping Tour A', 'Island Hopping Tour D'],
             exclusions: ['Roundtrip Airfare Ticket', 'Lunch and Dinner', 'Other Personal Expenses', 'Tips']
         },
@@ -337,7 +337,7 @@ const travelPackages = {
             duration: '4 DAYS 3 NIGHTS',
             minPax: 'MIN OF 2 PAX',
             price: '12,999',
-            image: 'https://images.unsplash.com/photo-1518403841153-86fd4a66cbe5?w=400&h=300&fit=crop',
+            image: 'assets/GATT WEBSITE UPDATES/SERVICES/Palawan Coron.png',
             inclusions: ['Hotel Accommodation', 'Daily Breakfast', 'All Transfers', 'Environmental & Entrance Fees', 'Coron Island Tour A', 'Town Tour'],
             exclusions: ['Roundtrip Airfare Ticket', 'Lunch and Dinner', 'Other Personal Expenses', 'Tips']
         },
@@ -348,7 +348,7 @@ const travelPackages = {
             duration: '4 DAYS 3 NIGHTS',
             minPax: 'MIN OF 2 PAX',
             price: '12,999',
-            image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400&h=300&fit=crop',
+            image: 'assets/GATT WEBSITE UPDATES/SERVICES/Puerto Prinsesa & El NIdo.png',
             inclusions: ['Hotel Accommodation', 'Daily Breakfast', 'All Transfers', 'Environmental & Entrance Fees', 'Underground River and City Tour', 'Island Hopping Tour A'],
             exclusions: ['Roundtrip Airfare Ticket', 'Lunch and Dinner', 'Other Personal Expenses', 'Tips']
         }
@@ -667,6 +667,28 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Back to top functionality
+    // Navigation scroll functionality
+    let lastScrollTop = 0;
+    const nav = document.querySelector('nav');
+    const scrollThreshold = 100; // Minimum scroll distance to trigger nav show/hide
+    
+    window.addEventListener('scroll', function() {
+        const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // Show navigation when scrolling up or at the top
+        if (currentScrollTop <= scrollThreshold || currentScrollTop < lastScrollTop) {
+            nav.classList.remove('nav-hidden');
+            nav.classList.add('nav-visible');
+        } 
+        // Hide navigation when scrolling down (but not at the very top)
+        else if (currentScrollTop > scrollThreshold && currentScrollTop > lastScrollTop) {
+            nav.classList.add('nav-hidden');
+            nav.classList.remove('nav-visible');
+        }
+        
+        lastScrollTop = currentScrollTop;
+    });
+    
     const backToTopBtn = document.getElementById('backToTop');
     if (backToTopBtn) {
         // Show/hide button based on scroll position
@@ -958,6 +980,120 @@ function updateMainServicesSlider() {
     });
 }
 
+// Handle package click for study abroad programs
+function handlePackageClick(packageType) {
+    showTab('contact');
+    
+    setTimeout(() => {
+        const contactForm = document.querySelector('#contact form');
+        if (contactForm) {
+            const messageField = contactForm.querySelector('textarea[name="message"]');
+            const subjectField = contactForm.querySelector('input[name="subject"]');
+            
+            let subject = '';
+            let message = '';
+            
+            if (packageType === 'australia') {
+                subject = 'Study Abroad Inquiry - Australia';
+                message = `Hello,
+
+I'm interested in studying abroad in Australia and would like to learn more about the available programs and application process.
+
+I'm particularly interested in:
+• Engineering, Business, IT & Computing, or Healthcare programs
+• Work while studying opportunities
+• Pathway to permanent residency
+• University options and requirements
+
+Please provide information about:
+• Available programs and universities
+• Application requirements and deadlines
+• Tuition fees and living costs
+• Visa application process
+• Work opportunities during studies
+
+Thank you for your assistance.
+
+Best regards,
+[Your Name]`;
+            } else if (packageType === 'canada') {
+                subject = 'Study Abroad Inquiry - Canada';
+                message = `Hello,
+
+I'm interested in studying abroad in Canada and would like to learn more about the available programs and application process.
+
+I'm particularly interested in:
+• Medicine, MBA, Computer Science, or Environmental Studies programs
+• Affordable tuition options
+• Multicultural learning environment
+• Immigration-friendly policies
+
+Please provide information about:
+• Available programs and universities
+• Application requirements and deadlines
+• Tuition fees and living costs
+• Visa application process
+• Post-graduation work opportunities
+
+Thank you for your assistance.
+
+Best regards,
+[Your Name]`;
+            } else if (packageType === 'philippines') {
+                subject = 'Philippines Travel Inquiry';
+                message = `Hello,
+
+I'm interested in exploring travel opportunities in the Philippines and would like to learn more about available packages and destinations.
+
+I'm particularly interested in:
+• Domestic tour packages (Boracay, Palawan, Cebu, Bohol, etc.)
+• International travel from Philippines
+• Visa assistance services
+• Air ticketing and hotel bookings
+
+Please provide information about:
+• Available domestic and international packages
+• Pricing and inclusions
+• Travel dates and availability
+• Visa requirements (if applicable)
+• Booking process and requirements
+
+Thank you for your assistance.
+
+Best regards,
+[Your Name]`;
+            }
+            
+            if (messageField && message) {
+                messageField.value = message;
+            }
+            
+            if (subjectField && subject) {
+                subjectField.value = subject;
+            }
+
+            // Focus on the name field
+            const nameField = contactForm.querySelector('input[name="name"]');
+            if (nameField) {
+                nameField.focus();
+            }
+
+            // Scroll to form
+            contactForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            let notificationMessage = '';
+            if (packageType === 'australia') {
+                notificationMessage = 'Redirecting you to inquire about studying in Australia...';
+            } else if (packageType === 'canada') {
+                notificationMessage = 'Redirecting you to inquire about studying in Canada...';
+            } else if (packageType === 'philippines') {
+                notificationMessage = 'Redirecting you to inquire about Philippines travel packages...';
+            }
+            showNotification(notificationMessage, 'info', 3000);
+        }
+    }, 100);
+}
+
 // Book tour function
 function bookTour(packageName = '', price = '') {
     showTab('contact');
@@ -1100,37 +1236,41 @@ const locations = {
     'main-office': {
         name: 'Main Office',
         address: 'Skyworld Commercial Center, Session Road, Baguio City 2600',
-        phone: '(074) 123-4567',
-        hours: 'Monday - Friday: 8:00 AM - 6:00 PM',
+        phone: '+63-9175061996',
+        hours: '9:00 AM - 6:00 PM (Monday to Saturday)',
         description: 'Central Baguio, near Session Road',
+        manager: 'Judith B. Balabag',
         coordinates: [16.4023, 120.5960]
     },
     'sm-city': {
         name: 'SM City Branch',
         address: 'Upper Basement (Opposite DFA), SM City, Baguio City 2600',
-        phone: '(074) 123-4567',
-        hours: 'Monday - Sunday: 10:00 AM - 9:00 PM',
+        phone: '+63-9171583664',
+        hours: '10:00 AM - 10:00 PM (Monday to Sunday)',
         description: 'Inside SM City Mall, near DFA Office',
         coordinates: [16.4023, 120.5960]
     },
     'ymca': {
         name: 'YMCA Branch',
         address: 'Ground Floor, YMCA Bldg., Upper Session Road, Baguio City 2600',
-        phone: '(074) 123-4567',
-        hours: 'Monday - Friday: 8:00 AM - 5:00 PM',
+        phone: '+63-9171060994',
+        hours: '9:00 AM - 5:00 PM (Monday to Saturday)',
         description: 'Historic YMCA Building',
         coordinates: [16.4023, 120.5960]
     },
     'santiago': {
         name: 'Santiago Branch',
         address: 'Level 2 Robinsons Mall, Maharlika Highway, Santiago City, Isabela 3311',
-        phone: '(074) 123-4567',
-        hours: 'Monday - Sunday: 10:00 AM - 9:00 PM',
+        phone: '+63-9958424115',
+        hours: '10:00 AM - 9:00 PM (Monday to Sunday)',
         description: 'Inside Robinsons Mall',
         manager: 'Corazon A. Balisong',
         coordinates: [16.6881, 121.5489]
     }
 };
+
+// Global map variable to track current map instance
+let currentMap = null;
 
 function showBaguioLocations() {
     const baguioLocations = [
@@ -1184,11 +1324,20 @@ function showBaguioLocations() {
 }
 
 function initializeBaguioMap(locations) {
-    const map = L.map('map').setView([16.4023, 120.5960], 13);
+    // Destroy existing map if it exists
+    if (currentMap) {
+        currentMap.remove();
+    }
+    
+    // Create new map centered on Baguio City
+    currentMap = L.map('map').setView([16.4023, 120.5960], 13);
     
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© OpenStreetMap contributors'
-    }).addTo(map);
+    }).addTo(currentMap);
+    
+    // Create bounds to fit all markers
+    const bounds = L.latLngBounds();
     
     locations.forEach((loc, index) => {
         const colors = ['#1e40af', '#3b82f6', '#8b5cf6'];
@@ -1213,16 +1362,26 @@ function initializeBaguioMap(locations) {
             iconAnchor: [15, 15]
         });
 
-        L.marker([loc.coordinates[0], loc.coordinates[1]], { icon: customIcon })
-            .addTo(map)
+        const marker = L.marker([loc.coordinates[0], loc.coordinates[1]], { icon: customIcon })
+            .addTo(currentMap)
             .bindPopup(`
                 <div style="padding: 10px; max-width: 250px;">
                     <h3 style="font-weight: bold; margin-bottom: 5px; color: #1e40af;">${loc.name}</h3>
                     <p style="margin: 5px 0; color: #374151;">${loc.address}</p>
                     <p style="margin: 5px 0; color: #374151;">📞 ${loc.phone}</p>
+                    <button onclick="openGoogleMaps('${loc.address}', ${loc.coordinates[0]}, ${loc.coordinates[1]})" 
+                            style="margin-top: 8px; padding: 4px 8px; background: #10b981; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px;">
+                        🧭 Navigate
+                    </button>
                 </div>
             `);
+        
+        // Add marker to bounds
+        bounds.extend([loc.coordinates[0], loc.coordinates[1]]);
     });
+    
+    // Fit map to show all markers
+    currentMap.fitBounds(bounds, { padding: [20, 20] });
 }
 
 function showLocation(locationId) {
@@ -1304,19 +1463,50 @@ function showLocation(locationId) {
 }
 
 function initializeMap(location) {
-    const map = L.map('map').setView([location.coordinates[0], location.coordinates[1]], 15);
+    // Destroy existing map if it exists
+    if (currentMap) {
+        currentMap.remove();
+    }
+    
+    // Create new map centered on the specific location
+    currentMap = L.map('map').setView([location.coordinates[0], location.coordinates[1]], 15);
     
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© OpenStreetMap contributors'
-    }).addTo(map);
+    }).addTo(currentMap);
     
-    L.marker([location.coordinates[0], location.coordinates[1]])
-        .addTo(map)
+    // Create custom icon for single location
+    const customIcon = L.divIcon({
+        className: 'custom-marker',
+        html: `<div style="
+            width: 30px; 
+            height: 30px; 
+            background-color: #1e40af; 
+            border: 2px solid white; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            color: white; 
+            font-weight: bold; 
+            font-size: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        ">📍</div>`,
+        iconSize: [30, 30],
+        iconAnchor: [15, 15]
+    });
+    
+    L.marker([location.coordinates[0], location.coordinates[1]], { icon: customIcon })
+        .addTo(currentMap)
         .bindPopup(`
             <div style="padding: 10px; max-width: 250px;">
                 <h3 style="font-weight: bold; margin-bottom: 5px; color: #1e40af;">${location.name}</h3>
                 <p style="margin: 5px 0; color: #374151;">${location.address}</p>
                 <p style="margin: 5px 0; color: #374151;">📞 ${location.phone}</p>
+                <button onclick="openGoogleMaps('${location.address}', ${location.coordinates[0]}, ${location.coordinates[1]})" 
+                        style="margin-top: 8px; padding: 4px 8px; background: #10b981; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px;">
+                    🧭 Navigate
+                </button>
             </div>
         `);
 }
@@ -1324,6 +1514,12 @@ function initializeMap(location) {
 function hideLocation() {
     const modal = document.getElementById('mapModal');
     modal.classList.add('hidden');
+    
+    // Clean up map when modal is hidden
+    if (currentMap) {
+        currentMap.remove();
+        currentMap = null;
+    }
 }
 
 function openGoogleMaps(address, lat, lng) {
@@ -1365,6 +1561,13 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+    
+    // Close modal when pressing Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            hideLocation();
+        }
+    });
 
     // Handle contact form submission (simplified - no email sending)
     const contactForm = document.getElementById('contactForm');

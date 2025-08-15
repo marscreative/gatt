@@ -123,6 +123,18 @@
 
 .nav-gradient {
     background: linear-gradient(90deg, #1e40af 0%, #2563eb 50%, #3b82f6 100%);
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+/* Navigation scroll animations */
+.nav-hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+}
+
+.nav-visible {
+    transform: translateY(0);
+    opacity: 1;
 }
 .card-gradient {
     background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
