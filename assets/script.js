@@ -238,6 +238,50 @@ const travelPackages = {
             image: 'assets/GATT WEBSITE UPDATES/SERVICES/Europe - Yellow Line 10 Days.png',
             inclusions: ['Hotel Accommodation', 'Daily Hotel Breakfast', 'All Transfers', 'Tours (Tagalog)', 'Guided Tours', 'Travel Tax'],
             exclusions: ['Roundtrip Flight Ticket', 'Other Personal Expenses', 'Travel Insurance', 'Optional Tours', 'Tipping', 'Hotel City Tax']
+        },
+        // Green Line - Switzerland, Monaco, Vatican City, France, Italy
+        {
+            country: 'SWITZERLAND, MONACO, VATICAN CITY, FRANCE, ITALY',
+            location: 'EUROPE - GREEN LINE',
+            duration: '10 DAYS',
+            minPax: 'MIN OF 2 PAX',
+            price: '125,999',
+            image: 'assets/GATT WEBSITE UPDATES/SERVICES/Europe - Green Line.png',
+            inclusions: ['Hotel Accommodation', 'Daily Hotel Breakfast', 'All Airport Transfer', 'Tours (English)', 'Guided Tours', 'Travel Tax'],
+            exclusions: ['Roundtrip Flight Ticket', 'Other Personal Expenses', 'Visa Fee', 'Optional Tours', 'Tippings', 'Hotel City Tax']
+        },
+        // Orange Line - France, Spain, Andorra
+        {
+            country: 'FRANCE, SPAIN, ANDORRA',
+            location: 'EUROPE - ORANGE LINE',
+            duration: '10 DAYS',
+            minPax: 'MIN OF 2 PAX',
+            price: '125,999',
+            image: 'assets/GATT WEBSITE UPDATES/SERVICES/Europe - Orange Line.png',
+            inclusions: ['Hotel Accommodation', 'Daily Hotel Breakfast', 'All Airport Transfer', 'Tours (English)', 'Guided Tours', 'Travel Tax'],
+            exclusions: ['Roundtrip Flight Ticket', 'Other Personal Expenses', 'Visa Fee', 'Optional Tours', 'Tippings', 'Hotel City Tax']
+        },
+        // Red Line - Luxembourg, France, Belgium, Germany, Netherlands
+        {
+            country: 'LUXEMBOURG, FRANCE, BELGIUM, GERMANY, NETHERLANDS',
+            location: 'EUROPE - RED LINE',
+            duration: '12 DAYS',
+            minPax: 'MIN OF 2 PAX',
+            price: '165,250',
+            image: 'assets/GATT WEBSITE UPDATES/SERVICES/Europe - Red Line.png',
+            inclusions: ['Hotel Accommodation', 'Daily Hotel Breakfast', 'All Airport Transfer', 'Tours (English)', 'Guided Tours', 'Travel Tax'],
+            exclusions: ['Roundtrip Flight Ticket', 'Other Personal Expenses', 'Visa Fee', 'Optional Tours', 'Tippings', 'Hotel City Tax']
+        },
+        // Pink Line - Denmark, Sweden, Norway
+        {
+            country: 'DENMARK, SWEDEN, NORWAY',
+            location: 'EUROPE - PINK LINE',
+            duration: '10 DAYS',
+            minPax: 'MIN OF 2 PAX',
+            price: '125,999',
+            image: 'assets/GATT WEBSITE UPDATES/SERVICES/Europe - Pink Line.png',
+            inclusions: ['Hotel Accommodation', 'Daily Hotel Breakfast', 'All Airport Transfer', 'Tours (English)', 'Guided Tours', 'Travel Tax'],
+            exclusions: ['Roundtrip Flight Ticket', 'Other Personal Expenses', 'Visa Fee', 'Optional Tours', 'Tippings', 'Hotel City Tax']
         }
     ],
     
