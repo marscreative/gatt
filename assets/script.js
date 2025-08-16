@@ -421,8 +421,17 @@ function renderPackages(category) {
     
     console.log(`Rendering ${packages.length} packages for ${category}:`, packages.map(p => p.country));
     
-    container.innerHTML = packages.map((pkg, index) => `
-        <div class="package-card bg-white rounded-lg shadow-lg border-2 border-gray-200 overflow-hidden transform hover:scale-105 transition-all duration-300 hover:shadow-xl min-w-[300px] flex-shrink-0" data-index="${index}">
+    // Clear any existing content first to prevent invisible cards
+    container.innerHTML = '';
+    
+    // Render each package card
+    packages.forEach((pkg, index) => {
+        const cardElement = document.createElement('div');
+        cardElement.className = `package-card bg-white rounded-lg shadow-lg border-2 border-gray-200 overflow-hidden transform hover:scale-105 transition-all duration-300 hover:shadow-xl ${category === 'europe' ? 'min-w-[220px]' : 'min-w-[280px]'} flex-shrink-0`;
+        cardElement.setAttribute('data-index', index);
+        cardElement.style.display = 'block'; // Ensure visibility
+        
+        cardElement.innerHTML = `
             <div class="relative">
                 <img src="${pkg.image}" alt="${pkg.country}" class="w-full h-48 object-cover" onerror="this.src='https://via.placeholder.com/400x300/cccccc/666666?text=${encodeURIComponent(pkg.country)}'">
                 <div class="absolute top-2 left-2 bg-white px-2 py-1 rounded text-xs font-bold text-indigo-600">${pkg.location}</div>
@@ -457,17 +466,46 @@ function renderPackages(category) {
                     </button>
                 </div>
             </div>
-        </div>
-    `).join('');
+        `;
+        
+        container.appendChild(cardElement);
+    });
     
-    // Verify all cards were rendered
+    // Verify all cards were rendered and are visible
     const renderedCards = container.querySelectorAll('.package-card');
+    const visibleCards = container.querySelectorAll('.package-card:not([style*="display: none"]):not([style*="visibility: hidden"])');
+    
     console.log(`Successfully rendered ${renderedCards.length} cards out of ${packages.length} packages`);
+    console.log(`Visible cards: ${visibleCards.length}, Total rendered: ${renderedCards.length}`);
     
     // Use requestAnimationFrame to ensure DOM is painted before calculating positions
     requestAnimationFrame(() => {
+        // Clean up any invisible cards before updating slider
+        cleanupInvisibleCards(container);
         updatePackageSlider(category);
     });
+}
+
+// Clean up invisible cards that might be causing scrolling issues
+function cleanupInvisibleCards(container) {
+    const allCards = container.querySelectorAll('.package-card');
+    let removedCount = 0;
+    
+    allCards.forEach(card => {
+        const computedStyle = window.getComputedStyle(card);
+        if (computedStyle.display === 'none' || 
+            computedStyle.visibility === 'hidden' || 
+            computedStyle.opacity === '0' ||
+            card.offsetWidth === 0 ||
+            card.offsetHeight === 0) {
+            card.remove();
+            removedCount++;
+        }
+    });
+    
+    if (removedCount > 0) {
+        console.log(`Cleaned up ${removedCount} invisible cards from carousel`);
+    }
 }
 
 // Get Category Color
@@ -547,23 +585,53 @@ function slidePackages(direction, category) {
     
     // Calculate visible cards dynamically with proper gap calculation
     const firstCard = container.querySelector('.package-card');
-    if (!firstCard) return;
+    if (!firstCard) {
+        console.warn(`No cards found for ${category} carousel, attempting to render packages first...`);
+        renderPackages(category);
+        return;
+    }
     
-    // Get the computed gap from CSS (space-x-5 = 1.25rem = 20px)
-    const gap = 20; // space-x-5 gap
+    // Get the computed gap from CSS (space-x-3 = 0.75rem = 12px for Europe, space-x-5 = 1.25rem = 20px for others)
+    const gap = category === 'europe' ? 12 : 20; // space-x-3 for Europe, space-x-5 for others
     const cardWidth = firstCard.offsetWidth + gap;
+    
+    // Safety check: ensure cardWidth is valid
+    if (!cardWidth || cardWidth <= 0) {
+        console.warn(`Invalid card width for ${category}: ${cardWidth}, re-rendering packages...`);
+        renderPackages(category);
+        return;
+    }
+    
     const containerWidth = container.parentElement.offsetWidth - 32; // Account for padding (px-4 = 16px on each side)
     const visibleCards = Math.max(1, Math.floor(containerWidth / cardWidth));
     const maxSlides = Math.max(0, packages.length - visibleCards);
     
-    console.log(`Sliding ${direction}: current=${currentPackageSlides[category]}, max=${maxSlides}, visible=${visibleCards}, total=${packages.length}, containerWidth=${containerWidth}, cardWidth=${cardWidth}`);
+    // Safety check: ensure maxSlides doesn't exceed the actual number of packages
+    const actualMaxSlides = Math.max(0, packages.length - 1);
+    const safeMaxSlides = Math.min(maxSlides, actualMaxSlides);
+    
+    console.log(`Sliding ${direction}: current=${currentPackageSlides[category]}, max=${safeMaxSlides}, visible=${visibleCards}, total=${packages.length}, containerWidth=${containerWidth}, cardWidth=${cardWidth}`);
     
     if (direction === 'next') {
-        currentPackageSlides[category] = Math.min(currentPackageSlides[category] + 1, maxSlides);
+        // Loop back to start if at the end
+        if (currentPackageSlides[category] >= safeMaxSlides) {
+            currentPackageSlides[category] = 0;
+        } else {
+            currentPackageSlides[category] = currentPackageSlides[category] + 1;
+        }
     } else {
-        currentPackageSlides[category] = Math.max(currentPackageSlides[category] - 1, 0);
+        // Loop to the end if at the beginning
+        if (currentPackageSlides[category] <= 0) {
+            currentPackageSlides[category] = safeMaxSlides;
+        } else {
+            currentPackageSlides[category] = currentPackageSlides[category] - 1;
+        }
     }
     
+    // Ensure currentPackageSlides stays within bounds
+    currentPackageSlides[category] = Math.max(0, Math.min(currentPackageSlides[category], safeMaxSlides));
+    
+    // Update the slider immediately
     updatePackageSlider(category);
 }
 
@@ -575,13 +643,21 @@ function updatePackageSlider(category) {
     
     // Get actual card width from rendered elements with proper gap
     const firstCard = container.querySelector('.package-card');
-    if (!firstCard) return;
+    if (!firstCard) {
+        console.warn(`No cards found for ${category} carousel in updatePackageSlider, attempting to render packages first...`);
+        renderPackages(category);
+        return;
+    }
     
-    const gap = 20; // space-x-5 gap
+    const gap = category === 'europe' ? 12 : 20; // space-x-3 for Europe, space-x-5 for others
     const cardWidth = firstCard.offsetWidth + gap;
-    const translateX = -currentPackageSlides[category] * cardWidth;
     
-    container.style.transform = `translateX(${translateX}px)`;
+    // Safety check: ensure cardWidth is valid
+    if (!cardWidth || cardWidth <= 0) {
+        console.warn(`Invalid card width for ${category} in updatePackageSlider: ${cardWidth}, re-rendering packages...`);
+        renderPackages(category);
+        return;
+    }
     
     // Update navigation buttons with responsive calculation
     const packages = travelPackages[category];
@@ -589,30 +665,39 @@ function updatePackageSlider(category) {
     const visibleCards = Math.floor(containerWidth / cardWidth);
     const maxSlides = Math.max(0, packages.length - visibleCards);
     
-    console.log(`Slider update: category=${category}, current=${currentPackageSlides[category]}, max=${maxSlides}, visible=${visibleCards}, total=${packages.length}`);
+    // Safety check: ensure maxSlides doesn't exceed the actual number of packages
+    const actualMaxSlides = Math.max(0, packages.length - 1);
+    const safeMaxSlides = Math.min(maxSlides, actualMaxSlides);
+    
+    // Ensure currentPackageSlides stays within bounds before calculating translateX
+    currentPackageSlides[category] = Math.max(0, Math.min(currentPackageSlides[category], safeMaxSlides));
+    
+    // Get actual rendered cards (not just packages.length) to check for invisible cards
+    const actualRenderedCards = container.querySelectorAll('.package-card:not([style*="display: none"]):not([style*="visibility: hidden"])').length;
+    
+    // Calculate the maximum allowed translation based on actual rendered cards
+    const maxTranslateX = -(actualRenderedCards - visibleCards) * cardWidth;
+    let translateX = -currentPackageSlides[category] * cardWidth;
+    
+    // Ensure translateX stays within reasonable bounds
+    translateX = Math.max(maxTranslateX, translateX);
+    
+    // Debug: Check for invisible cards
+    console.log(`Debug: actualRenderedCards=${actualRenderedCards}, packages.length=${packages.length}, visibleCards=${visibleCards}`);
+    
+    container.style.transform = `translateX(${translateX}px)`;
+    
+    console.log(`Slider update: category=${category}, current=${currentPackageSlides[category]}, max=${safeMaxSlides}, visible=${visibleCards}, total=${packages.length}, translateX=${translateX}, maxTranslateX=${maxTranslateX}`);
     
     const prevBtn = document.getElementById(`${category}PrevBtn`);
     const nextBtn = document.getElementById(`${category}NextBtn`);
     
     if (prevBtn && nextBtn) {
-        prevBtn.style.opacity = currentPackageSlides[category] === 0 ? '0.5' : '1';
-        nextBtn.style.opacity = currentPackageSlides[category] === maxSlides ? '0.5' : '1';
-        
-        prevBtn.style.pointerEvents = currentPackageSlides[category] === 0 ? 'none' : 'auto';
-        nextBtn.style.pointerEvents = currentPackageSlides[category] === maxSlides ? 'none' : 'auto';
-        
-        // Ensure the last card is fully visible by adjusting the container padding
-        if (currentPackageSlides[category] === maxSlides && maxSlides > 0) {
-            const lastCardIndex = packages.length - 1;
-            const lastCardPosition = lastCardIndex * cardWidth;
-            const containerEndPosition = containerWidth;
-            
-            // If the last card would be cut off, adjust the translation
-            if (lastCardPosition - translateX > containerEndPosition - cardWidth) {
-                const adjustedTranslateX = lastCardPosition - containerEndPosition + cardWidth;
-                container.style.transform = `translateX(${-adjustedTranslateX}px)`;
-            }
-        }
+        // Since carousel now loops infinitely, buttons are always active
+        prevBtn.style.opacity = '1';
+        nextBtn.style.opacity = '1';
+        prevBtn.style.pointerEvents = 'auto';
+        nextBtn.style.pointerEvents = 'auto';
     }
 }
 
@@ -688,6 +773,24 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (cards?.[0]) {
                         console.log('Visible cards calculation:', Math.floor((container.parentElement.offsetWidth - 32) / (cards[0].offsetWidth + 20)));
                     }
+                    
+                    // Check for invisible cards
+                    if (cards) {
+                        let invisibleCount = 0;
+                        cards.forEach((card, index) => {
+                            const computedStyle = window.getComputedStyle(card);
+                            if (computedStyle.display === 'none' || 
+                                computedStyle.visibility === 'hidden' || 
+                                computedStyle.opacity === '0' ||
+                                card.offsetWidth === 0 ||
+                                card.offsetHeight === 0) {
+                                invisibleCount++;
+                                console.log(`Invisible card found at index ${index}:`, card);
+                            }
+                        });
+                        console.log(`Invisible cards found: ${invisibleCount}`);
+                    }
+                    
                     console.log('=====================');
                 });
             };
@@ -696,11 +799,28 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => {
                 const categories = ['asia', 'europe', 'philippines'];
                 categories.forEach(category => {
+                    // Reset carousel state if there are issues
+                    if (currentPackageSlides[category] > 0) {
+                        currentPackageSlides[category] = 0;
+                    }
                     updatePackageSlider(category);
                 });
             }, 200);
         }
     }, 100);
+    
+    // Also check if we're already on the services tab and render packages
+    if (document.getElementById('services')?.classList.contains('active')) {
+        console.log('Already on services tab, rendering packages...');
+        setTimeout(() => {
+            if (document.getElementById('asiaPackageCarousel')) {
+                renderPackages('asia');
+                renderPackages('europe');
+                renderPackages('philippines');
+                addPackageCarouselTouchSupport();
+            }
+        }, 200);
+    }
 });
 
 // Mobile menu functionality
@@ -802,6 +922,30 @@ function showTab(tabName) {
 
     // Scroll to top
     window.scrollTo(0, 0);
+    
+    // If switching to services tab, render the package carousels
+    if (tabName === 'services') {
+        setTimeout(() => {
+            console.log('Services tab activated, rendering package carousels...');
+            // Check if carousel containers exist and render packages
+            if (document.getElementById('asiaPackageCarousel')) {
+                renderPackages('asia');
+                renderPackages('europe');
+                renderPackages('philippines');
+                
+                // Add touch support
+                addPackageCarouselTouchSupport();
+                
+                // Update sliders after rendering
+                setTimeout(() => {
+                    const categories = ['asia', 'europe', 'philippines'];
+                    categories.forEach(category => {
+                        updatePackageSlider(category);
+                    });
+                }, 100);
+            }
+        }, 150); // Small delay to ensure DOM is ready
+    }
     
     // Update back to top button visibility after tab switch
     setTimeout(() => {
