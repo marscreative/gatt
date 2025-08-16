@@ -400,71 +400,22 @@ const travelPackages = {
 };
 
 // Package Carousel State
-let currentPackageCategory = 'asia';
 let currentPackageSlides = {
     asia: 0,
     europe: 0,
     philippines: 0
 };
 
-// Switch Package Category
-function switchPackageCategory(category) {
-    currentPackageCategory = category;
-    
-    // Update category buttons
-    document.querySelectorAll('.package-category-btn').forEach(btn => {
-        btn.classList.remove('active');
-    });
-    document.querySelector(`[data-category="${category}"]`).classList.add('active');
-    
-    // Update category header
-    updatePackageCategoryHeader(category);
-    
-    // Render packages for selected category
-    renderPackages(category);
-    
-    // Reset slide position
-    currentPackageSlides[category] = 0;
-    
-    // Use setTimeout to ensure DOM is updated before calculating positions
-    setTimeout(() => {
-        updatePackageSlider(category);
-    }, 50);
-}
 
-// Update Package Category Header
-function updatePackageCategoryHeader(category) {
-    const headers = {
-        asia: {
-            icon: '🏮',
-            title: 'DISCOVER THE TIMELESS BEAUTY OF ASIA',
-            subtitle: 'Experience the vibrant cultures, stunning landscapes, and rich heritage of Asia'
-        },
-        europe: {
-            icon: '🏰',
-            title: 'EXPLORE THE WONDERS OF EUROPE',
-            subtitle: 'Discover the rich history, stunning architecture, and diverse cultures of Europe'
-        },
-        philippines: {
-            icon: '🏝️',
-            title: 'DISCOVER THE BEAUTY OF THE PHILIPPINES',
-            subtitle: 'Experience the pristine beaches, crystal-clear waters, and warm Filipino hospitality'
-        }
-    };
-    
-    const header = headers[category];
-    document.getElementById('packageCategoryIcon').textContent = header.icon;
-    document.getElementById('packageCategoryTitle').textContent = header.title;
-    document.getElementById('packageCategorySubtitle').textContent = header.subtitle;
-}
 
 // Render Packages
 function renderPackages(category) {
     const packages = travelPackages[category];
-    const container = document.getElementById('packageCarousel');
+    const containerId = `${category}PackageCarousel`;
+    const container = document.getElementById(containerId);
     
     if (!container) {
-        console.error('Package carousel container not found!');
+        console.error(`Package carousel container for ${category} not found!`);
         return;
     }
     
@@ -587,10 +538,10 @@ function getPriceColor(location) {
 }
 
 // Package Slider Navigation
-function slidePackages(direction) {
-    const category = currentPackageCategory;
+function slidePackages(direction, category) {
     const packages = travelPackages[category];
-    const container = document.getElementById('packageCarousel');
+    const containerId = `${category}PackageCarousel`;
+    const container = document.getElementById(containerId);
     
     if (!container) return;
     
@@ -618,7 +569,8 @@ function slidePackages(direction) {
 
 // Update Package Slider Position
 function updatePackageSlider(category) {
-    const container = document.getElementById('packageCarousel');
+    const containerId = `${category}PackageCarousel`;
+    const container = document.getElementById(containerId);
     if (!container) return;
     
     // Get actual card width from rendered elements with proper gap
@@ -639,8 +591,8 @@ function updatePackageSlider(category) {
     
     console.log(`Slider update: category=${category}, current=${currentPackageSlides[category]}, max=${maxSlides}, visible=${visibleCards}, total=${packages.length}`);
     
-    const prevBtn = document.getElementById('packagePrevBtn');
-    const nextBtn = document.getElementById('packageNextBtn');
+    const prevBtn = document.getElementById(`${category}PrevBtn`);
+    const nextBtn = document.getElementById(`${category}NextBtn`);
     
     if (prevBtn && nextBtn) {
         prevBtn.style.opacity = currentPackageSlides[category] === 0 ? '0.5' : '1';
@@ -666,71 +618,86 @@ function updatePackageSlider(category) {
 
 // Mobile Touch Support for Package Carousel
 function addPackageCarouselTouchSupport() {
-    const carousel = document.getElementById('packageCarousel');
-    if (!carousel) return;
+    const categories = ['asia', 'europe', 'philippines'];
     
-    let startX = 0;
-    let endX = 0;
-    
-    carousel.addEventListener('touchstart', function(e) {
-        startX = e.changedTouches[0].screenX;
-    }, { passive: true });
-    
-    carousel.addEventListener('touchend', function(e) {
-        endX = e.changedTouches[0].screenX;
-        const swipeThreshold = 50;
-        const swipeDistance = startX - endX;
+    categories.forEach(category => {
+        const carousel = document.getElementById(`${category}PackageCarousel`);
+        if (!carousel) return;
         
-        if (Math.abs(swipeDistance) > swipeThreshold) {
-            if (swipeDistance > 0) {
-                slidePackages('next');
-            } else {
-                slidePackages('prev');
+        let startX = 0;
+        let endX = 0;
+        
+        carousel.addEventListener('touchstart', function(e) {
+            startX = e.changedTouches[0].screenX;
+        }, { passive: true });
+        
+        carousel.addEventListener('touchend', function(e) {
+            endX = e.changedTouches[0].screenX;
+            const swipeThreshold = 50;
+            const swipeDistance = startX - endX;
+            
+            if (Math.abs(swipeDistance) > swipeThreshold) {
+                if (swipeDistance > 0) {
+                    slidePackages('next', category);
+                } else {
+                    slidePackages('prev', category);
+                }
             }
-        }
-    }, { passive: true });
+        }, { passive: true });
+    });
 }
 
 // Initialize Packages on DOM Load
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize packages if on services page with delay to ensure DOM is rendered
     setTimeout(() => {
-        if (document.getElementById('packageCarousel')) {
-            console.log('Initializing package carousel...');
-            switchPackageCategory('asia');
+        if (document.getElementById('asiaPackageCarousel')) {
+            console.log('Initializing package carousels...');
+            
+            // Render all three categories at once
+            renderPackages('asia');
+            renderPackages('europe');
+            renderPackages('philippines');
+            
             addPackageCarouselTouchSupport();
             
             // Add window resize listener to recalculate on window resize
             window.addEventListener('resize', function() {
-                if (currentPackageCategory) {
-                    console.log('Window resized, updating slider...');
-                    updatePackageSlider(currentPackageCategory);
-                }
+                const categories = ['asia', 'europe', 'philippines'];
+                categories.forEach(category => {
+                    updatePackageSlider(category);
+                });
             });
             
             // Debug function to check carousel state
             window.debugCarousel = function() {
-                const container = document.getElementById('packageCarousel');
-                const cards = container.querySelectorAll('.package-card');
-                const category = currentPackageCategory;
-                const packages = travelPackages[category];
+                const categories = ['asia', 'europe', 'philippines'];
                 
-                console.log('=== CAROUSEL DEBUG ===');
-                console.log('Category:', category);
-                console.log('Total packages:', packages.length);
-                console.log('Rendered cards:', cards.length);
-                console.log('Current slide:', currentPackageSlides[category]);
-                console.log('Container width:', container.parentElement.offsetWidth);
-                console.log('First card width:', cards[0]?.offsetWidth);
-                console.log('Visible cards calculation:', Math.floor((container.parentElement.offsetWidth - 32) / (cards[0]?.offsetWidth + 20)));
-                console.log('=====================');
+                categories.forEach(category => {
+                    const container = document.getElementById(`${category}PackageCarousel`);
+                    const cards = container?.querySelectorAll('.package-card');
+                    const packages = travelPackages[category];
+                    
+                    console.log(`=== ${category.toUpperCase()} CAROUSEL DEBUG ===`);
+                    console.log('Category:', category);
+                    console.log('Total packages:', packages.length);
+                    console.log('Rendered cards:', cards?.length || 0);
+                    console.log('Current slide:', currentPackageSlides[category]);
+                    console.log('Container width:', container?.parentElement.offsetWidth);
+                    console.log('First card width:', cards?.[0]?.offsetWidth);
+                    if (cards?.[0]) {
+                        console.log('Visible cards calculation:', Math.floor((container.parentElement.offsetWidth - 32) / (cards[0].offsetWidth + 20)));
+                    }
+                    console.log('=====================');
+                });
             };
             
             // Force a recalculation after a short delay to ensure proper positioning
             setTimeout(() => {
-                if (currentPackageCategory) {
-                    updatePackageSlider(currentPackageCategory);
-                }
+                const categories = ['asia', 'europe', 'philippines'];
+                categories.forEach(category => {
+                    updatePackageSlider(category);
+                });
             }, 200);
         }
     }, 100);
