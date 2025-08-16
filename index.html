@@ -32,7 +32,7 @@
 </head>
 <body class="bg-gradient-to-br from-blue-50 via-white to-blue-50">
     <!-- Navigation -->
-    <nav class="nav-gradient shadow-lg sticky top-0 z-50">
+    <nav id="navbar" class="nav-gradient shadow-lg fixed top-0 w-full z-50 transition-transform duration-300">
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex justify-between items-center py-4">
                 <div class="flex items-center">
@@ -76,6 +76,9 @@
             </div>
         </div>
     </nav>
+    
+    <!-- Spacer to prevent content from hiding behind fixed navbar -->
+    <div class="h-24"></div>
 
     <!-- Home Tab -->
     <div id="home" class="tab-content active">
@@ -865,15 +868,15 @@
             
             <!-- Department of Tourism Accreditation -->
             <section class="mb-16">
-                <div class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-8 rounded-lg shadow-lg mb-8">
-                    <div class="flex items-center justify-center mb-6">
-                        <div class="text-6xl mr-4">🏛️</div>
-                        <div>
-                            <h3 class="text-3xl font-bold">Department of Tourism Accreditation</h3>
-                            <p class="text-blue-100">Government-Recognized Travel Agency</p>
-                        </div>
-                    </div>
-                </div>
+                                 <div class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-8 rounded-lg shadow-lg mb-8">
+                     <div class="flex items-center justify-center mb-6">
+                         <img src="assets/GATT WEBSITE UPDATES/PARTNERS/401-4016979_tourism-quality-seal-department-of-tourism-philippines-hd-removebg-preview.png" alt="DOT Accreditation Seal" class="w-20 h-20 mr-4 object-contain bg-white p-2 rounded-lg">
+                         <div>
+                             <h3 class="text-3xl font-bold">Department of Tourism Accreditation</h3>
+                             <p class="text-blue-100">Government-Recognized Travel Agency</p>
+                         </div>
+                     </div>
+                 </div>
                 
                 <div class="bg-white p-8 rounded-lg shadow-lg">
                     <p class="text-gray-700 mb-6 text-lg leading-relaxed">
@@ -895,41 +898,41 @@
                 <p class="text-center text-gray-700 mb-12 text-lg">We proudly collaborate with reputable organizations to provide you with trusted and quality travel services.</p>
                 
                 <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-8">
-                    <!-- NITAS -->
-                    <div class="bg-white p-8 rounded-lg shadow-lg border-2 border-indigo-200 border-l-4 border-l-indigo-400">
-                        <div class="text-center mb-6 border-b-2 border-indigo-300 pb-4">
-                            <div class="text-5xl mb-4">🤝</div>
-                            <h4 class="text-2xl font-bold text-indigo-600 border-b border-indigo-200 pb-2">NITAS</h4>
-                            <p class="text-sm text-gray-600 pt-2">Network of Independent Travel and Allied Services</p>
-                        </div>
-                        <p class="text-gray-700 leading-relaxed p-3 border-2 border-gray-200 rounded-lg bg-gray-50">
-                            Network of Independent Travel and Allied Services, Philippines, Inc. or NITAS for short was established in 1986. It is a business travel association who's 400 members are small to medium to medium high companies scattered all over the country.
-                        </p>
-                    </div>
-                    
-                    <!-- TPBPHL -->
-                    <div class="bg-white p-8 rounded-lg shadow-lg border-2 border-indigo-200 border-l-4 border-l-indigo-400">
-                        <div class="text-center mb-6 border-b-2 border-indigo-300 pb-4">
-                            <div class="text-5xl mb-4">🌟</div>
-                            <h4 class="text-2xl font-bold text-indigo-600 border-b border-indigo-200 pb-2">TPBPHL</h4>
-                            <p class="text-sm text-gray-600 pt-2">Tourism Promotions Board Philippines</p>
-                        </div>
-                        <p class="text-gray-700 leading-relaxed p-3 border-2 border-gray-200 rounded-lg bg-gray-50">
-                            An attached agency of the Department of Tourism, the Tourism Promotions Board (TPB) exists to market and promote the Philippines domestically and internationally as a world-class tourism and MICE destination, in strategic partnership with private and public stakeholders to deliver a unique high-value experience for visitors, significantly contributing to increased arrivals, receipts and investments to the country.
-                        </p>
-                    </div>
-                    
-                    <!-- Love the Philippines -->
-                    <div class="bg-white p-8 rounded-lg shadow-lg border-2 border-indigo-200 border-l-4 border-l-indigo-400">
-                        <div class="text-center mb-6 border-b-2 border-indigo-300 pb-4">
-                            <div class="text-5xl mb-4">🇵🇭</div>
-                            <h4 class="text-2xl font-bold text-indigo-600 border-b border-indigo-200 pb-2">LOVE THE PHILIPPINES</h4>
-                            <p class="text-sm text-gray-600 pt-2">Department of Tourism Campaign</p>
-                        </div>
-                        <p class="text-gray-700 leading-relaxed p-3 border-2 border-gray-200 rounded-lg bg-gray-50">
-                            The new tourism campaign slogan of the Department of Tourism. The "enhanced" tourism campaign slogan, launched by the department during its 50th-anniversary celebration at the Manila Hotel on Tuesday (June 27, 2023), replaces the 11-year-old It's More Fun in the Philippines.
-                        </p>
-                    </div>
+                                         <!-- NITAS -->
+                     <div class="bg-white p-8 rounded-lg shadow-lg border-2 border-indigo-200 border-l-4 border-l-indigo-400">
+                         <div class="text-center mb-6 border-b-2 border-indigo-300 pb-4">
+                             <img src="assets/GATT WEBSITE UPDATES/PARTNERS/NITAS.jpg" alt="NITAS Logo" class="w-24 h-24 mx-auto mb-4 object-contain">
+                             <h4 class="text-2xl font-bold text-indigo-600 border-b border-indigo-200 pb-2">NITAS</h4>
+                             <p class="text-sm text-gray-600 pt-2">Network of Independent Travel and Allied Services</p>
+                         </div>
+                         <p class="text-gray-700 leading-relaxed p-3 border-2 border-gray-200 rounded-lg bg-gray-50">
+                             Network of Independent Travel and Allied Services, Philippines, Inc. or NITAS for short was established in 1986. It is a business travel association who's 400 members are small to medium to medium high companies scattered all over the country.
+                         </p>
+                     </div>
+                     
+                     <!-- TPBPHL -->
+                     <div class="bg-white p-8 rounded-lg shadow-lg border-2 border-indigo-200 border-l-4 border-l-indigo-400">
+                         <div class="text-center mb-6 border-b-2 border-indigo-300 pb-4">
+                             <img src="assets/GATT WEBSITE UPDATES/PARTNERS/TPBPHL.png" alt="TPBPHL Logo" class="w-24 h-24 mx-auto mb-4 object-contain">
+                             <h4 class="text-2xl font-bold text-indigo-600 border-b border-indigo-200 pb-2">TPBPHL</h4>
+                             <p class="text-sm text-gray-600 pt-2">Tourism Promotions Board Philippines</p>
+                         </div>
+                         <p class="text-gray-700 leading-relaxed p-3 border-2 border-gray-200 rounded-lg bg-gray-50">
+                             An attached agency of the Department of Tourism, the Tourism Promotions Board (TPB) exists to market and promote the Philippines domestically and internationally as a world-class tourism and MICE destination, in strategic partnership with private and public stakeholders to deliver a unique high-value experience for visitors, significantly contributing to increased arrivals, receipts and investments to the country.
+                         </p>
+                     </div>
+                     
+                     <!-- Love the Philippines -->
+                     <div class="bg-white p-8 rounded-lg shadow-lg border-2 border-indigo-200 border-l-4 border-l-indigo-400">
+                         <div class="text-center mb-6 border-b-2 border-indigo-300 pb-4">
+                             <img src="assets/GATT WEBSITE UPDATES/PARTNERS/love-the-philippines.webp" alt="Love the Philippines Logo" class="w-24 h-24 mx-auto mb-4 object-contain">
+                             <h4 class="text-2xl font-bold text-indigo-600 border-b border-indigo-200 pb-2">LOVE THE PHILIPPINES</h4>
+                             <p class="text-sm text-gray-600 pt-2">Department of Tourism Campaign</p>
+                         </div>
+                         <p class="text-gray-700 leading-relaxed p-3 border-2 border-gray-200 rounded-lg bg-gray-50">
+                             The new tourism campaign slogan of the Department of Tourism. The "enhanced" tourism campaign slogan, launched by the department during its 50th-anniversary celebration at the Manila Hotel on Tuesday (June 27, 2023), replaces the 11-year-old It's More Fun in the Philippines.
+                         </p>
+                     </div>
                 </div>
             </section>
 

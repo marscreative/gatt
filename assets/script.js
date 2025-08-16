@@ -1371,6 +1371,26 @@ const locations = {
 // Global map variable to track current map instance
 let currentMap = null;
 
+// Auto-hiding navbar functionality
+let lastScrollTop = 0;
+let navbar = null;
+
+function handleNavbarScroll() {
+    if (!navbar) return;
+    
+    const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    if (currentScrollTop > lastScrollTop && currentScrollTop > 100) {
+        // Scrolling down - hide navbar
+        navbar.style.transform = 'translateY(-100%)';
+    } else {
+        // Scrolling up - show navbar
+        navbar.style.transform = 'translateY(0)';
+    }
+    
+    lastScrollTop = currentScrollTop;
+}
+
 function showBaguioLocations() {
     const baguioLocations = [
         locations['main-office'],
@@ -1638,6 +1658,14 @@ function showCopySuccess() {
 
 // Modal close functionality
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize navbar for auto-hiding functionality
+    navbar = document.getElementById('navbar');
+    
+    // Add scroll event listener for auto-hiding navbar
+    if (navbar) {
+        window.addEventListener('scroll', handleNavbarScroll, { passive: true });
+    }
+    
     // Close modal when clicking outside
     const mapModal = document.getElementById('mapModal');
     if (mapModal) {
