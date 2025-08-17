@@ -2,6 +2,18 @@
 
 // EmailJS Configuration - Now initialized in HTML file
 
+// Google Maps Directions Function
+function openGoogleMaps(destination) {
+    // Encode the destination address for URL
+    const encodedDestination = encodeURIComponent(destination);
+    
+    // Create Google Maps directions URL
+    const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodedDestination}`;
+    
+    // Open in new tab
+    window.open(googleMapsUrl, '_blank');
+}
+
 // Travel Packages Data
 const travelPackages = {
     asia: [
