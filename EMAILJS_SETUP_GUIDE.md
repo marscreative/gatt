@@ -249,10 +249,7 @@ Website Contact Form
                 <div class="improvements-text">{{improvements}}</div>
             </div>
             
-            <div class="user-email-box">
-                <h3>📧 Customer Email</h3>
-                <div class="email-text">{{user_email}}</div>
-            </div>
+
             
             <div class="timestamp">
                 📅 Submitted on: {{timestamp}}

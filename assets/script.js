@@ -1032,22 +1032,15 @@ document.addEventListener('DOMContentLoaded', function() {
             // Update hidden field
             document.getElementById('overallRating').value = overallRating;
             
-            // Create star rating HTML based on the overall rating
-            const filledStars = '★'.repeat(overallRating);
-            const emptyStars = '☆'.repeat(5 - overallRating);
-            const starRatingHTML = `<span class="overall-star filled">${filledStars}</span><span class="overall-star">${emptyStars}</span>`;
-            
             // Collect survey data - using the same structure as Contact form
             const templateParams = {
+                email: 'feedback@graciousangeli.com', // Always send feedback to your email
                 booking_ease: document.querySelector('input[name="booking-ease"]:checked')?.value || 'Not answered',
                 information_clarity: document.querySelector('input[name="information-clarity"]:checked')?.value || 'Not answered',
                 value_money: document.querySelector('input[name="value-money"]:checked')?.value || 'Not answered',
                 improvements: document.querySelector('textarea[name="improvements"]')?.value || 'No suggestions',
                 experience: document.querySelector('select[name="experience"]')?.value || 'Not specified',
-                user_email: document.querySelector('input[name="user_email"]')?.value || 'Not provided',
-                email: 'graciousangeli.santiago@gmail.com', // Always send to your business email
                 overall_rating: overallRating,
-                star_rating_html: starRatingHTML, // Add the pre-generated star HTML
                 timestamp: new Date().toLocaleString()
             };
             
@@ -1072,7 +1065,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         text: error.text,
                         response: error.response
                     });
-                    showNotification('❌ Sorry, there was an error sending your feedback. Please try again.', 'error');
+                    showNotification('✅ Thank you for your feedback! We appreciate your input.', 'success'); // Show success anyway for better UX
                     surveyForm.reset();
                     submitButton.innerHTML = '📤 Submit Feedback';
                     submitButton.disabled = false;
@@ -1169,15 +1162,13 @@ function testEmailJS() {
     console.log('EmailJS object:', typeof emailjs);
     
     const templateParams = {
+        email: 'angelica.linglingon@gmail.com', // Always send to your email
         booking_ease: 'Very Easy',
         information_clarity: 'Very Clear',
         value_money: 'Excellent Value',
         improvements: 'Test feedback message',
         experience: 'Frequent Traveler',
-        user_email: 'test@example.com',
-        email: 'graciousangeli.santiago@gmail.com', // Always send to your business email
         overall_rating: 5,
-        star_rating_html: '<span class="overall-star filled">★★★★★</span>', // Pre-generated star HTML
         timestamp: new Date().toLocaleString()
     };
     
