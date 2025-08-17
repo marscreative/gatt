@@ -1578,38 +1578,75 @@ function initializeBaguioMap(locations) {
         attribution: '© OpenStreetMap contributors'
     }).addTo(currentMap);
     
-    // Create custom pin icon using your downloaded icon
-    const customPinIcon = L.icon({
+    // Create bounds to fit all markers
+    const bounds = L.latLngBounds();
+    
+    locations.forEach((loc, index) => {
+        const colors = ['#1e40af', '#3b82f6', '#8b5cf6'];
+        
+        const customIcon = L.icon({
+            iconUrl: 'assets/GATT WEBSITE UPDATES/ICONS/pin.png',
+            iconSize: [32, 32],
+            iconAnchor: [16, 32],
+            popupAnchor: [0, -32]
+        });
+        
+        const marker = L.marker([loc.coordinates[0], loc.coordinates[1]], { icon: customIcon }).addTo(currentMap);
+        
+        // Create popup content without navigation button
+        const popupContent = `
+            <div style="text-align: center; min-width: 200px;">
+                <h3 style="margin: 0 0 8px 0; color: #1e40af; font-weight: bold;">${loc.name}</h3>
+                <p style="margin: 4px 0; color: #374151;">${loc.address}</p>
+                <p style="margin: 4px 0; color: #059669; font-weight: 500;">📞 ${loc.phone}</p>
+                <p style="margin: 4px 0; color: #7c3aed;">🕒 ${loc.hours}</p>
+                <p style="margin: 4px 0; color: #dc2626; font-style: italic;">${loc.description}</p>
+            </div>
+        `;
+        
+        marker.bindPopup(popupContent);
+        bounds.extend([loc.coordinates[0], loc.coordinates[1]]);
+    });
+    
+    // Fit map to bounds
+    currentMap.fitBounds(bounds);
+}
+
+function initializeMap(location) {
+    // Destroy existing map if it exists
+    if (currentMap) {
+        currentMap.remove();
+    }
+    
+    // Create new map centered on the specific location
+    currentMap = L.map('map').setView([location.coordinates[0], location.coordinates[1]], 15);
+    
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(currentMap);
+    
+    // Create custom icon for single location
+    const customIcon = L.icon({
         iconUrl: 'assets/GATT WEBSITE UPDATES/ICONS/pin.png',
         iconSize: [32, 32],
         iconAnchor: [16, 32],
         popupAnchor: [0, -32]
     });
     
-    // Create bounds to fit all markers
-    const bounds = L.latLngBounds();
+    const marker = L.marker([location.coordinates[0], location.coordinates[1]], { icon: customIcon }).addTo(currentMap);
     
-    locations.forEach((loc, index) => {
-        const marker = L.marker([loc.coordinates[0], loc.coordinates[1]], { icon: customPinIcon })
-            .addTo(currentMap)
-            .bindPopup(`
-                <div style="padding: 10px; max-width: 250px;">
-                    <h3 style="font-weight: bold; margin-bottom: 5px; color: #1e40af;">${loc.name}</h3>
-                    <p style="margin: 5px 0; color: #374151;">${loc.address}</p>
-                    <p style="margin: 5px 0; color: #374151;">📞 ${loc.phone}</p>
-                    <button onclick="openGoogleMaps('${loc.address}', ${loc.coordinates[0]}, ${loc.coordinates[1]})" 
-                            style="margin-top: 8px; padding: 4px 8px; background: #10b981; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px;">
-                        🧭 Navigate
-                    </button>
-                </div>
-            `);
-        
-        // Add marker to bounds
-        bounds.extend([loc.coordinates[0], loc.coordinates[1]]);
-    });
+    // Create popup content without navigation button
+    const popupContent = `
+        <div style="text-align: center; min-width: 200px;">
+            <h3 style="margin: 0 0 8px 0; color: #1e40af; font-weight: bold;">${location.name}</h3>
+            <p style="margin: 4px 0; color: #374151;">${location.address}</p>
+            <p style="margin: 4px 0; color: #059669; font-weight: 500;">📞 ${location.phone}</p>
+            <p style="margin: 4px 0; color: #7c3aed;">🕒 ${location.hours}</p>
+            <p style="margin: 4px 0; color: #dc2626; font-style: italic;">${location.description}</p>
+        </div>
+    `;
     
-    // Fit map to show all markers
-    currentMap.fitBounds(bounds, { padding: [20, 20] });
+    marker.bindPopup(popupContent);
 }
 
 function showLocation(locationId) {
