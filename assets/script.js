@@ -1625,28 +1625,25 @@ function initializeMap(location) {
         attribution: '© OpenStreetMap contributors'
     }).addTo(currentMap);
     
-    // Create custom icon for single location
-    const customIcon = L.icon({
+    // Create custom pin icon using your downloaded icon
+    const customPinIcon = L.icon({
         iconUrl: 'assets/GATT WEBSITE UPDATES/ICONS/pin.png',
         iconSize: [32, 32],
         iconAnchor: [16, 32],
         popupAnchor: [0, -32]
     });
     
-    const marker = L.marker([location.coordinates[0], location.coordinates[1]], { icon: customIcon }).addTo(currentMap);
-    
-    // Create popup content without navigation button
-    const popupContent = `
-        <div style="text-align: center; min-width: 200px;">
-            <h3 style="margin: 0 0 8px 0; color: #1e40af; font-weight: bold;">${location.name}</h3>
-            <p style="margin: 4px 0; color: #374151;">${location.address}</p>
-            <p style="margin: 4px 0; color: #059669; font-weight: 500;">📞 ${location.phone}</p>
-            <p style="margin: 4px 0; color: #7c3aed;">🕒 ${location.hours}</p>
-            <p style="margin: 4px 0; color: #dc2626; font-style: italic;">${location.description}</p>
-        </div>
-    `;
-    
-    marker.bindPopup(popupContent);
+    L.marker([location.coordinates[0], location.coordinates[1]], { icon: customPinIcon })
+        .addTo(currentMap)
+        .bindPopup(`
+            <div style="padding: 10px; max-width: 250px; text-align: center;">
+                <h3 style="font-weight: bold; margin-bottom: 5px; color: #1e40af;">${location.name}</h3>
+                <p style="margin: 5px 0; color: #374151;">${location.address}</p>
+                <p style="margin: 5px 0; color: #059669; font-weight: 500;">📞 ${location.phone}</p>
+                <p style="margin: 5px 0; color: #7c3aed;">🕒 ${location.hours}</p>
+                <p style="margin: 5px 0; color: #dc2626; font-style: italic;">${location.description}</p>
+            </div>
+        `);
 }
 
 function showLocation(locationId) {
@@ -1712,42 +1709,6 @@ function showLocation(locationId) {
     setTimeout(() => {
         initializeMap(location);
     }, 100);
-}
-
-function initializeMap(location) {
-    // Destroy existing map if it exists
-    if (currentMap) {
-        currentMap.remove();
-    }
-    
-    // Create new map centered on the specific location
-    currentMap = L.map('map').setView([location.coordinates[0], location.coordinates[1]], 15);
-    
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© OpenStreetMap contributors'
-    }).addTo(currentMap);
-    
-    // Create custom pin icon using your downloaded icon
-    const customPinIcon = L.icon({
-        iconUrl: 'assets/GATT WEBSITE UPDATES/ICONS/pin.png',
-        iconSize: [32, 32],
-        iconAnchor: [16, 32],
-        popupAnchor: [0, -32]
-    });
-    
-    L.marker([location.coordinates[0], location.coordinates[1]], { icon: customPinIcon })
-        .addTo(currentMap)
-        .bindPopup(`
-            <div style="padding: 10px; max-width: 250px;">
-                <h3 style="font-weight: bold; margin-bottom: 5px; color: #1e40af;">${location.name}</h3>
-                <p style="margin: 5px 0; color: #374151;">${location.address}</p>
-                <p style="margin: 5px 0; color: #374151;">📞 ${location.phone}</p>
-                <button onclick="openGoogleMaps('${location.address}', ${location.coordinates[0]}, ${location.coordinates[1]})" 
-                        style="margin-top: 8px; padding: 4px 8px; background: #10b981; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px;">
-                    🧭 Navigate
-                </button>
-            </div>
-        `);
 }
 
 function hideLocation() {
