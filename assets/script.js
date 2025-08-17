@@ -1463,7 +1463,7 @@ const locations = {
         phone: '+63-9175061996',
         hours: '9:00 AM - 6:00 PM (Monday to Saturday)',
         description: 'Central Baguio, near Session Road',
-        coordinates: [16.4023, 120.5960]
+        coordinates: [16.412590408990027, 120.59720591203987]
     },
     'sm-city': {
         name: 'SM City Branch',
@@ -1471,7 +1471,7 @@ const locations = {
         phone: '+63-9171583664',
         hours: '10:00 AM - 10:00 PM (Monday to Sunday)',
         description: 'Inside SM City Mall, near DFA Office',
-        coordinates: [16.4023, 120.5960]
+        coordinates: [16.408925128010214, 120.59941468598012]
     },
     'ymca': {
         name: 'YMCA Branch',
@@ -1479,7 +1479,7 @@ const locations = {
         phone: '+63-9171060994',
         hours: '9:00 AM - 5:00 PM (Monday to Saturday)',
         description: 'Historic YMCA Building',
-        coordinates: [16.4023, 120.5960]
+        coordinates: [16.410983796278103, 120.59980943432205]
     },
     'santiago': {
         name: 'Santiago Branch',
@@ -1487,7 +1487,7 @@ const locations = {
         phone: '+63-9958424115',
         hours: '10:00 AM - 9:00 PM (Monday to Sunday)',
         description: 'Inside Robinsons Mall',
-        coordinates: [16.6881, 121.5489]
+        coordinates: [16.696211843689365, 121.56102450731797]
     }
 };
 
@@ -1578,33 +1578,19 @@ function initializeBaguioMap(locations) {
         attribution: '© OpenStreetMap contributors'
     }).addTo(currentMap);
     
+    // Create custom pin icon using your downloaded icon
+    const customPinIcon = L.icon({
+        iconUrl: 'assets/GATT WEBSITE UPDATES/ICONS/pin.png',
+        iconSize: [32, 32],
+        iconAnchor: [16, 32],
+        popupAnchor: [0, -32]
+    });
+    
     // Create bounds to fit all markers
     const bounds = L.latLngBounds();
     
     locations.forEach((loc, index) => {
-        const colors = ['#1e40af', '#3b82f6', '#8b5cf6'];
-        
-        const customIcon = L.divIcon({
-            className: 'custom-marker',
-            html: `<div style="
-                width: 30px; 
-                height: 30px; 
-                background-color: ${colors[index]}; 
-                border: 2px solid white; 
-                border-radius: 50%; 
-                display: flex; 
-                align-items: center; 
-                justify-content: center; 
-                color: white; 
-                font-weight: bold; 
-                font-size: 12px;
-                box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-            ">${index + 1}</div>`,
-            iconSize: [30, 30],
-            iconAnchor: [15, 15]
-        });
-
-        const marker = L.marker([loc.coordinates[0], loc.coordinates[1]], { icon: customIcon })
+        const marker = L.marker([loc.coordinates[0], loc.coordinates[1]], { icon: customPinIcon })
             .addTo(currentMap)
             .bindPopup(`
                 <div style="padding: 10px; max-width: 250px;">
@@ -1704,28 +1690,15 @@ function initializeMap(location) {
         attribution: '© OpenStreetMap contributors'
     }).addTo(currentMap);
     
-    // Create custom icon for single location
-    const customIcon = L.divIcon({
-        className: 'custom-marker',
-        html: `<div style="
-            width: 30px; 
-            height: 30px; 
-            background-color: #1e40af; 
-            border: 2px solid white; 
-            border-radius: 50%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            color: white; 
-            font-weight: bold; 
-            font-size: 12px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        ">📍</div>`,
-        iconSize: [30, 30],
-        iconAnchor: [15, 15]
+    // Create custom pin icon using your downloaded icon
+    const customPinIcon = L.icon({
+        iconUrl: 'assets/GATT WEBSITE UPDATES/ICONS/pin.png',
+        iconSize: [32, 32],
+        iconAnchor: [16, 32],
+        popupAnchor: [0, -32]
     });
     
-    L.marker([location.coordinates[0], location.coordinates[1]], { icon: customIcon })
+    L.marker([location.coordinates[0], location.coordinates[1]], { icon: customPinIcon })
         .addTo(currentMap)
         .bindPopup(`
             <div style="padding: 10px; max-width: 250px;">
