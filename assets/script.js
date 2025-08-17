@@ -1459,7 +1459,7 @@ function updateEuropeSlider() {
 const locations = {
     'main-office': {
         name: 'Main Office',
-        address: 'Skyworld Commercial Center, Session Road, Baguio City 2600',
+        address: 'GRACIOUS ANGELI Travel & Tours, Skyworld Commercial Center, Session Rd, Baguio, 2600 Benguet',
         phone: '+63-9175061996',
         hours: '9:00 AM - 6:00 PM (Monday to Saturday)',
         description: 'Central Baguio, near Session Road',
@@ -1483,7 +1483,7 @@ const locations = {
     },
     'santiago': {
         name: 'Santiago Branch',
-        address: 'Level 2 Robinsons Mall, Maharlika Highway, Santiago City, Isabela 3311',
+        address: 'Gracious Angeli Travel Tours, Level 2, Robinsons Place, Santiago 1, Santiago, Isabela',
         phone: '+63-9958424115',
         hours: '10:00 AM - 9:00 PM (Monday to Sunday)',
         description: 'Inside Robinsons Mall',
