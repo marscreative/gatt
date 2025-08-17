@@ -1032,24 +1032,31 @@ document.addEventListener('DOMContentLoaded', function() {
             // Update hidden field
             document.getElementById('overallRating').value = overallRating;
             
-            // Collect survey data
-            const surveyData = {
+            // Create star rating HTML based on the overall rating
+            const filledStars = '★'.repeat(overallRating);
+            const emptyStars = '☆'.repeat(5 - overallRating);
+            const starRatingHTML = `<span class="overall-star filled">${filledStars}</span><span class="overall-star">${emptyStars}</span>`;
+            
+            // Collect survey data - using the same structure as Contact form
+            const templateParams = {
                 booking_ease: document.querySelector('input[name="booking-ease"]:checked')?.value || 'Not answered',
                 information_clarity: document.querySelector('input[name="information-clarity"]:checked')?.value || 'Not answered',
                 value_money: document.querySelector('input[name="value-money"]:checked')?.value || 'Not answered',
                 improvements: document.querySelector('textarea[name="improvements"]')?.value || 'No suggestions',
                 experience: document.querySelector('select[name="experience"]')?.value || 'Not specified',
                 user_email: document.querySelector('input[name="user_email"]')?.value || 'Not provided',
+                email: 'graciousangeli.santiago@gmail.com', // Always send to your business email
                 overall_rating: overallRating,
+                star_rating_html: starRatingHTML, // Add the pre-generated star HTML
                 timestamp: new Date().toLocaleString()
             };
             
-            // Send survey via EmailJS
-            console.log('Sending survey data:', surveyData);
+            // Send survey via EmailJS - using the same pattern as Contact form
+            console.log('Sending survey data:', templateParams);
             console.log('Service ID:', 'service_l7tgzys');
             console.log('Template ID:', 'template_ni8iegk');
             
-            emailjs.send('service_l7tgzys', 'template_ni8iegk', surveyData)
+            emailjs.send('service_l7tgzys', 'template_ni8iegk', templateParams)
                 .then(function(response) {
                     console.log('Survey EmailJS success:', response.status, response.text);
                     showNotification('✅ Thank you for your feedback! We appreciate your input and will use it to improve our services.', 'success');
@@ -1065,7 +1072,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         text: error.text,
                         response: error.response
                     });
-                    showNotification('✅ Thank you for your feedback! We appreciate your input.', 'success'); // Show success anyway for better UX
+                    showNotification('❌ Sorry, there was an error sending your feedback. Please try again.', 'error');
                     surveyForm.reset();
                     submitButton.innerHTML = '📤 Submit Feedback';
                     submitButton.disabled = false;
@@ -1161,20 +1168,22 @@ function testEmailJS() {
     console.log('Testing EmailJS configuration...');
     console.log('EmailJS object:', typeof emailjs);
     
-    const testData = {
+    const templateParams = {
         booking_ease: 'Very Easy',
         information_clarity: 'Very Clear',
         value_money: 'Excellent Value',
         improvements: 'Test feedback message',
         experience: 'Frequent Traveler',
         user_email: 'test@example.com',
+        email: 'graciousangeli.santiago@gmail.com', // Always send to your business email
         overall_rating: 5,
+        star_rating_html: '<span class="overall-star filled">★★★★★</span>', // Pre-generated star HTML
         timestamp: new Date().toLocaleString()
     };
     
-    console.log('Sending test data:', testData);
+    console.log('Sending test data:', templateParams);
     
-    emailjs.send('service_l7tgzys', 'template_ni8iegk', testData)
+    emailjs.send('service_l7tgzys', 'template_ni8iegk', templateParams)
         .then(function(response) {
             console.log('✅ Test EmailJS success:', response.status, response.text);
             alert('Test email sent successfully! Check your email.');
@@ -1193,16 +1202,16 @@ function testEmailJS() {
 function testContactEmailJS() {
     console.log('Testing Contact EmailJS configuration...');
     
-    const testData = {
+    const templateParams = {
         from_name: 'Test User',
         from_email: 'test@example.com',
         subject: 'Test Contact Form',
         message: 'This is a test message from the contact form.'
     };
     
-    console.log('Sending test contact data:', testData);
+    console.log('Sending test contact data:', templateParams);
     
-    emailjs.send('service_l7tgzys', 'template_ld0fd4g', testData)
+    emailjs.send('service_l7tgzys', 'template_ld0fd4g', templateParams)
         .then(function(response) {
             console.log('✅ Test Contact EmailJS success:', response.status, response.text);
             alert('Test contact email sent successfully! Check your email.');
@@ -1215,6 +1224,38 @@ function testContactEmailJS() {
             });
             alert('Test contact email failed. Check console for details.');
         });
+}
+
+// Comprehensive EmailJS debugging function
+function debugEmailJS() {
+    console.log('=== EMAILJS DEBUGGING ===');
+    console.log('1. EmailJS object:', typeof emailjs);
+    console.log('2. EmailJS version:', emailjs?.version);
+    console.log('3. EmailJS services:', emailjs?.services);
+    console.log('4. EmailJS templates:', emailjs?.templates);
+    
+    // Test if EmailJS is properly initialized
+    if (typeof emailjs === 'undefined') {
+        console.error('❌ EmailJS is not loaded!');
+        alert('EmailJS is not loaded. Check if the script is included.');
+        return;
+    }
+    
+    // Test service connection
+    emailjs.send('service_l7tgzys', 'template_ld0fd4g', {
+        from_name: 'Debug Test',
+        from_email: 'debug@test.com',
+        subject: 'Debug Test',
+        message: 'This is a debug test.'
+    })
+    .then(function(response) {
+        console.log('✅ Service connection test successful:', response);
+        alert('Service connection test successful! Check your email.');
+    })
+    .catch(function(error) {
+        console.error('❌ Service connection test failed:', error);
+        alert('Service connection test failed. Check console for details.');
+    });
 }
 
 // Show success/error messages with enhanced styling
