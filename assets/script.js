@@ -1723,7 +1723,8 @@ function hideLocation() {
 }
 
 function openGoogleMaps(address, lat, lng) {
-    const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(address)}&travelmode=driving`;
+    // Use search URL instead of directions URL to show the place without navigation
+    const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
     window.open(googleMapsUrl, '_blank');
 }
 
