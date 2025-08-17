@@ -7,8 +7,8 @@ function openGoogleMaps(destination) {
     // Encode the destination address for URL
     const encodedDestination = encodeURIComponent(destination);
     
-    // Create Google Maps directions URL
-    const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodedDestination}`;
+    // Create Google Maps location URL (shows the place without directions)
+    const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodedDestination}`;
     
     // Open in new tab
     window.open(googleMapsUrl, '_blank');
