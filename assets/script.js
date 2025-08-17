@@ -994,15 +994,43 @@ document.addEventListener('DOMContentLoaded', function() {
             });
             
             if (!allFilled) {
-                showMessage('⚠️ Please answer all required questions before submitting.', 'warning');
+                showNotification('⚠️ Please answer all required questions before submitting.', 'warning');
                 return;
             }
             
             // Show loading state
             const submitButton = surveyForm.querySelector('button[type="submit"]');
-            const originalText = submitButton.textContent;
+            const originalHTML = submitButton.innerHTML;
             submitButton.innerHTML = `<span class="loading-spinner mr-2"></span>Submitting...`;
             submitButton.disabled = true;
+            
+            // Calculate overall rating based on radio button selections
+            let totalRating = 0;
+            let ratingCount = 0;
+            
+            // Get ratings from radio buttons
+            const bookingEaseRating = document.querySelector('input[name="booking-ease"]:checked')?.dataset.rating;
+            const informationClarityRating = document.querySelector('input[name="information-clarity"]:checked')?.dataset.rating;
+            const valueMoneyRating = document.querySelector('input[name="value-money"]:checked')?.dataset.rating;
+            
+            if (bookingEaseRating) {
+                totalRating += parseInt(bookingEaseRating);
+                ratingCount++;
+            }
+            if (informationClarityRating) {
+                totalRating += parseInt(informationClarityRating);
+                ratingCount++;
+            }
+            if (valueMoneyRating) {
+                totalRating += parseInt(valueMoneyRating);
+                ratingCount++;
+            }
+            
+            // Calculate average rating
+            const overallRating = ratingCount > 0 ? Math.round(totalRating / ratingCount) : 0;
+            
+            // Update hidden field
+            document.getElementById('overallRating').value = overallRating;
             
             // Collect survey data
             const surveyData = {
@@ -1011,22 +1039,38 @@ document.addEventListener('DOMContentLoaded', function() {
                 value_money: document.querySelector('input[name="value-money"]:checked')?.value || 'Not answered',
                 improvements: document.querySelector('textarea[name="improvements"]')?.value || 'No suggestions',
                 experience: document.querySelector('select[name="experience"]')?.value || 'Not specified',
+                user_email: document.querySelector('input[name="user_email"]')?.value || 'Not provided',
+                overall_rating: overallRating,
                 timestamp: new Date().toLocaleString()
             };
             
             // Send survey via EmailJS
-            emailjs.send('YOUR_SERVICE_ID', 'YOUR_SURVEY_TEMPLATE_ID', surveyData)
+            console.log('Sending survey data:', surveyData);
+            console.log('Service ID:', 'service_l7tgzys');
+            console.log('Template ID:', 'template_ni8iegk');
+            
+            emailjs.send('service_l7tgzys', 'template_ni8iegk', surveyData)
                 .then(function(response) {
+                    console.log('Survey EmailJS success:', response.status, response.text);
                     showNotification('✅ Thank you for your feedback! We appreciate your input and will use it to improve our services.', 'success');
                     surveyForm.reset();
-                    submitButton.textContent = originalText;
+                    submitButton.innerHTML = '📤 Submit Feedback';
                     submitButton.disabled = false;
+                    // Close the survey modal after successful submission
+                    closeSurveyModal();
                 }, function(error) {
                     console.error('Survey EmailJS error:', error);
+                    console.error('Error details:', {
+                        status: error.status,
+                        text: error.text,
+                        response: error.response
+                    });
                     showNotification('✅ Thank you for your feedback! We appreciate your input.', 'success'); // Show success anyway for better UX
                     surveyForm.reset();
-                    submitButton.textContent = originalText;
+                    submitButton.innerHTML = '📤 Submit Feedback';
                     submitButton.disabled = false;
+                    // Close the survey modal even if there's an error
+                    closeSurveyModal();
                 });
         });
     }
@@ -1059,7 +1103,7 @@ if (contactForm) {
         }
         
         const submitButton = contactForm.querySelector('button[type="submit"]');
-        const originalText = submitButton.textContent;
+        const originalHTML = submitButton.innerHTML;
         
         // Show loading state
         submitButton.innerHTML = `<span class="loading-spinner mr-2"></span>Sending...`;
@@ -1073,20 +1117,34 @@ if (contactForm) {
             message: message
         };
         
+        console.log('Sending contact form data:', templateParams);
+        console.log('Service ID:', 'service_l7tgzys');
+        console.log('Template ID:', 'template_ld0fd4g');
+        
         emailjs.send('service_l7tgzys', 'template_ld0fd4g', templateParams)
             .then(function(response) {
                 console.log('EmailJS success:', response.status, response.text);
                 showNotification('✅ Thank you for your message! We will get back to you soon.', 'success');
                 contactForm.reset();
-                submitButton.textContent = originalText;
+                submitButton.innerHTML = 'Send Message';
                 submitButton.disabled = false;
+                
+                // Show survey popup after successful contact form submission
+                setTimeout(() => {
+                    showSurveyModal();
+                }, 2000);
             }, function(error) {
                 console.error('EmailJS error details:', error);
+                console.error('Error details:', {
+                    status: error.status,
+                    text: error.text,
+                    response: error.response
+                });
                 console.log('Service ID:', 'service_l7tgzys');
                 console.log('Template ID:', 'template_ld0fd4g');
                 console.log('Template Params:', templateParams);
                 showNotification('❌ Sorry, there was an error sending your message. Please try again or contact us directly.', 'error');
-                submitButton.textContent = originalText;
+                submitButton.innerHTML = 'Send Message';
                 submitButton.disabled = false;
             });
     });
@@ -1096,6 +1154,67 @@ if (contactForm) {
 function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
+}
+
+// Test function for EmailJS debugging
+function testEmailJS() {
+    console.log('Testing EmailJS configuration...');
+    console.log('EmailJS object:', typeof emailjs);
+    
+    const testData = {
+        booking_ease: 'Very Easy',
+        information_clarity: 'Very Clear',
+        value_money: 'Excellent Value',
+        improvements: 'Test feedback message',
+        experience: 'Frequent Traveler',
+        user_email: 'test@example.com',
+        overall_rating: 5,
+        timestamp: new Date().toLocaleString()
+    };
+    
+    console.log('Sending test data:', testData);
+    
+    emailjs.send('service_l7tgzys', 'template_ni8iegk', testData)
+        .then(function(response) {
+            console.log('✅ Test EmailJS success:', response.status, response.text);
+            alert('Test email sent successfully! Check your email.');
+        }, function(error) {
+            console.error('❌ Test EmailJS error:', error);
+            console.error('Error details:', {
+                status: error.status,
+                text: error.text,
+                response: error.response
+            });
+            alert('Test email failed. Check console for details.');
+        });
+}
+
+// Test function for contact form EmailJS
+function testContactEmailJS() {
+    console.log('Testing Contact EmailJS configuration...');
+    
+    const testData = {
+        from_name: 'Test User',
+        from_email: 'test@example.com',
+        subject: 'Test Contact Form',
+        message: 'This is a test message from the contact form.'
+    };
+    
+    console.log('Sending test contact data:', testData);
+    
+    emailjs.send('service_l7tgzys', 'template_ld0fd4g', testData)
+        .then(function(response) {
+            console.log('✅ Test Contact EmailJS success:', response.status, response.text);
+            alert('Test contact email sent successfully! Check your email.');
+        }, function(error) {
+            console.error('❌ Test Contact EmailJS error:', error);
+            console.error('Error details:', {
+                status: error.status,
+                text: error.text,
+                response: error.response
+            });
+            alert('Test contact email failed. Check console for details.');
+        });
 }
 
 // Show success/error messages with enhanced styling
@@ -1839,3 +1958,109 @@ function showMessage(message, type) {
         }
     }, 5000);
 }
+
+// Survey Modal Functions
+function showSurveyModal() {
+    const modal = document.getElementById('surveyModal');
+    if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        // Initialize star rating display
+        updateStarRating();
+    }
+}
+
+// Function to update star rating display
+function updateStarRating() {
+    const starDisplay = document.getElementById('starDisplay');
+    const ratingText = document.getElementById('ratingText');
+    
+    if (!starDisplay || !ratingText) return;
+    
+    // Calculate overall rating based on radio button selections
+    let totalRating = 0;
+    let ratingCount = 0;
+    
+    // Get ratings from radio buttons
+    const bookingEaseRating = document.querySelector('input[name="booking-ease"]:checked')?.dataset.rating;
+    const informationClarityRating = document.querySelector('input[name="information-clarity"]:checked')?.dataset.rating;
+    const valueMoneyRating = document.querySelector('input[name="value-money"]:checked')?.dataset.rating;
+    
+    if (bookingEaseRating) {
+        totalRating += parseInt(bookingEaseRating);
+        ratingCount++;
+    }
+    if (informationClarityRating) {
+        totalRating += parseInt(informationClarityRating);
+        ratingCount++;
+    }
+    if (valueMoneyRating) {
+        totalRating += parseInt(valueMoneyRating);
+        ratingCount++;
+    }
+    
+    // Calculate average rating
+    const overallRating = ratingCount > 0 ? Math.round(totalRating / ratingCount) : 0;
+    
+    // Update star display
+    const filledStars = '★'.repeat(overallRating);
+    const emptyStars = '☆'.repeat(5 - overallRating);
+    starDisplay.innerHTML = `<span class="text-yellow-400">${filledStars}</span><span class="text-gray-300">${emptyStars}</span>`;
+    
+    // Update rating text
+    if (overallRating === 0) {
+        ratingText.textContent = 'Select your ratings above';
+        ratingText.className = 'rating-text ml-3 text-lg font-semibold text-gray-600';
+    } else {
+        const ratingDescriptions = {
+            1: 'Poor',
+            2: 'Fair',
+            3: 'Good',
+            4: 'Very Good',
+            5: 'Excellent'
+        };
+        ratingText.textContent = `${overallRating}/5 - ${ratingDescriptions[overallRating]}`;
+        ratingText.className = 'rating-text ml-3 text-lg font-semibold text-yellow-600';
+    }
+    
+    // Update hidden field
+    const overallRatingField = document.getElementById('overallRating');
+    if (overallRatingField) {
+        overallRatingField.value = overallRating;
+    }
+}
+
+function closeSurveyModal() {
+    const modal = document.getElementById('surveyModal');
+    if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        document.body.style.overflow = 'auto'; // Restore scrolling
+    }
+}
+
+// Close survey modal when clicking outside
+document.addEventListener('DOMContentLoaded', function() {
+    const surveyModal = document.getElementById('surveyModal');
+    if (surveyModal) {
+        surveyModal.addEventListener('click', function(e) {
+            if (e.target === surveyModal) {
+                closeSurveyModal();
+            }
+        });
+    }
+    
+    // Close survey modal when pressing Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeSurveyModal();
+        }
+    });
+    
+    // Add event listeners for radio buttons to update star rating
+    const radioButtons = document.querySelectorAll('input[type="radio"][data-rating]');
+    radioButtons.forEach(radio => {
+        radio.addEventListener('change', updateStarRating);
+    });
+});

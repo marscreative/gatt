@@ -77,6 +77,34 @@
     }
 }
 
+/* Loading Spinner */
+.loading-spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Star Rating Display */
+.star-rating-display {
+    transition: all 0.3s ease;
+}
+
+.star-rating-display span {
+    transition: all 0.3s ease;
+}
+
+.rating-text {
+    transition: all 0.3s ease;
+}
+
 /* Logo styling */
 .nav-logo {
     transition: all 0.3s ease;
