@@ -47,7 +47,7 @@ const travelPackages = {
             minPax: 'MIN OF 2 PAX',
             price: '14,999',
             image: 'assets/GATT WEBSITE UPDATES/SERVICES/Vietnam Ha Noi.png',
-            inclusions: ['Hotel Accommodation', 'Daily Hotel Breakfast', 'All Transfers', 'Half Day City Tour', 'Ocean Park', 'Travel Tax'],
+            inclusions: ['Hotel Accommodation', 'Daily Hotel Breakfast', 'All Transfers', 'Half Day City Tour', 'Travel Tax'],
             exclusions: ['Roundtrip Flight Ticket', 'Visa Surcharge', 'Travel Insurance', 'Compulsory Tipping', 'Other Personal Expenses']
         },
         // Vietnam - Sapa
